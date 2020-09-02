@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+{% block page_heading %}{% if case_id %}{% trans 'Case Details' %}{% else %} {% trans 'Add Case Details' %}{% endif %}{% endblock %}
+
+{% block breadcrumbs %}
+  ~ {% if case_id %}{% trans 'Update Case Details' %}{% else %}{% trans 'Add Case Details' %}{% endif %}
+{% endblock %}
+ {% block button_area %} 
+ {% endblock %}
+
+{% block content %}
+    <div class="dashboard_wrapper addcase_wrapper">
+        <div class="dashboard_container">   
+            <div class="addcase_container">
+                <form id="add_case_form" class="add_case_form" action="{% url 'case_history:array_field_check' %}" method="post">{% csrf_token %}
+                    <input type="hidden" id="id_case_update" value="{% if case_id %}{{case_id}}{% endif %}" name="id_case_update">
+                    <input type="hidden" id="is_primary" value="1" name="is_primary">
+                    <input type="hidden" id="id_case_status" value="{% if case_status %}{{case_status.id}}{% endif %}" name="case_status">
+                    <div id="case_details" class="advance_filter_block">
+                        <div class="advance_container">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{{ form.user.label }}</label>
+                                        {{ form.user }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{{ form.pract_regis_body.label }}</label>
+                                        {{ form.pract_regis_body }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                       <label>{{ form.state.label }}</label>
+                                        {{ form.state }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                         <label>{{ form.pract_reg_no.label }}</label>
+                                         {{form.pract_reg_no}}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                         <label>{{ form.document_name.label }}</label>
+                                         {{form.document_name}}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                         <label>{{ form.document_path.label }}</label>
+                                         {{form.document_path}}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{{ form.tnc.label }}</label>
+                                        {{form.tnc}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between" id="add_more">
+                                <h6><label>{{ form.clinical_setting.label }}</label></h6>
+                                <img class="add_more_clinical add_more_icon" src="{% static 'images/icons8-plus.svg' %}">
+                            </div>
+                            
+                            {{ form.clinical_setting.form_set.management_form }}
+                            {% for form1 in form.clinical_setting.form_set %}
+                            {{ form1.id }}
+                            <div class="row add_case_segregation">
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{{ form1.clinic.label }}</label>
+                                        {{ form1.clinic }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{{ form1.clinic_address.label }}</label>
+                                        {{ form1.clinic_address }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{{ form1.affiliation.label }}</label>
+                                        {{ form1.affiliation }}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <div class="add_here_clinical"></div>
+                        </div>
+                    </div>
+                </form>
+                {# Add more clinical empty formset #}
+                <div id="empty_form" style="display:none">
+                    <div class="row add_case_segregation">
+                        <div class="col-sm-12 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label>{{ form.clinical_setting.form_set.empty_form.clinic.label }}</label>
+                                {{ form.clinical_setting.form_set.empty_form.clinic }}
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label>{{ form.clinical_setting.form_set.empty_form.clinic_address.label }}</label>
+                                {{ form.clinical_setting.form_set.empty_form.clinic_address }}
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3 col-lg-3">
+                            <div class="form-group">
+                                <label>{{ form.clinical_setting.form_set.empty_form.affiliation.label }}</label>
+                                {{ form.clinical_setting.form_set.empty_form.affiliation }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {# Add more clinical empty formset #}
+            </div>
+        </div>
+    </div>
+<!-- banner ends -->
+<!-- add followup visit starts -->
+{% include 'case_history/follow_up_visit.html' %}
+<!-- add followup visit ends -->
+<!-- footer starts -->
+{% include 'case_history/add_case_footer.html' %}
+<!-- footer ends -->
+{% endblock %}
+
+{% block jsfilesurls %}
+{{ form.clinical_setting.form_set.media }}
+{% endblock %}
+
+{% block custom-js %}
+{% include 'case_history/add_case_script.html' %}
+
+$('.add_more_clinical').click(function() {
+    var form_idx = $('#id_clinical_setting-TOTAL_FORMS').val();
+    $('.add_here_clinical').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
+    $('#id_clinical_setting-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+});
+
+{% endblock %}

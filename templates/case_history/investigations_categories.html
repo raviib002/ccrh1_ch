@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+{% block page_heading %}{% trans 'Add Clinical Case' %}{% endblock %}
+
+{% block breadcrumbs %}
+    {% trans 'Case Investigation' %}
+{% endblock %}
+
+{% block content %}
+    <div class="dashboard_wrapper addcase_wrapper">
+        <div class="dashboard_container">
+            <div class="addcase_container">
+                {% include 'case_history/add_case_menus.html' %}
+                <form id="add_case_form" class="add_case_form" action="{% if case_id %}{% url 'case_history:investigations_categories' case_id=case_id %}{% endif %}" method="post">{% csrf_token %}
+                    <input type="hidden" id="id_case_record" value="{{ case_id }}" name="case_record">
+                    <div id="case_details" class="advance_filter_block">
+                        <div class="advance_container">
+                            <div class="d-flex justify-content-between">
+                            <h6></h6>
+                                <img class="add_invst add_more_icon" src="{% static 'images/icons8-plus.svg' %}">
+                            </div>  
+                            
+                           {% for l in case_record %}
+                            <input type="hidden" name="case_investigation_{{forloop.counter}}_1" value="{{l.id}}">
+                                <div class="row  test">
+                                   <div class="col-sm-12 col-md-3 col-lg-3 ">
+                                        <div class="form-group">
+                                            <label>{% trans 'Investigation*' %}</label>
+                                            <select class="form-control investg_name"  name="invstgationmaster_{{forloop.counter}}_1" id="invest_{{forloop.counter}}" disabled>
+                                             <option value="" >Select Investigation </option>
+                                            {% for k in invast_mast %}
+                                                    <option value="{{k|first}}"{% if l.investg_mas_id ==  k|first %}selected{% endif %}>{{k|last }}</option>
+                                            {% endfor %}
+                                            </select>      
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row add_case_segregation">
+                                    {% for j in map_case %}
+                                       {% if l.investg_mas_id == j.investg.investg_mas_id %}
+                                         <input type="hidden" name="case_investigation_categorymapping_{{forloop.parentloop.counter}}_{{forloop.counter}}" value="{{j.id}}">
+                                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                                <div class="form-group input_padd_right">
+                                                    <label>{{ j.investg_cat }}</label>
+                                                    <input type="hidden" name="inveatigationcategorymapping_{{forloop.parentloop.counter}}_{{forloop.counter}}" value="{{j.investg_cat_id}}">
+                                                    <input type="text" class="form-control" name="investigationname_{{forloop.parentloop.counter}}_{{forloop.counter}}" value="{% if j.investg_cat_value %}{{ j.investg_cat_value }}{% endif %}">
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                {% endfor %}
+{#                            {#To show the added investigation categories#}
+
+                            {% if not case_record %}
+                                 <div class="row  test">
+                                   <div class="col-sm-12 col-md-3 col-lg-3">
+                                        <div class="form-group">
+                                            <label>{% trans 'Investigation*' %}</label>
+                                            <select class="form-control investg_name invest_0"  name="invstgationmaster_0_0" id="invest_0"   required>
+                                             <option value="" >Select Investigation </option>
+                                            {% for j in invast_mast %}
+                                                         <option value="{{j|first}}" >{{j|last }}</option>
+                                            {% endfor %}
+                                            </select>      
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="investign_0 row {% if not case_record %}add_case_segregation {% endif %}"></div>
+                            <div class="add_here_habits"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- banner ends -->
+
+<!-- footer starts -->
+{% include 'case_history/add_case_footer.html' %}
+<!-- footer ends -->
+{% endblock %}
+
+{% block custom-js %}
+{% include 'case_history/add_case_script.html' %}
+
+/**************Adding more child starts here****************/
+    var max_new = 10; //Input fields increment limitation
+    var adddoc_new = $('.add_invst'); //Add button selector
+    var wrapper_doc = $('.add_here_habits'); //Input field wrapper
+        {% if case_record %}
+        var m = {{ case_record|length }}+1; //Initial field counter is extra items
+        {% else %}
+        var m = 1;
+        {% endif %}
+    $(adddoc_new).click(function(){
+        if(m <= max_new ){ //Check maximum number of input fields
+            $(wrapper_doc).append(
+            '<div class="row  add_case_segregation ">\
+                <div class="col-sm-12 col-md-3 col-lg-3 add_case_invest" >\
+                    <div class="form-group">\
+                        <label>{% trans 'Investigation' %}</label>\
+                            <select class="form-control investg_name " name="invstgationmaster_'+m+'_0" id="invest_'+m+'">\
+                                <option value="" selected="selected">{% trans 'Select Investigation ' %}</option>\
+                                    {% for i in invast_mast %}\
+                                        <option class="option-input" name="invstmast_'+m+'" value="{{i|first}}">{{ i|last }}</option>\
+                                    {% endfor %}\
+                            </select>\
+                    </div>\
+                </div>\
+                <div class="col-sm-12 col-md-3 col-lg-3">\
+                    <a href="javascript:void(0);" class="remove_doc_btn remove_button_new add_caseinvestigation_text" title="Remove field"><img class="rmv_btn" src="{% static 'images/sm-close.png' %}" /></a>\
+                </div>\
+                    <div class="investign_'+m+' row add_case_segregation ">\
+                </div>\
+            </div>'); // Add field html
+            m++; //Increment field counter
+        }
+    });
+            
+    $(wrapper_doc).on('click', '.remove_doc_btn', function(e){ //Once remove button is clicked
+        e.preventDefault();
+        $(this).parent().parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+    });
+
+/************On Change of investigation category add related field --starts here***********/
+$(document.body).on('change',".investg_name",function(){
+    var Url = '{% url 'case_history:get_investigation_category' %}';
+    var value=$(this).children("option:selected").val();
+    var hospital_id = $(this).attr('id');
+    var hspt_id_split = hospital_id.split('_');
+    var str1 = hspt_id_split[1];
+    $(".investign_"+str1).empty();
+    $.ajax({
+        url:Url,
+        method:'get',
+        dataType: 'json',
+        data:{ csrfmiddlewaretoken: '{{ csrf_token }}', value:value},
+        success: function(data){
+                    if (data != 'fail'){
+                         $.each(data, function(index0, l) {
+                                $.each(l, function(index1, n) {
+                                    $(".investign_"+str1).append('<div class="col-sm-12 col-md-3 col-lg-3"><div class="form-group input_padd_right"><label>'+ n.value +' <em></em></label><input type="hidden" name="inveatigationcategorymapping_'+ str1 +'_'+ index1 +'" value="'+ n.id + '"></input><input type="text" placeholder="" class="form-control symptoms_name" id="" value="" name="investigationname_'+ str1 +'_'+ index1 +'"></div></div>');
+                                });
+                        });
+                 }
+                }
+        });
+
+});
+/************On Change of investigation category add related field --ends here***********/
+{% endblock %}

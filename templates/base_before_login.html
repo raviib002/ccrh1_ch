@@ -1,0 +1,155 @@
+{% load i18n staticfiles common_templatetags %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% trans 'CCRH' %}</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        {% include "cssfiles.html" %}
+        {% block staticurls %}
+        {% endblock %}
+    </head>
+<body>
+    {% include "header.html" %}
+    <div class="main_section">
+    <main>
+        <nav class="navbar_link">
+            <div class="container d-flex justify-content-between">
+                <ul class="navigation list-unstyled justify-content-between">
+                        <li><a href="{% settings_value "CCRH_HOME_URL" %}">Home</a></li>
+                        <li><a href="{% settings_value "CCRH_HOME_URL" %}">About</a>
+                            <ul class="sub_menu">
+                                <li><a href="{% settings_value "CCRH_HOME_URL" %}">Vision and Mission</a></li>
+                                <li><a href="{% settings_value "CCRH_HOME_URL" %}">Leadership</a></li>
+                                <li><a href="{% settings_value "CCRH_HOME_URL" %}">Editorial Board</a></li>
+                                <li><a href="{% settings_value "CCRH_HOME_URL" %}">Ownership</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% settings_value "CCRH_HOME_URL" %}">Why Publish in HCCR</a>
+                            <ul class="sub_menu">
+                                <li><a href="{% settings_value "CCRH_HOME_URL" %}">Advantage of HCCR</a></li>
+                                <li><a href="{% settings_value "CCRH_HOME_URL" %}">International Case Reporting Guidelines</a></li>
+                                <li><a href="{% settings_value "CCRH_HOME_URL" %}">Loyalty Programme</a></li>
+                                <li><a href="{% settings_value "CCRH_HOME_URL" %}">Badges for Physicians</a></li>
+                                <li><a href="{% settings_value "CCRH_HOME_URL" %}">Badges for Clinics</a></li>
+                                <li><a href="{% settings_value "CCRH_HOME_URL" %}">Chances to Get Publish</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% settings_value "CCRH_HOME_URL" %}">Submission Guidelines</a>
+                            <ul class="sub_menu">
+                                <li><a href="{% settings_value "CCRH_HOME_URL" %}">Case Recording Template Format</a></li>
+                                <li><a href="{% settings_value "CCRH_HOME_URL" %}">Patient Consent Formats</a></li>
+                                <li><a href="{% settings_value "CCRH_HOME_URL" %}">Follow Up Formats</a></li>
+                                <li><a href="{% settings_value "CCRH_HOME_URL" %}">Patient Outcome Scales</a></li>
+                                <li><a href="{% settings_value "CCRH_HOME_URL" %}">Term & Condition</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% settings_value "CCRH_HOME_URL" %}">Announcements</a></li>
+                        <li><a href="{% settings_value "CCRH_HOME_URL" %}">FAQ</a></li>
+                    </ul>
+                    <ul class="navigation2 list-unstyled d-flex">
+                        <li><a class="login" href="{% settings_value "CCRH_LOGIN_URL" %}">Login</a></li>
+                        <!-- {#<li class="login register"><a href="{% url 'user_profile:profile_info' %}">Register</a></li>#} -->
+                    </ul>
+            </div>
+        </nav>
+        <!--modal for displaying messages -- starts -->
+     <div class="modal fade modal-bgcolor1" id="suc_msg_popup" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header forget-link-header1">
+                <button class="link1 close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body forget-link-body1">
+                <div class="row">
+                    <p id="suc_msg" class="para-link-center p1"></p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ <!-- modal for displaying messages -- Ends -->
+        {% block content %}
+        {% endblock %}
+    </main>
+    </div>
+    {% include "jsfiles.html" %}
+
+</body>
+{% block jsfilesurls %}{% endblock %}
+<script type="text/javascript" src="{% static 'js/validation.js'%}"></script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            {% block custom-js %}{% endblock %}
+               /**** js changed on 18/06/2020 *****/
+//   mobile menu
+    var effect = "slide";
+    var option = {direction: "left"};
+    var duration = 500;
+    $(".menu_bar").click(function() {
+        $(".navbar_link").show(effect, option, duration);
+    });
+    $("nav .close").click(function() {
+        $(".navbar_link").hide(effect, option, duration);
+    });
+// font increase and decrease
+    var size = "100%";
+    size1 = parseFloat(size);
+    
+    // font increase
+
+    $(".font_increase").click(function() {
+        if ((size1 + 6) <= 110) {
+            size2 = size1 += 6;
+            size3 = size2 + "%";
+            $(".main_section").css("fontSize", size3);
+        }
+        $(".font_inc_dec li").removeClass("active");
+        $(this).addClass("active");
+    });
+
+    // font decrease
+
+    $(".font_decrease").click(function() {
+        if ((size1 - 6) >= 90) {
+            size2 = size1 -= 6;
+            size3 = size2  + "%";
+            $(".main_section").css("fontSize", size3);
+        }
+        $(".font_inc_dec li").removeClass("active");
+        $(this).addClass("active");
+    });
+
+    // font reset
+
+    $(".font_normal").click(function() {
+        if ((size1) = 100) {
+            size2 = size1  + "%";
+            $(".main_section").css("fontSize", size2);
+        }
+        $(".font_inc_dec li").removeClass("active");
+        $(this).addClass("active");
+    });
+/**** js changed ends on 18/06/2020 ****/
+
+// tooltip
+    $('[data-toggle="tooltip"]').tooltip()
+/************* search icon jquery ************/
+    $(".search_icon").click(function() {
+        $("#searchBox input").toggleClass("show");
+        $("#searchBox input:focus").addClass("show");
+    });
+/************* search icon jquery ends ************/
+     var mainHeight = $(".create_account_wrapper").innerHeight();
+     var mainHeight1 = mainHeight  + "px";
+     $(".registration_steps_page").css("height" , mainHeight1 );
+     
+        });
+</script>
+</html>

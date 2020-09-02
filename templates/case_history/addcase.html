@@ -1,0 +1,306 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+{% block breadcrumbs %}
+    {% trans 'Add Clinical Case' %}
+{% endblock %}
+
+{% block content %}
+
+            <!-- add case content -->
+            {% include 'case_history/add_case_menus.html' %}
+            <div class="add_case_content  mental_history_blk">
+                <div class="case_summary add_case_container" id="caseSummary">
+                <form id="add_case_form" class="add_case_form" action="{% if case_id %}{% url 'case_history:add_case' case_id=case_id %}{% else %}{% url 'case_history:add_case' %}{% endif %}" method="post">{% csrf_token %}
+                <input type="hidden" id="id_case_update" value="{% if case_id %}{{ case_id }}{% endif %}" name="case_update"> 
+                <input type="hidden" name="case_status" id="id_case_status" value="Saved">
+                <input type="hidden" name="case_category" id="id_case_category" value="Dummy Case Category">
+                    <div class="row">
+                        <div id="alert_message" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
+                            <div id="alert_message_strong"></div>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="summary_title">
+                            <div class="title d-flex justify-content-between">
+                                <h2 class="heading">{% trans 'Case Summary' %}</h2>
+                                <div class="arrow" id="caseSummaryArrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15.208" height="15.208" viewBox="0 0 15.208 15.208"><defs><style>.a{fill:#1c4976;}</style></defs><path class="a" d="M7.6,0a7.6,7.6,0,1,0,7.6,7.6A7.626,7.626,0,0,0,7.6,0Zm2.661,11.026L8.935,12.356,4.182,7.6,8.935,2.851l1.331,1.331L6.844,7.6Z" transform="translate(0 15.208) rotate(-90)"/></svg>
+                                </div>
+                            </div>
+                            <div class="add_summary_content">
+                                <p>{% trans 'Maecenas faucibus dignissim euismod. Ut suscipit sed sem in fringilla. Duis eu turpis at leo mattis dignissim. Maecenas felis leo, consequat nec nisl tempus, vulputate viverra mauris. Nullam ullamcorper, magna eu efficitur ultricies, nulla justovu lputate viverra mauris. Nullam ullamcorper, Maecenas faucibus dignissim euismod. Ut suscipit sed sem in fringilla. Duis eu turpis at leo mattis dignissim. Maecenas felis leo, consequat nec nisl tempus, vulputates. Nullam' %}</p>
+                                <p class="para">{% trans 'Maecenas faucibus dignissim' %}</p>
+                                <p>{% trans 'Maecenas faucibus dignissim euismod. Ut suscipit sed sem in fringilla. Duis eu turpis at leo mattis dignissim. Maecenas felis leo, consequat nec nisl tempus, vulputate viverra mauris. Nullam ullamcorper, magna eu efficitur ultricies, nulla justovu lputate viverra mauris. Nullam ullamcorper, Maecenas faucibus dignissim euismod. Ut suscipit sed sem in fringilla. Duis eu turpis at leo mattis dignissim. Maecenas felis leo, consequat nec nisl tempus, vulputates. Nullam' %}</p>
+                                <ul class="list">
+                                    <li><img src={% static "images/case_summary_tick_image.svg" %} alt="case summary image"><p>{% trans 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' %}</p></li>
+                                    <li><img src={% static "images/case_summary_tick_image.svg" %} alt="case summary image"><p>{% trans 'Sed et diam at nulla tristique bibendum.' %}</p></li>
+                                    <li><img src={% static "images/case_summary_tick_image.svg" %} alt="case summary image"><p>{% trans 'Vestibulum porta nunc sit amet turpis fringilla, interdum porta ligula laoreet.' %}</p></li>
+                                    <li><img src={% static "images/case_summary_tick_image.svg" %} alt="case summary image"><p>{% trans 'Etiam sodales erat nec lobortis rutrum.' %}</p></li>
+                                </ul>
+                            </div>
+                            <hr class="segregation_line">
+                        </div>
+                    </div>
+                    <div class="case_summary_blk">
+                      <div class="row">
+                        {{ form.case_id }}
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <label>{{ form.case_title.label }} <em>*</em></label>
+                                {{ form.case_title }}
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label>{% trans 'Keywords' %} <em>*</em></label>
+                                <div class="select_dropdown city_state_label keyword_container" id="keywordDropdown" data-placeholder="" >
+                                    <select id="keywords"  name="keywords[]" class="select_box_keywords valid_class_keywords_require form-control" multiple="multiple">
+                                    </select>
+                                    <span class="tooltip">{% trans '4 or 5 words comma seperated' %}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <div class="keyword_container">
+                                 <label>{{ form.case_summary.label }} <em>*</em></label>
+                                {{ form.case_summary }}
+                                <span class="tooltip">{% trans 'Not exceeding 300 characters' %}</span></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label>{% trans 'Primary Diagnosis' %} <em>*</em></label>
+                                <div data-toggle="tooltip"  class="select_dropdown city_state_label">
+                                    <select id="primary_diagnosis"  name="primary_diagnosis" class="input_conatiner primary_select_box form-control">
+                                    </select>
+                                    <span class="tooltip">{% trans 'Select One Primary Diagnosis' %}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label>{% trans 'Other Diagnosis' %}</label>
+                                <div data-toggle="tooltip"  class="select_dropdown city_state_label">
+                                    <select id="other_diagnosis"  name="diagnosis[]" class="input_conatiner select_box form-control" multiple="multiple">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label>{{ form.case_pract_id.label }} <em>*</em></label>
+                                {{form.case_pract_id}}
+                                <span class="tooltip">{% trans 'Registration Number of Research Officer' %}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label>{{ form.name_of_institute_unit.label }} <em>*</em></label>
+                                {{form.name_of_institute_unit}}
+                            </div>
+                        </div>
+                        <hr class="segregation_line">
+                        <div class="col-sm-12 button">
+                            <button class="save">{% trans 'Save and Continue' %}</button>
+                            <button type="button" class="exit" id="exit_button_id">{% trans 'Exit' %}</button>
+                        </div>
+                    </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+            <!-- add case content ends -->
+
+{% endblock %}
+
+{% block jsfilesurls %}
+    {{form.media}}
+<link href='{% static 'css/libraries/select2.css' %}' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="{% static 'js/libraries/select2.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/libraries/jquery-ui.min.css' %}"><!--autocomplete-->
+<script src="{% static 'js/libraries/jquery-ui.min.js' %}"></script> <!-- autocomplete Script -->
+
+{% endblock %}
+
+{% block custom-js %}
+{% include 'case_history/add_case_script.html' %}
+
+/*****pre populating the multpile selected values in Primary Diagnosis starts here*******/
+    {% if case_id %}
+    var primarydiagnosisSelect = $('.primary_select_box');
+    var case_id = $("#id_case_update").val();
+    $.ajax({
+        type: 'GET',
+        url: "{% url 'case_history:get_disease_names' %}",
+        data : { csrfmiddlewaretoken: '{{ csrf_token }}','case_id':case_id,'primary_dign':'primary_dign' },
+    }).then(function (data) {
+            $.map(data.list, function (item) {
+                       var option = new Option(item.value+ '('+item.icd_code+')', item.id, true, true);
+                        primarydiagnosisSelect.append(option).trigger('change');
+                    });
+            });
+    {% endif %}
+/*****pre populating the multpile selected values in Primary Diagnosis Ends here*******/
+
+/****************select multiple dropdown for Primary Diagnosis starts here************/
+var select2 = $(".primary_select_box").select2({
+    tags: true,
+    multiple: false,
+    tokenSeparators: [',', ' '],
+    minimumInputLength: 2,
+    minimumResultsForSearch: 10,
+    ajax: {
+        url: "{% url 'case_history:get_disease_names' %}",
+        dataType: "json",
+        type: "GET",
+        data: function (params) {
+            var queryParameters = {
+                term: params.term
+            }
+            return queryParameters;
+        },
+        processResults: function (data) {
+        list=data.list
+        if(list!=''){
+               return {
+               results: $.map(list, function (item) {
+                return {
+                    text: item.value+ '('+item.icd_code+')',
+                    id: item.id,
+                }
+                $('#primary_diagnosis').val("");
+                $('#primary_diagnosis-error').remove();
+            })
+        };
+        }
+        else
+        {
+            $('#primary_diagnosis').val("");
+            $('#primary_diagnosis-error').remove();
+            $('#primary_diagnosis').after('<label id="primary_diagnosis-error" class="error" for="primary_diagnosis">Please Select Primary Diagnosis from the option</label>');
+        }
+      }
+    }
+});
+/****************select multiple dropdown for Primary Diagnosis ends here************/
+
+/*****pre populating the multpile selected values in Other Diagnosis starts here*******/
+    {% if case_id %}
+    var diagnosisSelect = $('.select_box');
+    var case_id = $("#id_case_update").val();
+    $.ajax({
+        type: 'GET',
+        url: "{% url 'case_history:get_disease_names' %}",
+        data : { csrfmiddlewaretoken: '{{ csrf_token }}','case_id':case_id,'other_diagn':'other_diagn' },
+    }).then(function (data) {
+            $.map(data.list, function (item) {
+                       var option = new Option(item.value+ '('+item.icd_code+')', item.id, true, true);
+                        diagnosisSelect.append(option).trigger('change');
+                    });
+            });
+    {% endif %}
+/*****pre populating the multpile selected values in Other Diagnosis Ends here*******/
+
+/****************select multiple dropdown for Other Diagnosis starts here************/
+var select2 = $(".select_box").select2({
+    tags: true,
+    multiple: true,
+    tokenSeparators: [',', ' '],
+    minimumInputLength: 2,
+    minimumResultsForSearch: 10,
+    ajax: {
+        url: "{% url 'case_history:get_disease_names' %}",
+        dataType: "json",
+        type: "GET",
+        data: function (params) {
+            var queryParameters = {
+                term: params.term
+            }
+            return queryParameters;
+        },
+        processResults: function (data) {
+        list=data.list
+        if(list!=''){
+               return {
+               results: $.map(list, function (item) {
+                return {
+                    text: item.value+ '('+item.icd_code+')',
+                    id: item.id,
+                }
+                $('#other_diagnosis').val("");
+                $('#other_diagnosis-error').remove();
+            })
+        };
+        }
+        else
+        {
+            $('#other_diagnosis').val("");
+            $('#other_diagnosis-error').remove();
+            $('#other_diagnosis').after('<label id="other_diagnosis-error" class="error" for="other_diagnosis">Please Select Other Diagnosis from the option</label>');
+        }
+      }
+    }
+});
+/****************select multiple dropdown for Other Diagnosis ends here************/
+
+/*****pre populating the multpile selected values in Other Diagnosis starts here*******/
+    {% if case_id %}
+    var keywordSelect = $('.select_box_keywords');
+    var case_id = $("#id_case_update").val();
+    $.ajax({
+        type: 'GET',
+        url: "{% url 'case_history:get_keywords_names' %}",
+        data : { csrfmiddlewaretoken: '{{ csrf_token }}','case_id':case_id },
+    }).then(function (data) {
+            $.map(data.list, function (item) {
+                       var option = new Option(item.value, item.id, true, true);
+                        keywordSelect.append(option).trigger('change');
+                    });
+            });
+    {% endif %}
+/*****pre populating the multpile selected values in Other Diagnosis Ends here*******/
+/************************select multiple dropdown for Keywords starts here********************/
+var select2 = $(".select_box_keywords").select2({
+    tags: true,
+    multiple: true,
+    tokenSeparators: [',', ' '],
+    minimumInputLength: 2,
+    minimumResultsForSearch: 10,
+    ajax: {
+        url: "{% url 'case_history:get_keywords_names' %}",
+        dataType: "json",
+        type: "GET",
+        data: function (params) {
+            var queryParameters = {
+                term: params.term
+            }
+            return queryParameters;
+        },
+        processResults: function (data) {
+            return {
+                        results: $.map(data.list, function (item) {
+                            return {
+                                text: item.value,
+                                id: item.id
+                            }
+                        })
+                    };
+        
+         }
+    }
+});
+/************************select multiple dropdown for Keywords ends here********************/
+/*********** For Select2 error message removing drop down Starts here***************/
+ $('.select2-hidden-accessible').on('change', function() {
+    if($(this).valid()) {
+        $(this).next('span').removeClass('error').addClass('valid');
+    }
+});
+ /*********** For Select2 error message removing drop down Ends here***************/
+ {% if success_note %}  
+    $("#alert_message_strong").html("{{ success_note }}");
+    $("#alert_message").css("display", "block");
+{% endif %}
+{% endblock %}

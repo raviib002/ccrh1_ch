@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load i18n staticfiles common_templatetags %}
+{% block page_heading %}{% trans 'Add Clinical Case' %}{% endblock %}
+
+{% block breadcrumbs %}
+    {% trans 'Physical General' %}
+{% endblock %}
+
+{% block content %}
+    <div class="dashboard_wrapper addcase_wrapper">
+        <div class="dashboard_container">
+            <div class="addcase_container physical_general">
+                {% include 'case_history/add_case_menus.html' %}
+                <form id="add_case_form" class="add_case_form" action="{% if case_id %}{% url 'case_history:physical_general' case_id=case_id %}{% endif %}" method="post">{% csrf_token %}
+                    <input type="hidden" id="id_case_record" value="{{ case_id }}" name="case_record">   
+                    <div id="physical_general" class="advance_filter_block">
+                        <div class="advance_container">
+                            {% for i in physical_type %}
+                            <h6>{{i.gen_type_name}}</h6>
+                             <div class="row add_case_segregation">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="form-group">
+                                            <div class="row select_form select_drop_input">
+                                                 {% for j in physical_general_mst %}
+                                                    {% if j.gen_type_id == i.id %}
+                                                    <div class="col-sm-12 col-md-3 col-lg-3">
+                                                        <div class="form-group">
+                                                        <label>{{j.gen_name}}</label>
+                                                        {% if case_record %}
+                                                        <input type="hidden" name="generalmast_{{forloop.counter}}"value="{{j.id}}">
+                                                            {% if j.gen_value_type == '1' %}
+                                                                <select class="form-control physcal_select" name="gentype_{{forloop.counter}}">
+                                                                    <option value="">Select {{i.gen_type_name}}</option> 
+                                                                        {% for l in case_record %}
+                                                                            {% for k in j.dropdown_values|string_to_list %}
+                                                                                {% if l.hab.gen_name == j.gen_name %}
+                                                                                    <option value="{{k}}"{% if k == l.phygen_value %}selected{% endif %} >{{ k }}</option>
+                                                                                {% endif %}
+                                                                            {% endfor %}
+                                                                        {% endfor %}
+                                                                    <span class="add_check"></span>
+                                                                </select>
+                                                            {% else %}
+                                                                {% for l in case_record %}
+                                                                    {% if l.hab.gen_name == j.gen_name %}
+                                                                        <input type="text" class="form-control physical_text" id="physical_text_id_{{j.id}}" name="gentype_{{forloop.counter}}" value="{% if l.phygen_value %}{{l.phygen_value}}{% endif %}">
+                                                                    {% endif %}
+                                                                 {% endfor %}
+                                                            {% endif %}
+                                                        {% else %}
+                                                             <input type="hidden" name="generalmast_{{forloop.counter}}"value="{{j.id}}">
+                                                            {% if j.gen_value_type == '1' %}
+                                                                <select class="form-control physcal_select" name="gentype_{{forloop.counter}}" >
+                                                                    <option value="">Select {{i.gen_type_name}}</option> 
+                                                                            {% for k in j.dropdown_values|string_to_list %}
+                                                                                    <option value="{{k}}" >{{ k }}</option>
+                                                                            {% endfor %}
+                                                                    <span class="add_check"></span>
+                                                                </select>
+                                                            {% else %}
+                                                                    <input type="text" class="form-control physical_text" id="physical_text_id_{{j.id}}" name="gentype_{{forloop.counter}}" value="">
+                                                            {% endif %}
+                                                        {% endif %}
+                                                        </div>
+                                                    </div>
+                                                    {% endif %}
+                                                {% endfor %}  
+                                            </div> 
+                                    </div>
+                                </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- banner ends -->
+
+<!-- footer starts -->
+{% include 'case_history/add_case_footer.html' %}
+<!-- footer ends -->
+{% endblock %}
+
+
+{% block custom-js %}
+{% include 'case_history/add_case_script.html' %}
+if ($( "#physical_text_id" ).hasClass( "physical_text" )){
+    $(".physcal_select").addClass('myclass');
+}
+<!-- if(label:hasClass("select_drop_input")) { -->
+    <!-- $("input.physical_text").prev().addClass("active"); -->
+<!-- } -->
+{% endblock %}

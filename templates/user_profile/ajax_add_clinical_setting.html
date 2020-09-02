@@ -1,0 +1,82 @@
+ {% load i18n staticfiles  %}
+ 
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="login_container registration_container">
+                <div class="row forget-row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 login_page_right d-flex">
+                        <form id="clinical_setting" class="loginVisitor_form_container forget_container">{% csrf_token %}
+                            <input type="hidden" id="user_id" name="user" value="{{user_id}}">
+                            {{ form.clinical_setting.form_set.management_form }}
+                            {% for form1 in form.clinical_setting.form_set %}
+                            {{form1.id}}
+                            <div class="row">
+                                <div class="col-12 register_header">
+                                    <div class="login_header text-left">
+                                        <h2>Add Clinical Setting</h2>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                    <label>{{ form1.cs.label }} <em>*</em></label>
+                                    {{ form1.cs }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                    <label>{{ form1.clinic_name.label }} <em>*</em></label>
+                                    {{ form1.clinic_name }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                    <label>{{ form1.clinic_address_1.label }} <em>*</em></label>
+                                    {{ form1.clinic_address_1 }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                    <label>{{ form1.clinic_address_2.label }} <em>*</em></label>
+                                    {{ form1.clinic_address_2 }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                    <label>{{ form1.state.label }} <em>*</em></label>
+                                    {{ form1.state }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                    <label>{{ form1.city.label }} <em>*</em></label>
+                                    {{ form1.city }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                    <label>{{ form1.pincode.label }} <em>*</em></label>
+                                    {{ form1.pincode }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                    <label>{{ form1.affiliation.label }} <em>*</em></label>
+                                    {{ form1.affiliation }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="button">
+                                        <button class="cancel clinical_cancel">Cancel</button>
+                                        <button type="button" class="add">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

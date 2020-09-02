@@ -1,0 +1,2660 @@
+{% load i18n %}
+<section class="1 box">
+    <h6>{% trans 'Complete Blood Test' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Hemoglobin(Hb)' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Hemoglobin(Hb)' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(g/dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Packed Cell Volume(PCV)/ Hematocrit' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans '(PCV)/ Hematocrit' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(%)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'RBC' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'RBC' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(x 10^6/ µL)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'TLC (Total Leucocyte Count)' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'TLC' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(x 10^3/ µL)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Platelet Count' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Platelet Count' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(x 10^5/ µL)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'DLC(Differential Leucocyte Count)' %}</label>
+                        <label class="select_form">
+                            <select class="form-control">
+                                <option value="">{% trans 'Select' %}</option>
+                                <option value="">{% trans 'Neutrophils' %}</option>
+                                <option value="">{% trans 'Lymphocytes' %}</option>
+                                <option value="">{% trans 'Monocytes' %}</option>
+                                <option value="">{% trans 'Basophils' %}</option>
+                                <option value="">{% trans 'Eosinophils' %}</option>
+                            </select>
+                        </label>
+                        <label class="personal_per_mm">
+                            <span>{% trans '(x 10^3/ µL)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'MCV' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'MCV' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(fL)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'MCH' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'MCH' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(pg/cell)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'MCHC' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'MCHC' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(g/dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'RDW(CV)' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'RDW(CV)' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(%)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'MPV' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'MPV' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(fL)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'E.S.R' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'E.S.R' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mm/hr)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Absolute eosinophil count' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Absolute eosinophil count' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(x 10^3/ µL)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Upload Blood Test Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="2 box" >
+    <h6>{% trans 'Iron Test' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'S.Iron' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'S.Iron' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(µg/dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Total Iron Binding Capacity' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Total Iron Binding Capacity' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(µg/dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Transferrin' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Transferrin' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/dl or g/l)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Transferrin Saturation' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Transferrin Saturation' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(%)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'S.Ferritin' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'S.Ferritin' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(ng/ml or µg/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'UIBC' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'UIBC' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(µg/dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Upload Iron Test Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="3 box" >
+    <h6>{% trans 'Other Tests for Anaemia' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Vitamin B 12' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Vitamin B 12' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(pg/ml or pmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Folic Acid' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Folic Acid' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(ng/ml or nmol/l)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Upload Anaemia Test Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="4 box" >
+    <h6>{% trans ' Tests for Coagulation (dropdown for)' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Bleeding Time' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Bleeding Time' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(min.)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Thrombin Time' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Thrombin Time' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(sec.)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Thrombin Clotting Time' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Thrombin Clotting Time' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(sec.)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Prothrombin Time' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Prothrombin Time' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(sec.)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Upload Coagulation Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="6 box" >
+    <h6>{% trans 'Blood Sugar Test(mg/dl or nmol/L)' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Glucose, Fasting(F)' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Glucose, Fasting(F)' %}">
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Glucose, Post Prandial(PP)' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Glucose, Post Prandial(PP)' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(2 hours)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Random Blood sugar' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Random Blood sugar' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Upload Blood Sugar Test Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="7 box" >
+    <h6>{% trans 'Cerebrospinal Fluid Study' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Volume' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Volume' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(ml)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Appearance' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Appearance' %}">
+                        
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Pressure' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Pressure' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mm H2O)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Total cell count' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Total cell count' %}">
+                       
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'WBC(cells)' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'WBC(cells)' %}">
+                        
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Differential(%)' %}</label>
+                        <label class="select_form">
+                            <select class="form-control">
+                                <option value="">{% trans 'Select' %}</option>
+                                <option value="">{% trans 'Lymphocytes' %}</option>
+                                <option value="">{% trans 'Monocytes' %}</option>
+                                <option value="">{% trans 'Polys' %}</option>
+                            </select>
+                            <span class="add_check"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'RBC' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'RBC' %}">
+                        
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Specific Gravity' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Specific Gravity' %}">
+                        
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Cerebrospinal Fluid Study Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="8 box" >
+    <h6>{% trans 'Liver Function Test' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'SGOT-Aspartate Aminotransferase' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'SGOT' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'SGPT-Alanine Aminotransferase' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'SGPT' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'GGTP(Gamma Glutamyl Transpeptidase)' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'GGTP' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Alkaline Phosphatase' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Alkaline Phosphatase' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Protein, Total, Serum' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Protein, Total, Serum' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(g/dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Albumin, Serum' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Albumin, Serum' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(g/dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Bilirubin Total, Direct & Indirect' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Bilirubin Total, Direct & Indirect' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Globulin, Serum' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Globulin, Serum' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(g/dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Albumin:Globulin Ratio' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Albumin:Globulin Ratio' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans 'units' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Thyroid Test Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="9 box" >
+    <h6>{% trans 'Kidney Function Test' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Urea, Serum' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Urea, Serum' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Creatinine, Serum' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Creatinine, Serum' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Uric Acid, Serum' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Uric Acid, Serum' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans 'mg/dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Calcium, Serum' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Calcium, Serum(' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Phosphorus, Serum' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Phosphorus, Serum' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Electrolytes, Serum' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Electrolytes, Serum' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mmol/L or mEq/l)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Protein, Total, Serum' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Protein, Total, Serum' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/dl or mEq/l)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Kidney Function Test Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="10 box" >
+    <h6>{% trans ' Lipid Profile Test' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Cholesterol Total' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Cholesterol Total' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/dl or mmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Triglycerides Serum' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Triglycerides Serum' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/dl or mmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'HDL Cholesterol Direct' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'HDL Cholesterol Direct' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/dl or mmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'LDL Cholesterol Direct' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'LDL Cholesterol Direct' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/dl or mmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'VLDL Cholesterol' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'VLDL Cholesterol' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/dl or mmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'HDL : LDL Ratio' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'HDL : LDL Ratio' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Apolipoprotein A and B' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Apolipoprotein A and B' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/dl or g/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Free Fatty Acids' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Free Fatty Acids' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/dl or mmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Lipid Profile Test Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="11 box" >
+    <h6>{% trans 'Stool Examination' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <p>{% trans 'Macroscopic' %}</p>
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Amount' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Amount' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(g/d)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Color' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Color' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Odour' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Field' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Consistency' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Consistency' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Size and shape' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Size and shape' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Gross Blood' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Gross Blood' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Mucus' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Mucus' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Pus' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Pus' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Parasites' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Parasites' %}">
+                    </div>
+                </div>
+            </div>
+            <p>{% trans 'Chemical' %}</p>
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'pH' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'pH' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Occult Blood' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Occult Blood' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Stercobilinogen' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Stercobilinogen' %}">
+                         <label class="personal_per_mm">
+                            <span>{% trans '(mg/24 hr)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Porphyrins' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Porphyrins' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(µg/24 hr)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Nitrogen' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Nitrogen' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(g/24 hr)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Apt test for swallowed blood' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Apt test for swallowed blood' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Trypsin' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Trypsin' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U/g)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Osmolality' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Osmolality' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mOsm)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Sodium' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Sodium' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/24 hr)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Chloride' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Chloride' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/24 hr)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Potassium' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Potassium' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/24 hr)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Lipids' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Lipids' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(g/24 hr)' %}</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <p>{% trans 'Microscopic' %}</p>
+            <div class="row add_case_segregation">
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Fat' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Fat' %}">
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Undigested food, meat fibres, starch' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Undigested food, meat fibres' %}">
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Eggs and Segments of parasites' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Eggs and Segments of parasites' %}">
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Bacteria' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Bacteria' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Yeasts' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Yeasts' %}">
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Pus cells' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Pus cells' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Stool Examination Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="12 box" >
+    <h6>{% trans 'Urine Examination' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <p>{% trans 'Macroscopic' %}</p>
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Color' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Color' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Appearance' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Appearance' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Volume' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Volume' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Odour' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Field' %}">
+                    </div>
+                </div>
+            </div>
+            <p>{% trans 'Chemical' %}</p>
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Specific Gravity' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Specific Gravity' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'pH' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'pH' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Protein' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Protein' %}">
+                        
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Glucose' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Glucose' %}">
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Ketones' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Ketones' %}">
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Nitrite' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Nitrite' %}">
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Bilirubin' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Bilirubin' %}">
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Urobilinogen' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Urobilinogen' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/d)' %}</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <p>{% trans 'Microscopic' %}</p>
+            <div class="row add_case_segregation">
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Bacteria' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Bacteria' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans 'per hpf' %}</span>
+                        </label>
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'RBC' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'RBC' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans 'per hpf' %}</span>
+                        </label>
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'WBC' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'WBC' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans 'per hpf' %}</span>
+                        </label>
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Epithelial cells' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Epithelial cells' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans 'per hpf' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Casts' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Casts' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans 'per hpf' %}</span>
+                        </label>
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Hyaline' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Hyaline' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans 'per hpf' %}</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <p>{% trans 'Urine Protein (Albumin)' %}</p>
+            <div class="row add_case_segregation">
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Qualitative' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Qualitative' %}">
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans '24 Hour' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans '24 Hour' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Urine Examination Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<section class="13 box" >
+    <h6>{% trans ' Clinical Test' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Glucose' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Glucose' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Protein' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Protein' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/ dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Lumbar' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Lumbar' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/ dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Cisternal' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Cisternal' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/ dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Ventricular' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Ventricular' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/ dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Lactic Acid' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Lactic Acid' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/ dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Glutamine' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Glutamine' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/ dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Albumin' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Albumin' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/ dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Urea Nitrogen' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Urea Nitrogen' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/ dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Creatinine' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Creatinine' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/ dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Uric Acid' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Uric Acid' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/ dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Phosphorus' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Phosphorus' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/ dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Ammonia' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Ammonia' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(µg/ dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Lactate dehydrogenase' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Lactate dehydrogenase' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Electrolytes and pH' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Electrolytes and pH' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Chloride' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Chloride' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mEq/ L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Sodium' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Sodium' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mEq/ L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Potassium' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Potassium' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mEq/ L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'CO2 Content' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'CO2 Content' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mEq/ L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Pco2' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Pco2' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'PO2' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'PO2' %}">
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans ' Clinical Test Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="14 box" >
+    <h6>{% trans ' Fertility Test' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Human Chorionic Gonadotrophin(β-hcg)' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'β-hcg' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mIU/ml or IU/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Follicle Stimulating Hormone(FSH)' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'FSH' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mIU/L or IU/L or mIU/ml)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Leutinising Hormone(LH)' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'LH' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mIU/L or IU/L or mIU/ml)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Prolactin' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'hPRL' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(ng/ml or µg/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Progesterone' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Progesterone' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(ng/ml or nmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Testosterone' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Testosterone' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(ng/dl or nmol/L or ng/ml)' %}</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Fertility Test Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="15 box" >
+    <h6>{% trans 'Enzyme Test' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Prostatic Acid Phosphatase (PAP) ' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'PAP' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(ng/ml or µg/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Prostate Specific Antigen (PSA) ' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'PSA' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(ng/ml or µg/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Alanine Aminotransferase (ALT)' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'ALT' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U/L or µkat/ l)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Alkaline Phosphatase (ALP)' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'ALP' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Angiotensin converting Enzyme (ACE)' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'ACE' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U/L or µkat/ L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Amylase' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Amylase' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U/L or µkat/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Lipase' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Lipase' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U/L or µkat/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Aspartate Transaminase (AST)' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'AST' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U/L or µkat/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Cardiac Troponin T/ Troponin I' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Cardiac Troponin T' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans ' (ng/ ml or µg/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Creatinine Phosphokinase' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'CPK' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '( U/L OR µkat/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Lactate Dehydrogenase43' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'LDH' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Plasma Renin Angiotensin' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'PRA' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(Mu/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Others' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Others' %}">
+                    </div>
+                </div> 
+                
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Enzyme Test Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="16 box" >
+    <h6>{% trans 'Hormone Test' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Androstenedione' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Androstenedione' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(ng/dl or mmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Aldosterone' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Aldosterone' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(ng/dl or mmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Antidiuretic Hormone' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Antidiuretic Hormone' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(pg/ml or pmol/ L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Atrial Natriuretic Factor' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'ANF' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(pg/ml or ng/ml)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Cortisol' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Cortisol' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(µg/dl or nmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Dexamethasone Suppression' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Dexamethasone Suppression' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(µg/dl or nmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Cortisone Stimulation' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Cortisone Stimulation' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(µg/dl or nmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Gastrin' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Gastrin' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(pg/ml or pmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Growth Hormone' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Growth Hormone' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(ng/ml or pmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Parathyroid hormone' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Parathyroid hormone' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(pg/ml or ng/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Somatomedin C' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Somatomedin C' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(ng/ml or nmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Hormone Test Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="17 box">
+    <h6>{% trans 'Bacterial Test' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Streptococcal Antibody' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Streptococcal Antibody' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(IU)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Anti- Streptolysin O Titre' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'ASO' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(IU)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Anti-DNase B(ADB)' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'ADB' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Helicobacter Pylori,IgG Antibody ' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Helicobacter Pylori' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(DPM)' %}</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Bacterial Test Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="18 box">
+    <h6>{% trans 'Viral Test' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Epstein Barr virus Antibody' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Epstein Barr virus Antibody' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Infectious Mononucleosis(IM) Slide' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'IM' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Hepatitis Tests' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Hepatitis Tests' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(pg/ml)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Hepatitis A' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Hepatitis A' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans 'IgM anti-HAV' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Hepatitis B' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'IgM anti-HBc' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans 'IgM anti-HBc' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Hepatitis C' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Hepatitis C' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans 'Anti HCV' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Hepatitis D' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Hepatitis D' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans 'HDAg' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Hepatitis E' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Hepatitis E' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans ' IgM anti-HEV' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Human Immunodeficiency Virus(HIV-1/2)' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'HIV-1/2' %}">
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Viral Test Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="19 box">
+    <h6>{% trans 'Tests for Autoimmunity and Systemic Rheumatic Disease' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Antinuclear Antibody Test' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Antinuclear Antibody Test' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Anticentromere Antibody Test' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Anticentromere Antibody Test' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Anti-dsDNA Antibody Test' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Anti-dsDNA Antibody Test' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans 'IgG(IU)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Rheumatoid Factor Test' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Rheumatoid Factor Test' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U/ml)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Anti-Ribonucleoprotein Ab' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Anti-Ribonucleoprotein Ab' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Anti-Smith Ab' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Anti-Smith Ab' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Anti-SSA' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Anti-SSA' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Anti-SSB' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Anti-SSB' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Anti-Scleroderma Ab' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Anti-Scleroderma Ab' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Anti-Jo-1' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Anti-Jo-1' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(U)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Cardiolipin Ab' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Cardiolipin Ab' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(IgG or IgM or IgA)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Thyroglobulin Antibody Test' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Thyroglobulin Antibody Test' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Thyroid Microsomal Ab' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Thyroid Microsomal Ab' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Thyroperoxidase Ab' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Thyroperoxidase Ab' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Autoimmune Liver Disease Test' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Autoimmune Liver Disease Test' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Anti-Smooth Ab' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Anti-Smooth Ab' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Antimitochondrial Ab' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Antimitochondrial Ab' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Anti-liver/Kidney Microsome Type 1 Antibody Test' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Anti-liver/Kidney Microsome Type 1 Antibody Test' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Antiparietal cell Ab' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Antiparietal cell Ab' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Antiglomerular Basement Membrane Ab Test' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Antiglomerular Basement Membrane Ab Test' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(EU/ml)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Acetylcholine Receptor Binding Ab' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Acetylcholine Receptor Binding Ab' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(nmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Anti-Insulin Ab' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Anti-Insulin Ab' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Gliadin Ab' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Gliadin Ab' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(IgA or IgG)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                 <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Antineutrophil Cytoplasmic Ab' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Antineutrophil Cytoplasmic Ab' %}">
+                    </div>
+                </div>
+                
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Test Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="20 box">
+    <h6>{% trans 'Allergy Test' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Single allergen' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Single allergen' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(IgE Ab)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Latex Allergy Testing' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Latex Allergy Testing' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(Latex- specific IgE)' %}</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Allergy Test Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="21 box">
+    <h6>{% trans 'Acute-Phase Proteins Test' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'C-Reactive Protein' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'CRP' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mg/dl)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Cytokines' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Cytokines' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Chemokines' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Chemokines' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(pg/g)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Tumor necrosis factors' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Tumor necrosis factors' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(pg/ml)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Interleukin-ƴ' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Interleukin-ƴ' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(pg/ml or ng/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Acute-Phase Proteins Test Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section class="22 box">
+    <h6>{% trans 'Nuclear Medicine Scans Test' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Myocardial perfusion scans' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Myocardial perfusion scans' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Multigated Acquisition Imaging' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Multigated Acquisition Imaging' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Cardiac flow study' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Cardiac flow study' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Thyroid Imaging' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Thyroid Imaging' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Adrenal Imaging' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Adrenal Imaging' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Parathyroid Imaging' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Parathyroid Imaging' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Renogram' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Renogram' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Testicular Imaging' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Testicular Imaging' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Vesicouretric Reflux Imaging' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Vesicouretric Reflux Imaging' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Hepatobiliary Imaging with cholecystokinin' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Hepatobiliary Imaging with cholecystokinin' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Gastroesophageal Reflux Imaging' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Gastroesophageal Reflux Imaging' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Gastrointestinal Bleeding Imaging' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Gastrointestinal Bleeding Imaging' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Parotid gland imaging' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Parotid gland imaging' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Liver/ Spleen Imaging' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Liver/ Spleen Imaging' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Liver RBC Imaging' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Liver RBC Imaging' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Brain Scan' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Brain Scan' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Cerebral Blood Flow Imaging' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Cerebral Blood Flow Imaging' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Cisternography' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Cisternography' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Lung (Ventilation and Perfusion) Scan' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Lung (Ventilation and Perfusion) Scan' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Bone imaging' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Bone imaging' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Others' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Others' %}">
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Nuclear Medicine Scans Test Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="23 box">
+    <h6>{% trans 'Positron Emission Tomography(PET) Imaging Test' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Radiography' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Radiography' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Mammography' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Mammography' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Orthopaedic X-Ray' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Orthopaedic X-Ray' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Abdominal X-Ray' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Abdominal X-Ray' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Dental X-Ray' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Dental X-Ray' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Contrast X-Ray' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Contrast X-Ray' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Arthrography(joint X-Ray)' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Arthrography' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Myelography' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Myelography' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Hysterosalpingography' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Hysterosalpingography' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Angiography' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Angiography' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Lymhangiography' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Lymhangiography' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Radiography' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Radiography' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'PET Imaging Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="24 box">
+    <h6>{% trans 'Computed Tomography' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Head and neck' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Head and neck' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Computerized axial tomography' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Computerized axial tomography' %}">
+                    </div>
+                </div>
+                
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Computed Tomography Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="31 box">
+    <h6>{% trans 'Endoscopic Studies' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Mediostinoscopy' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Mediostinoscopy' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Bronchoscopy' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Bronchoscopy' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Thoracoscopy' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Thoracoscopy' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Endoscopy' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Endoscopy' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Esophageal Manometry' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Esophageal Manometry' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Cholangiopancreaticography' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Cholangiopancreaticography' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Enteroscopy' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Enteroscopy' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Colposcopy' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Colposcopy' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Sigmoidoscopy' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Sigmoidoscopy' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Colonoscopy' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Colonoscopy' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Cystoscopy' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Cystoscopy' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Others' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Others' %}">
+                    </div>
+                </div>
+                
+                
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Endoscopic Studies Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section class="32 box">
+    <h6>{% trans 'Ultrasound Studies' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Pelvic gynaecological sonogram' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Pelvic gynaecological sonogram' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Kidney sonogram' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Kidney sonogram' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Urinary Bladder sonogram' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Urinary Bladder sonogram' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Hepatobiliary sonogram' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Hepatobiliary sonogram' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Abdominal aorta sonogram' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Abdominal aorta sonogram' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Abdominal sonogram' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Abdominal sonogram' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Sonomammography' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Sonomammography' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Transurethral sonogram' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Transurethral sonogram' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Scrotal sonogram' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Scrotal sonogram' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Thyroid sonogram' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Thyroid sonogram' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Echocardiogram' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Echocardiogram' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Breast sonogram' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Breast sonogram' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Others' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Others' %}">
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Ultrasound Studies Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="33 box">
+    <h6>{% trans 'Pulmonary Function Test' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Spirometry' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Spirometry' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Peak inspiratory flow rate' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Peak inspiratory flow rate' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Peak expiratory flow rate' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Peak expiratory flow rate' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Functional residual capacity' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Functional residual capacity' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Residual volume' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Residual volume' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Inspiratory capacity' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Inspiratory capacity' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Vital capacity' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Vital capacity' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Total lung capacity' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Total lung capacity' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Others' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Others' %}">
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Pulmonary Function Test' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="37 box" >
+    <h6>{% trans ' Thyroid Test' %}</h6>
+    <div  class="advance_filter_block">
+        <div class="advance_container">
+            <div class="row add_case_segregation">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'T3 uptake % or fraction of 1.0' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'T3 uptake % or fraction of 1.0' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Free T4' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Free T4' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(ng/dl or pmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Total T4' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Total T4' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(µg/dl or nmol/L)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Total T3' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Total T3' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(ng/dl or nmol/L or ng/ml)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Free Thyroxine index' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Free Thyroxine index' %}">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'TSH' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'TSH' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(mIU/L or µIU/ml)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group input_padd_right">
+                        <label>{% trans 'Vitamin D' %}</label>
+                        <input type="text" class="form-control" placeholder="{% trans 'Vitamin D' %}">
+                        <label class="personal_per_mm">
+                            <span>{% trans '(ng/ml)' %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <label>{% trans 'Thyroid Test Report' %}</label>
+                        <input type="file" class="form-control file_upload" placeholder="{% trans 'Upload' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

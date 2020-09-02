@@ -1,0 +1,514 @@
+{% extends 'base.html' %}
+{% load i18n staticfiles common_templatetags %}
+{% block title_block %} {% trans 'My Dashboard' %} {% endblock %}
+{% block page_heading %}{% trans 'My Dashboard' %}{% endblock %}
+{% block button_area %} 
+    {% if perms.roles_permissions.can_add_case %}
+        <button class="addcase" onclick="location.href='{% url 'case_history:add_case' %}'">{% trans 'Add Clinical Case' %}</button>
+    {% endif %}
+{% endblock %}
+{% block content %}
+<div class="dashboard_wrapper dashboard_blk">
+    <div class="dashboard_container">
+            <div class="row dashboard_row">
+                <div class="col-sm-12 col-md-3 col-lg-3 d-flex dashboard total_cases">
+                    <div class="dashboard_content first_dashboard d-flex justify-content-between">
+                        <span class="orange_circle"></span>
+                        <div class="title">
+                            <span>{% trans 'Total No of Cases' %}</span>
+                            <span>{{total_cases}}</span>
+                        </div>
+                        <div class="images">
+                            <img src={% static "images/patient_cases.svg" %} alt="total no of patient cases">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3 d-flex dashboard not_review {% if statuss_name == "Under Review" %}active{% endif %}" data-info="Under Review">
+                    <div class="dashboard_content d-flex justify-content-between">
+                        <div class="images">
+                            <img src={% static "images/under_review_patient.svg" %}
+                                alt="total no of patient cases under review">
+                        </div>
+                        <div class="title">
+                            <span>{{under_review}}</span>
+                            <span>{% trans 'Under Review' %}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3 d-flex dashboard not_review {% if statuss_name == "Accepted" %}active{% endif %}" data-info="Accepted">
+                    <div class="dashboard_content d-flex justify-content-between">
+                        <div class="images">
+                            <img src={% static "images/accepted_cases.svg" %} alt="total no of patient cases are accepted">
+                        </div>
+                        <div class="title">
+                            <span>{{accpted_case}}</span>
+                            <span>{% trans 'Accepted Cases' %}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3 d-flex dashboard not_review {% if statuss_name == "Not Accepted" %}active{% endif %}" data-info="Not Accepted">
+                    <div class="dashboard_content d-flex justify-content-between">
+                        <div class="images">
+                            <img src={% static "images/not_accepted_cases.svg" %}
+                                alt="total no of patient cases are not accepted">
+                        </div>
+                        <div class="title">
+                            <span>{{not_acceptes}}</span>
+                            <span>{% trans 'Not Accepted Cases' %}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        <div class="table_container">
+            <div class="my_table" id="dashboard">
+                <div class="table_header d-flex justify-content-between">
+                    <div class="search_div">
+                        <span class="search_box">
+                            <input type="search" class="search_div" id="mySearch" name="basic_search_value" value="{% if search_value %}{{search_value}}{% endif %}"placeholder="My Search...(Search By Case Id / Title)">
+                            <span class="cross_btn cancel"  id="cancel_btn"><i class="fa fa-times" aria-hidden="true"></i></span>
+                        </span>
+                        <button type="button" id="basic_search_id" class="search basic_search">{% trans 'Search' %}</button>
+                    </div>
+                    <a href="#" class="advance_filter" id="adv_filter"><img src={% static "images/adavance_filter.svg" %}
+                            alt="advance filter images">&nbsp;&nbsp;{% trans 'Advance Filter' %}</a>
+                </div>
+                <div class="advance_filter_block">
+                    <div class="advance_header d-flex justify-content-between">
+                        <h2>{% trans 'Advance Filter' %}</h2>
+                        <a href="#" class="advance_filter"><span>+</span>&nbsp;&nbsp;{% trans 'Close Filter' %}</a>
+                    </div>
+                    <form class="advance_container" id="case_history_list" action="{% url 'case_history:dashboard' %}" method="get">{% csrf_token %}
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <div class="form-group">
+                                    <label>{% trans 'Case ID' %}</label>
+                                    <input type="text" class="form-control" name="case_id" placeholder="Case ID" {% for key, value in search_filter_list.items %} value="{% if key == 'case_id' %}{{ value }}{% endif %}"{% endfor %} >
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <div class="form-group">
+                                    <label>{% trans 'Patient Name' %}</label>
+                                    <input type="text" class="form-control" name="patient_name" placeholder="Patient Name" value="{% if pat_name %}{{ pat_name }}{% endif %}">
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <div class="form-group">
+                                    <label>{% trans 'Start Date' %}</label>
+                                    <input type="text" class="form-control date_pic from_date" id="start_date" name="strt_date" placeholder="Start Date" value="{% if start_date %}{{ start_date }}{% endif %}"readonly>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <div class="form-group">
+                                    <label>{% trans 'End Date' %}</label>
+                                    <input type="text" class="form-control date_pic from_date" name="end_date" placeholder="End Date" value="{% if endd_date %}{{ endd_date }}{% endif %}"readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <div class="form-group">
+                                    <label>{% trans 'Gender' %}</label>
+                                    <div class="select_gender d-flex">
+                                        <label class="male_gender">
+                                            <input type="radio" id="male" value="Male" name="gender" {% if gender == 'Male' %}checked {% endif %}
+                                                class="form-control male"><span>{% trans 'Male' %}</span>
+                                        </label>
+                                        <label class="male_gender">
+                                            <input type="radio" id="female" value="Female" name="gender" {% if gender == 'Female' %}checked {% endif %}
+                                                class="form-control female"><span>{% trans 'Female' %}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <div class="form-group">
+                                    <label>{% trans 'Disease' %}</label>
+                                    <input type="hidden" id="disease_id" name="dis_name" value="" >
+                                    <input type="text" class="form-control disease_name" name="disease_name" placeholder="Please type upto 2 or more characters" value="{% if disease_nam %}{{ disease_nam }}{% endif %}">
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <div class="form-group">
+                                    <label>{% trans 'Medicine' %}</label>
+                                    <input type="hidden" id="medicine_id" name="medi_name" value="" >
+                                    <input type="text" class="form-control medicine_name" name="medicine_name" placeholder="Please type upto 2 or more characters" value="{% if prescription_name %}{{ prescription_name }}{% endif %}">
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <div class="form-group">
+                                    <label>{% trans 'Symptoms' %}</label>
+                                    <input type="hidden" id="symptoms_id" name="sympt_name" value="" >
+                                    <input type="text" class="form-control symptoms_name" name="symptoms_name" placeholder="Please type upto 2 or more characters" value="{% if comp_symptoms %}{{ comp_symptoms }}{% endif %}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <div class="form-group">
+                                    <label>{% trans 'Location' %}</label>
+                                    <input type="text" class="form-control" name="location_name" placeholder="Location Name" value="{% if location %}{{ location }}{% endif %}">
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <div class="form-group">
+                                    <label>{% trans 'State' %}</label>
+                                    <select class="form-control state_name" name="state_name">
+                                        <option value="">Please Select State</option>
+                                        {% for i in state %}
+                                            <option value="{{i|first}}"{% if state_id == i|first %}selected{% endif %}>{{ i|last}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            {% if city  %}
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'City' %}</label>
+                                        <select class="form-control" name="city_name" id="city_id">
+                                            <option value="">Please Select City </option>
+                                            {% for i in city %}
+                                                     <option value="{{i|first}}" {% if i|first == city_id %} selected  {% endif %}>{{ i|last }}</option>
+                                            {% endfor %}
+                                        </select>                                                
+                                    </div> 
+                                </div>    
+                            {% else %}
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'City' %} </label>
+                                        <select class="form-control" name="city_name" id="city_id">
+                                            <option value="">Please Select City</option>
+                                        </select>                                                
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <input type="hidden" id="baseci_search_dtl" name="basic_search_value">
+                        <div class="continue_button">
+                            <button type="submit" id="search_id" class="next">{% trans 'Apply' %}</button>
+                            <button type="button" class="cancel" id="cancel_btn">{% trans 'Cancel' %}</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="table-responsive ">
+                    <table class="table1 display" id="table_str">
+                        <thead>
+                            <tr>
+                                <th scope="col">{% trans 'Case ID' %}</th>
+                                <th scope="col">{% trans 'Case Title' %}</th>
+                                <th scope="col">{% trans 'Patient Name' %}</th>
+                                <th scope="col">{% trans 'Doctor Name' %}</th>
+                                <th scope="col">{% trans 'Doctor Reg. No' %}</th>
+                                <th scope="col">{% trans 'Disease' %}</th>
+                                <th scope="col">{% trans 'Medicine' %}</th> 
+                                <th scope="col">{% trans 'Symptoms' %}</th>
+                                <th scope="col">{% trans 'Status' %}</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in data_list %}
+                            <tr>
+                                <td>
+                                    <div class="caseid">
+                                        <span><a {% if perms.roles_permissions.can_update_case %} href="{% url 'case_history:add_case' case_id=a|get_id:'_id' %}"{% endif %}>{{ a.case_id }}</a></span>
+                                    </div>
+                                </td>
+                                <td>{{ a.case_title }}</td>
+                                <td>{{ a.case_id|get_patient_name }}</td>
+                                <td>{{ a.case_pract_id|get_doctor_name }}</td>
+                                <td>{{ a.case_pract_id }}</td>
+                                <td>{{ a.diagnosis.primary_diagnosis }}</td>
+                                <td>{{ a.keyword_index }}  </td>
+                                <td>{{ a.keyword_index }}</td>
+                                
+                                
+                                <!-- <td>{{ a.case_title }}</td>
+                                {% for j in a.casehistorypatientdetail_set.all  %}
+                                    <td>{{ j.case_patient_name }}</td>
+                                {% endfor %}
+                                {% for j in pact_dtls %}
+                                    {% if j.pract_reg_no == a.case_pract_id %}
+                                        <td>{{j.user.first_name}} {{j.user.last_name}}</td>
+                                    {% endif %}
+                                {% endfor %}
+                                <td>{{ a.case_pract_id }}</td>
+                                <td>{{ a.diagnosis.primary_diagnosis }}</td>
+                                <td>{{ a.keyword_index }}  </td>
+                                <td>{{ a.keyword_index }}</td> -->
+                                <td class="status"><button {% if a.case_status == "Accepted" %} class="accepted" {% elif a.case_status == "Not Accepted" %} class="not_accepted" {% elif a.case_status == "Under Review" %} class="under_review" {% else %} class="under_review" {% endif %}>{{ a.case_status }}</button></td>
+                            </tr>
+                            {% empty %}
+                                       <td>No Records Available</td>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <nav aria-label="pagination " class="pagin_bar_remove   ">
+                        <ul class="pagination">
+                            {% if not data_list.has_previous %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="javascript:void(0);">&laquo; First</a>
+                                </li>
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="javascript:void(0);">Prev</a>
+                                </li>
+                            {% elif data_list.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?{% param_replace page=1 %}">&laquo; First</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?{% param_replace page=data_list.previous_page_number %}">Prev</a>
+                                </li>
+                            {% if data_list.number > 3 %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?{% param_replace page=1 %}">1</a>
+                                </li>
+                            {% if data_list.number > 4 %}
+                                <li class="page-item">
+                                    <a class="page-link" href="javascript:void(0);">...</a>
+                                </li>
+                            {% endif %}
+                            {% endif %}
+                            {% endif %}
+                            
+                            {% for n in data_list.paginator.page_range %}
+                              {% if data_list.number == n %}
+                                <li class="page-item active"><a class="page-link" href="javascript:void(0);"><span>{{ n }} <span class="sr-only">(current)</span></span></a></li>
+                              {% elif n > data_list.number|add:'-3' and n < data_list.number|add:'3' %}
+                                 <li class="page-item"><a class="page-link" href="?{% param_replace page=n %}">{{ n }}</a></li>
+                              {% endif %}
+                            {% endfor %}
+                
+                            {% if data_list.has_next %}
+                                {% if data_list.number < data_list.paginator.num_pages|add:'-3' %}
+                                <li class="page-item">
+                                    <a class="page-link" href="javascript:void(0);">...</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?{% param_replace page=data_list.paginator.num_pages %}">{{ data_list.paginator.num_pages }}</a>
+                                </li>
+                                {% elif data_list.number < data_list.paginator.num_pages|add:'-2' %}
+                                 <li class="page-item">
+                                    <a class="page-link" href="?{% param_replace page=data_list.paginator.num_pages %}">{{ data_list.paginator.num_pages }}</a>
+                                </li>
+                                {% endif %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?{% param_replace page=data_list.next_page_number %}">Next</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?{% param_replace page=data_list.paginator.num_pages %}">Last &raquo;</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="javascript:void(0);">Next</a>
+                                </li>
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="javascript:void(0);">Last &raquo;</a>   
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                    <p class="align_entry disply_entries_cnt">Showing {{ data_list.start_index }} to {{ data_list.end_index }} of {{ data_list.paginator.count }} entries</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Form to filter Case Listing Status  (Start) -->
+    <div id="review_pop" class="modal fade del_prof" role="dialog">
+        <div class="modal-dialog delete_conform">
+            <div class="modal-content">
+                <button type="button" class="close dev_delprof" data-dismiss="modal">&times;</button>
+                <form class="filter_status" id= "review_status" action="{% url 'case_history:dashboard' %}" method="get">{% csrf_token %}
+                <div class="modal-body">
+                    <input type="hidden" id="status_id" name="status_name" value="" >
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- Form to filter Case Listing Status (End) -->
+    
+{% endblock %}
+
+{% block jsfilesurls %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/libraries/jquery-ui.min.css' %}"><!--autocomplete-->
+    <script src="{% static 'js/libraries/jquery-ui.min.js' %}"></script> <!-- autocomplete Script -->
+    <script src="{% static 'js/libraries/jquery.datetimepicker.full.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/libraries/jquery.datetimepicker.min.css' %}">
+{% endblock %}
+
+
+{% block custom-js %}
+
+
+
+/*******on click th date picker starts here******/
+$(".date_pic").datetimepicker({
+          format:'Y-m-d',
+          timepicker:false
+    });
+
+/*********On Click show & hide Advance Filter starts************/
+/*******on click Filtering the Case Listing Status Starts here*******/
+$(document.body).on('click',".not_review",function(){
+    var value= $(this).data('info');
+    $('#status_id').val(value);
+    $("#review_status").submit();
+    });
+
+$(document.body).on('click',".total_cases",function(){
+    window.location.href = "{% url 'case_history:dashboard' %}";
+});
+
+/*******on click Filtering the Case Listing Status Ends here*******/
+
+/*******on click the my search append the value starts here*******/
+$(document.body).on('click',".basic_search",function(){
+    var srch_value = $("#mySearch").val();
+    $("#baseci_search_dtl").val(srch_value);
+    $('#case_history_list').submit();
+})
+
+$(".advance_filter").click(function() {
+    $("#dashboard").toggleClass("active");
+});
+
+/*******on click on the cancel refreshing page starts here***********/
+$(".cancel").click(function() {
+    window.location.href = "{% url 'case_history:dashboard' %}";
+});
+
+/*********on change of state showng city starts here**********/
+$(document.body).on('change',".state_name",function(){
+    var Url = '{% url 'user_profile:get_city_name' %}';
+    var state_name=$("select[name='state_name']").val();
+    $('#city_id').empty();
+    $.ajax({
+        url:Url,
+        method:'get',
+        dataType: 'json',
+        data:{ csrfmiddlewaretoken: '{{ csrf_token }}', state_name:state_name},
+        success: function(data){
+                    var toAppend="";
+                    toAppend += "<option value='' selected>Select City Name</option>";
+                    if (data != 'fail'){
+                         $.each(data, function(index0, l) {
+                                $.each(l, function(index1, n) {
+                                    toAppend += '<option value="' + n.id + '">'+n.city_name+'</option>';
+                        });
+                    });
+                     $('#city_id').append(toAppend);
+                    }
+                }
+        });
+});
+
+/********click on city name showing an error message starts here ************/
+$(document.body).on('click',"#city_id",function(){
+    city_value = $('select[name="state_name"] option:selected').val();
+        if (city_value  ){
+            $('#state-error').remove();
+            return true;
+        }else{
+            $('#state-error').remove();
+            $('#city_id').after('<label id="state-error" class="error" for="state">Please select State Name </label>');
+            return false;
+        }
+});
+/********click on city name showing an error message ends here ************/
+
+/***********Auto complete fucntionality starts here *************/
+jQuery(function() {
+    $(document.body).on('keyup',".disease_name", function(){
+        var value = $(this).val();
+        $.ajax({
+            url: "{% url 'case_history:get_disease_names' %}",
+            data: {
+              'value': value
+            },
+            dataType: 'json',
+            success: function (data) {
+                    list=data.list,
+                    $(".disease_name").autocomplete({
+                        source: list,
+                        minLength: 2,
+                        autoFocus: true,
+                        select:function (event, ui) {
+                            var dis_nam = ui.item.value;
+                            var dis_id = ui.item.id;
+                            $("#disease_id").val(dis_id);
+                        },
+                    });
+                },
+            });    
+        });
+    });
+/***********Auto complete fucntionality Ends here *************/
+
+/***********Auto complete fucntionality starts here *************/
+    $(document.body).on('keyup',".symptoms_name", function(){
+        var value = $(this).val();
+        $.ajax({
+            url: "{% url 'case_history:get_symptoms_names' %}",
+            data: {
+              'value': value 
+            },
+            dataType: 'json',
+            success: function (data) {
+                    list=data.list,
+                    $(".symptoms_name").autocomplete({
+                        source: list,
+                        minLength: 2,
+                         autoFocus: true,
+                        select:function (event, ui) {
+                            var symptm_nam = ui.item.value;
+                            var symp_id = ui.item.id;
+                            $("#symptoms_id").val(symptm_nam);
+                            },
+                           
+                            }); 
+                       
+                               
+                    }
+            });     
+        });
+/***********Auto complete fucntionality Ends here *************/
+
+{#/***********Auto complete fucntionality starts here *************/#}
+{#    $(document.body).on('keyup',".medicine_name", function(){#}
+{#        var value = $(this).val();#}
+{#        $.ajax({#}
+{#            url: "{% url 'case_history:get_medicine_names' %}",#}
+{#            data: {#}
+{#             'value': value #} 
+{#            },#}
+{#            dataType: 'json',#}
+{#            success: function (data) {#}
+{#                    list=data.list,#}
+{#                    $(".medicine_name").autocomplete({#}
+{#                        source: list,#}
+{#                        minLength: 2,#}
+{#                         autoFocus: true,#}
+{#                        select:function (event, ui) {#}
+{#                            var medi_nam = ui.item.value;#}
+{#                            var medical_id = ui.item.id;#}
+{#                            $("#medicine_id").val(medical_id);#}
+{#                           #}
+{#                            },#}
+{#                           #}
+{#                            }); #}
+{#                       #}
+{#                      #}         
+{#                    }#}
+{#            });   #}  
+{#        });#}
+/***********Auto complete fucntionality Ends here *************/
+{% endblock %}
+
+

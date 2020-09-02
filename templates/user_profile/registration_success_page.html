@@ -1,0 +1,15 @@
+{% extends "base_before_login.html"  %}
+{% load i18n staticfiles  %}
+{% block content %}
+<div class="reg_success_container">
+    <div class="success_msg_block">
+        <h2>Successfully registered!</h2>
+        <div class="message_block">
+            <img src="{% static 'images/success_tick.svg' %}" alt="sucess tick image">
+            <p>Thank you. Your account has been created successfully!</p>
+            <span>Kindly check your inbox and verify email.</span>
+            <!-- <button class="go_to_login_btn">Go to login page</button> -->
+        </div>
+    </div>
+</div>
+   {% endblock %}

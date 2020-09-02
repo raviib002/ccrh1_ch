@@ -1,0 +1,367 @@
+{% load i18n staticfiles humanize %}
+<script id="hidden-template_view" type="text/x-custom-template">
+{% for order in follow_up_order %}
+<div id="follow_up_div_id" class="bs-example addcase_header d-flex justify-content-between">
+    <h2>{{ order|add:"-1"|apnumber|capfirst }} {% trans 'visit' %}</h2>
+    {% if perms.roles_permissions.can_delete_follow_up %}
+    <div class="addcase_images">
+        <span class="delete_follow_up remove_doc_btn" data-info="{{case_id}}" data-info1="{{order}}"><img src="{% static 'images/addcase_bin.svg' %}" alt="addcase delete button" class="img-fluid"></span>
+    </div>
+    {% endif %}
+</div>
+<div id="id_view_follow_up" class="dashboard_wrapper addcase_wrapper">
+    <div class="addcase_container addcase_block">
+        <div class="follow_up_tabs">
+            <ul id="id_follow_up_tabs" class="list-unstyled list_follow_up_tabs">
+                <li class="details active">
+                    <a id="phy_find_{{order}}" href="#physical_finding_{{order}}" ><div class="d-flex"><span class="number">{% trans '1' %}</span><span class="text">{% trans 'Physical Examination Findings' %}</span></div></a>
+                </li>
+                <li class="details">
+                    <a id="medi_manag_{{order}}" href="#medical_management_{{order}}"><div class="d-flex"><span class="number">{% trans '2' %}</span><span class="text">{% trans 'Medical Management' %}</span></div></a>
+                </li>
+                <li class="details">
+                    <a id="therapy_{{order}}" href="#therapies_{{order}}"><div class="d-flex"><span class="number">{% trans '3' %}</span><span class="text">{% trans 'Add on Therapies' %}</span></div></a>
+                </li>
+            </ul>
+        </div>
+        
+        <form id="id_follow_up_form" class="follow_up_form" action="{% url 'case_history:follow_up_add' order_no=order %}" method="post">{% csrf_token %}
+        <input type="hidden" id="id_case_record_{{order}}" value="{{ case_id }}" name="case_record">
+        <input type="hidden" id="add_follow_up_count_id_{{order}}" value="{{order}}" name="follow_up_visit_order">
+        <section id="physical_finding_{{order}}" class="tab-content active">
+            <div  class="advance_filter_block">
+                <div class="advance_container">
+                    <div class="advance_filter_block">
+                        <div class="advance_container">
+                            {% if phy_fin_case %}
+                                {% for j in phy_his_type %}
+                                    <h6>{{j.find_type}}</h6>
+                                    <div class="row add_case_segregation">
+                                        {% for i in phy_fin_case %}
+                                            {% if order == i.phyfind_order %}
+                                                {% if i.fin_mas.fin_type.find_type == j.find_type %}
+                                                <input type="hidden" name="physical_finfing_id_{{forloop.counter}}" value="{{i.id}}">
+                                                <input type="hidden" name="physicaexaminationtype_{{forloop.counter}}" value="{{i.fin_mas_id}}">
+                                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                                    <div class="form-group input_padd_right">
+                                                        <label>{{ i.fin_mas.find_name }}</label>
+                                                        <input type="text" value="{% if i.phyfind_value %}{{i.phyfind_value}}{% endif %}" name="physicalvalue_{{forloop.counter}}" class="form-control phy_fin_value" placeholder="{{ i.fin_mas.find_name }}" id="id_{{ i.fin_mas.find_name|cut:" "|lower }}">
+                                                        <label class="personal_per_mm">
+                                                            <span>{% if j.find_type != 'Systematic' %} {{i.fin_mas.measure.measurement}} {% endif %}</span>
+                                                        </label>
+                                                    </div>  
+                                                </div>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="medical_management_{{order}}" class="tab-content hide">
+            <div class="advance_filter_block">
+                <div class="advance_container">
+                    <div class="advance_filter_block">
+                        <div class="advance_container">
+                        {% for case_medi in case_medi_management %}
+                        {% if order == case_medi.prescription_order %}
+                        {% for medi_map in medi_prescription_map %}
+                        {% if case_medi.id == medi_map.medi_mgnt_id %}
+                            <input type="hidden" value="{{case_medi.id}}" name="case_medi_management" id="id_case_medi_management_{{order}}">
+                            <input type="hidden" value="{{medi_map.id}}" name="medi_pres_management" id="id_medi_pres_management_{{order}}">
+                            <div class="row add_case_segregation">
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Date of Follow-up' %}</label>
+                                        <input type="text" name="prescription_date" value="{{ case_medi.prescription_date|date:"Y-m-d" }}" class="form-control date_picker" placeholder="{% trans 'Date of Follow-up' %}" id="id_prescription_date_{{order}}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Prescription' %}</label>
+                                        <input type="hidden" value="{{medi_map.prescription_id}}" name="medicine_name_medi_manag" id="id_medicine_name_{{order}}">
+                                        <input type="text" data-info="{{order}}" value="{{medi_map.prescription.med_name}}" name="psrescription" class="form-control psrescription" placeholder="{% trans 'Prescription(Suggestion after 2 or more characters)' %}" id="id_psrescription_{{order}}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Potency' %}</label>
+                                        <input type="text" value="{{medi_map.potency}}" name="potency" class="form-control" placeholder="{% trans 'Potency' %}" id="id_potency_{{order}}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Dosage' %}</label>
+                                        <input type="text" value="{{medi_map.dosage}}" name="dosage" class="form-control" placeholder="{% trans 'Dosage' %}" id="id_dosage_{{order}}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Prescription ORIDL Scale' %}</label>
+                                        <textarea name="prescription_oridl_scale" cols="25" rows="3" class="form-control" placeholder="{% trans 'Prescription ORIDL Scale' %}" id="prescription_oridl_scale_{{order}}">{{ case_medi.prescription_oridl_scale }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Outcome of Previous prescription' %}</label>
+                                        <textarea name="outcome_of_prev_presc" cols="25" rows="3" class="form-control" placeholder="{% trans 'Outcome of Previous prescription' %}" id="outcome_of_prev_presc_{{order}}">{{ case_medi.outcome_of_prev_presc }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Marks of Improvement' %}</label>
+                                        <textarea name="marks_for_improvement" cols="25" rows="3" class="form-control" placeholder="{% trans 'Marks of Improvement' %}" maxlength="250" id="marks_for_improvement_{{order}}">{{ case_medi.marks_for_improvement }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="therapies_{{order}}" class="tab-content hide">
+            <div class="advance_filter_block" >
+                <div class="advance_container">
+                    <div id="case_details" class="advance_filter_block">
+                        <div class="advance_container">
+                            <div class="d-flex justify-content-between">
+                                <h6>{% trans 'Therapies' %}</h6>
+                                <img data-info="{{order}}" class="add_more_therapy_update add_more_icon" src="{% static 'images/icons8-plus.svg' %}">
+                            </div>
+                            {% for case_addon in case_addon_therapy %}
+                            {% if order == case_addon.addon_order %}
+                            <input type="hidden" name="addon_order_{{ forloop.counter }}" value="{{ case_addon.id }}">
+                            <div id="addon_therapy_view_id" class="row add_case_segregation">
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Thearpy' %}</label>
+                                        <select name="addon_thrpy_mas_{{ forloop.counter }}" class="form-control" id="id_addon_thrpy_mas_{{ forloop.counter }}">
+                                            <option value="">{% trans 'Select Therapy' %}</option>
+                                            {% for i in addon_mast %}
+                                                <option value="{{i.id}}" {% if i.id == case_addon.addon_thrpy_mas_id %} selected {% endif %}>{{i.thrpy_name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Name of medicines' %}</label>
+                                        <input type="text" name="medicine_name_{{ forloop.counter }}" value="{{case_addon.medicine_name}}" class="form-control" placeholder="{% trans 'Name of medicines' %}" maxlength="100" id="id_medicine_name_{{ forloop.counter }}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Dosage' %}</label>
+                                        <input type="text" name="medicine_dosage_{{ forloop.counter }}" value="{{case_addon.medicine_dosage}}" class="form-control" placeholder="{% trans 'Dosage' %}" maxlength="100" id="id_medicine_dosage_{{ forloop.counter }}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Duration of other therapy(Year/Months/Days)' %}</label>
+                                        <input type="text" name="duration_other_therapy_{{ forloop.counter }}" value="{{case_addon.duration_other_therapy}}" class="form-control" placeholder="{% trans 'Duration of other therapy(Year/Months/Days)' %}" maxlength="100" id="id_duration_other_therapy_{{ forloop.counter }}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Duration after which other therapy (Allopathy/Ayurveda/ Siddha etc) was tapered after homoeopathic treatment' %}</label>
+                                        <input type="text" name="duration_after_which_other_therapy_{{ forloop.counter }}" value="{{case_addon.duration_after_which_other_therapy}}" class="form-control" placeholder="{% trans 'Duration after which other therapy (Allopathy/Ayurveda/ Siddha etc) was tapered after homoeopathic treatment' %}" maxlength="100" id="id_duration_after_which_other_therapy_{{ forloop.counter }}">
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                            <div class="add_here_therapy_{{order}}" id="add_here_therapy_{{order}}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <button class="follow_up_button" type="submit"  id="id_save_follow_up_{{ order }}">{% trans 'Save Follow-Up' %}</button>
+        </form>
+    </div>
+</div>
+{% endfor %}
+</script>
+
+
+
+
+<script id="hidden-template_add" type="text/x-custom-template">
+<div id="follow_up_div_id" class="bs-example addcase_header d-flex justify-content-between">
+    <h2>{% trans 'New visit' %}</h2>
+    <div class="addcase_images">
+        <span class="delete_follow_up remove_doc_btn" data-info="" data-info1=""><img src="{% static 'images/addcase_bin.svg' %}" alt="addcase delete button" class="img-fluid"></span>
+    </div>
+</div>
+<div id="id_add_new_follow_up" class="dashboard_wrapper addcase_wrapper">
+    <div class="addcase_container addcase_block">
+        <div class="follow_up_tabs">
+            <ul id="id_follow_up_tabs" class="list-unstyled list_follow_up_tabs">
+                <li class="details active">
+                    <a id="phy_find" href="#physical_finding"><div class="d-flex"><span class="number">{% trans '1' %}</span><span class="text">{% trans 'Physical Examination Findings' %}</span></div></a>
+                </li>
+                <li class="details">
+                    <a id="medi_manag" href="#medical_management"><div class="d-flex"><span class="number">{% trans '2' %}</span><span class="text">{% trans 'Medical Management' %}</span></div></a>
+                </li>
+                <li class="details">
+                    <a id="therapy" href="#therapies"><div class="d-flex"><span class="number">{% trans '3' %}</span><span class="text">{% trans 'Add on Therapies' %}</span></div></a>
+                </li>
+            </ul>
+        </div>
+        
+        <form id="id_follow_up_form" class="follow_up_form" action="{% url 'case_history:follow_up_add' %}" method="post">{% csrf_token %}
+        <input type="hidden" id="id_case_record" value="{{ case_id }}" name="case_record">
+        <input type="hidden" id="id_new_follow_up_visit_order" value="" name="new_follow_up_visit_order">
+        <section id="physical_finding" class="tab-content active">
+            <div  class="advance_filter_block">
+                <div class="advance_container">
+                    <div class="advance_filter_block">
+                        <div class="advance_container">
+                            {% for j in phy_his_type %}
+                                <h6>{{j.find_type}} </h6>
+                                <div class="row add_case_segregation">
+                                    {% for i in phy_his_mast %}
+                                    <input type="hidden" name="physicaexaminationtype_{{forloop.counter}}" value="{{i.id}}">
+                                        {% if i.fin_type.find_type == j.find_type %}
+                                        <div class="col-sm-12 col-md-3 col-lg-3">
+                                            <div class="form-group input_padd_right">
+                                                <label>{{ i.find_name }}</label>
+                                                <input type="text" name="physicalvalue_{{forloop.counter}}" class="form-control phy_fin_value" placeholder="{{ i.find_name }}" id="id_{{ i.find_name|cut:" "|lower }}">
+                                                <label class="personal_per_mm">
+                                                    <span>{% if j.find_type != 'Systematic' %} {{i.measure.measurement}} {% endif %}</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="medical_management" class="tab-content hide">
+            <div class="advance_filter_block">
+                <div class="advance_container">
+                    <div class="advance_filter_block">
+                        <div class="advance_container">
+                            <div class="row add_case_segregation">
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Date of Follow-up' %}</label>
+                                        <input type="text" name="prescription_date" value="{% now "Y-m-d" %}" class="form-control date_picker" placeholder="{% trans 'Date of Follow-up' %}" id="id_prescription_date">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Prescription' %}</label>
+                                        <input type="hidden" value="" name="medicine_name_medi_manag" id="id_medicine_name">
+                                        <input type="text" value="" name="psrescription" class="form-control psrescription" placeholder="{% trans 'Prescription(Suggestion after 2 or more characters)' %}" id="id_psrescription">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Potency' %}</label>
+                                        <input type="text" value="" name="potency" class="form-control" placeholder="{% trans 'Potency' %}" id="id_potency">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Dosage' %}</label>
+                                        <input type="text" value="" name="dosage" class="form-control" placeholder="{% trans 'Dosage' %}" id="id_dosage">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Prescription ORIDL Scale' %}</label>
+                                        <textarea name="prescription_oridl_scale" cols="25" rows="3" class="form-control" placeholder="{% trans 'Prescription ORIDL Scale' %}" id="prescription_oridl_scale"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Outcome of Previous prescription' %}</label>
+                                        <textarea name="outcome_of_prev_presc" cols="25" rows="3" class="form-control" placeholder="{% trans 'Outcome of Previous prescription' %}" id="outcome_of_prev_presc"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Marks of Improvement' %}</label>
+                                        <textarea name="marks_for_improvement" cols="25" rows="3" class="form-control" placeholder="{% trans 'Marks of Improvement' %}" maxlength="250" id="marks_for_improvement"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="therapies" class="tab-content hide">
+            <div class="advance_filter_block" >
+                <div class="advance_container">
+                    <div id="case_details" class="advance_filter_block">
+                        <div class="advance_container">
+                             <div class="d-flex justify-content-between">
+                                <h6>{% trans 'Therapies' %}</h6>
+                                <img data-info="" class="add_more_therapy_update add_more_icon" src="{% static 'images/icons8-plus.svg' %}">
+                            </div>
+                            <div class="row add_case_segregation">
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Thearpy' %}</label>
+                                        <select name="addon_thrpy_mas_0" class="form-control" id="id_addon_thrpy_mas_0">
+                                            <option value="">{% trans 'Select Therapy' %}</option>
+                                            {% for i in addon_mast %}
+                                                <option value="{{i.id}}" {% if i.id == case_addon.addon_thrpy_mas_id %} selected {% endif %}>{{i.thrpy_name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Name of medicines' %}</label>
+                                        <input type="text" name="medicine_name_0" value="{{case_addon.medicine_name}}" class="form-control" placeholder="{% trans 'Name of medicines' %}" maxlength="100" id="id_medicine_name_0">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Dosage' %}</label>
+                                        <input type="text" name="medicine_dosage_0" value="{{case_addon.medicine_dosage}}" class="form-control" placeholder="{% trans 'Dosage' %}" maxlength="100" id="id_medicine_dosage_0">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Duration of other therapy(Year/Months/Days)' %}"</label>
+                                        <input type="text" name="duration_other_therapy_0" value="{{case_addon.duration_other_therapy}}" class="form-control" placeholder="{% trans 'Duration of other therapy(Year/Months/Days)' %}" maxlength="100" id="id_duration_other_therapy_0">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Duration after which other therapy (Allopathy/Ayurveda/ Siddha etc) was tapered after homoeopathic treatment' %}</label>
+                                        <input type="text" name="duration_after_which_other_therapy_0" value="{{case_addon.duration_after_which_other_therapy}}" class="form-control" placeholder="{% trans 'Duration after which other therapy (Allopathy/Ayurveda/ Siddha etc) was tapered after homoeopathic treatment' %}" maxlength="100" id="id_duration_after_which_other_therapy_0">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add_here_therapy" class="add_here_therapy"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <button class="follow_up_button" type="submit"  id="id_save_new_follow_up">{% trans 'Save Follow-Up' %}</button>
+        </form>
+    </div>
+</div>
+</script>

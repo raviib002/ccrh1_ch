@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+{% block page_heading %}{% trans 'Add Clinical Case' %}{% endblock %}
+
+{% block breadcrumbs %}
+    {% trans 'Add On Therapy' %}
+{% endblock %}
+
+{% block content %}
+    <div class="dashboard_wrapper addcase_wrapper">
+        <div class="dashboard_container">
+            <div class="addcase_container">
+                {% include 'case_history/add_case_menus.html' %}
+                <form id="add_case_form" class="add_case_form" action="{% if case_id %}{% url 'case_history:add_on_therapies' case_id=case_id %}{% endif %}" method="post">{% csrf_token %}
+                    <input type="hidden" id="id_case_record" value="{{ case_id }}" name="case_record">
+                    <input type="hidden" id="id_addon_order" value="1" name="addon_order">
+                    <div id="case_details" class="advance_filter_block">
+                        <div class="advance_container">
+                             <div class="d-flex justify-content-between">
+                                <h6>{% trans 'Therapies' %}</h6>
+                                <img class="add_more_therapy add_more_icon" src="{% static 'images/icons8-plus.svg' %}">
+                            </div>
+                            {{ formset.management_form }}
+                            {% for form in formset %}
+                            {{ form.id }}
+                                <div class="row add_case_segregation">
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <label>{{ form.addon_thrpy_mas.label }}</label>
+                                            {{ form.addon_thrpy_mas }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <label>{{ form.medicine_name.label }}</label>
+                                            {{ form.medicine_name }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <label>{{ form.medicine_dosage.label }}</label>
+                                            {{ form.medicine_dosage }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <label>{{ form.duration_other_therapy.label }}</label>
+                                            {{ form.duration_other_therapy }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-8 col-lg-8">
+                                        <div class="form-group">
+                                            <label>{{ form.duration_after_which_other_therapy.label }}</label>
+                                            {{ form.duration_after_which_other_therapy }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="add_here_therapy"></div>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- banner ends -->
+
+{# Add more therapy empty formset #}
+<div id="empty_form" style="display:none">
+    <div class="row add_case_segregation">
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <div class="form-group">
+                <label>{{ formset.empty_form.addon_thrpy_mas.label }}</label>
+                {{ formset.empty_form.addon_thrpy_mas }}
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <div class="form-group">
+                <label>{{ formset.empty_form.medicine_name.label }}</label>
+                {{ formset.empty_form.medicine_name }}
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <div class="form-group">
+                <label>{{ formset.empty_form.medicine_dosage.label }}</label>
+                {{ formset.empty_form.medicine_dosage }}
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <div class="form-group">
+                <label>{{ formset.empty_form.duration_other_therapy.label }}</label>
+                {{ formset.empty_form.duration_other_therapy }}
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-8 col-lg-8">
+            <div class="form-group">
+                <label>{{ formset.empty_form.duration_after_which_other_therapy.label }}</label>
+                {{ formset.empty_form.duration_after_which_other_therapy }}
+            </div>
+        </div>
+    </div>
+</div>
+{# Add more therapy empty formset #}
+
+<!-- footer starts -->
+{% include 'case_history/add_case_footer.html' %}
+<!-- footer ends -->
+{% endblock %}
+{% block custom-js %}
+    {% include 'case_history/add_case_script.html' %}
+
+    $('.add_more_therapy').click(function() {
+        var form_idx = $('#id_form-TOTAL_FORMS').val();
+        $('.add_here_therapy').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
+        $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+    });
+
+$(document.body).on('click','.submit_btn',function(){
+$("#case_submitted_btn").submit(); 
+});
+
+{% endblock %}

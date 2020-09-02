@@ -1,0 +1,21 @@
+{% load i18n staticfiles %}
+
+    <div class="row">
+        <div class="col-12 register_header">
+            <div class="login_header text-center">
+                <h2>{% trans 'Create New Account' %}</h2>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 upload_registration_blk">
+            <ul class="uploding_steps">
+                <li class="steps selected {% if 'registration' in request.path  %} active {% endif %}">
+                    <div class="step_no">1</div>
+                    <p>{% trans 'Add Your Details' %}</p>
+                </li>
+                <li class="steps  {% if 'documentation_upload' in request.path  %} selected active {% endif %} ">
+                    <div class="step_no">2</div>
+                    <p>{% trans 'Upload Document' %}</p>
+                </li>
+            </ul>
+        </div>
+    </div>

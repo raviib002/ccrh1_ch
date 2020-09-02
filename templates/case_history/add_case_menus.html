@@ -1,0 +1,138 @@
+{% load i18n staticfiles common_templatetags %}
+            <div class="side_tab">
+                <ul class="nav-tabs">
+                    <li class="{% if 'add_case' in request.path %} active {% endif %} {% if case_id %}{% if case_id|check_table_data_saved:'add_case' %}completed{% endif %}{% endif %}">
+                        <a href="{% if case_id %}{% url 'case_history:add_case' case_id=case_id %}{% else %}{% url 'case_history:add_case' %}{% endif %}"><span class="select_image">
+                            <img src={% static "images/add_case_tick_image.svg" %} alt="tick images" class="completed">
+                            <img src={% static "images/selected_image.svg" %} alt="selected images" class="selected">
+                            <svg class="done" xmlns="http://www.w3.org/2000/svg" width="13.38" height="13.388" viewBox="0 0 13.38 13.388"><defs><style>.a{fill:#2c2c2c;}</style></defs><g transform="translate(-0.132 0)"><g transform="translate(0.132 0)"><path class="a" d="M11.567,1.953a6.7,6.7,0,0,0-9.482,9.482,6.65,6.65,0,0,0,9.415,0A6.671,6.671,0,0,0,11.567,1.953Zm-6.076,8.08L2.82,7.362l.935-.935L5.491,8.163,9.9,3.756l.935.935Z" transform="translate(-0.132 0)"/></g></g></svg></span><span>{% trans 'Case Summary' %}</span>
+                        </a>
+                    </li>
+                    <li class="{% if 'patient_details' in request.path %} active {% endif %}{% if case_id %} {% if case_id|check_table_data_saved:'patient_details' %}completed{% endif %}{% endif %}">
+                        <a href="{% if case_id %}{% url 'case_history:patient_details' case_id=case_id %}{% else %}{% url 'case_history:patient_details' %}{% endif %}"><span class="select_image">
+                           <img src={% static "images/add_case_tick_image.svg" %} alt="tick images" class="completed">
+                           <img src={% static "images/selected_image.svg" %} alt="selected images" class="selected">
+                           <svg class="done" xmlns="http://www.w3.org/2000/svg" width="13.38" height="13.388" viewBox="0 0 13.38 13.388"><defs><style>.a{fill:#2c2c2c;}</style></defs><g transform="translate(-0.132 0)"><g transform="translate(0.132 0)"><path class="a" d="M11.567,1.953a6.7,6.7,0,0,0-9.482,9.482,6.65,6.65,0,0,0,9.415,0A6.671,6.671,0,0,0,11.567,1.953Zm-6.076,8.08L2.82,7.362l.935-.935L5.491,8.163,9.9,3.756l.935.935Z" transform="translate(-0.132 0)"/></g></g></svg></span><span>{% trans 'Patient Information' %}</span>
+                        </a>
+                    </li>
+                    <li  class="{% if 'present_complaint' in request.path %} active {% endif %}{% if case_id %} {% if case_id|check_table_data_saved:'present_complaint' %}completed{% endif %}{% endif %}">
+                        <a href="{% if case_id %}{% url 'case_history:present_complaint' case_id=case_id %}{% else %}{% url 'case_history:present_complaint' %}{% endif %}"><span class="select_image">
+                           <img src={% static "images/add_case_tick_image.svg" %} alt="tick images" class="completed">
+                           <img src={% static "images/selected_image.svg" %} alt="selected images" class="selected">
+                            <svg class="done" xmlns="http://www.w3.org/2000/svg" width="13.38" height="13.388" viewBox="0 0 13.38 13.388"><defs><style>.a{fill:#2c2c2c;}</style></defs><g transform="translate(-0.132 0)"><g transform="translate(0.132 0)"><path class="a" d="M11.567,1.953a6.7,6.7,0,0,0-9.482,9.482,6.65,6.65,0,0,0,9.415,0A6.671,6.671,0,0,0,11.567,1.953Zm-6.076,8.08L2.82,7.362l.935-.935L5.491,8.163,9.9,3.756l.935.935Z" transform="translate(-0.132 0)"/></g></g></svg></span><span>{% trans 'Presenting Complaints' %}</span>
+                        </a>
+                    </li>
+                    <li class="{% if 'personal_history' in request.path %} active {% endif %} {% if case_id %}{% if case_id|check_table_data_saved:'personal_history' %}completed{% endif %}{% endif %}">
+                        <a href="{% if case_id %}{% url 'case_history:personal_history' case_id=case_id %}{% else %}{% url 'case_history:personal_history' %}{% endif %}"><span class="select_image">
+                           <img src={% static "images/add_case_tick_image.svg" %} alt="tick images" class="completed">
+                           <img src={% static "images/selected_image.svg" %} alt="selected images" class="selected">
+                           <svg class="done" xmlns="http://www.w3.org/2000/svg" width="13.38" height="13.388" viewBox="0 0 13.38 13.388"><defs><style>.a{fill:#2c2c2c;}</style></defs><g transform="translate(-0.132 0)"><g transform="translate(0.132 0)"><path class="a" d="M11.567,1.953a6.7,6.7,0,0,0-9.482,9.482,6.65,6.65,0,0,0,9.415,0A6.671,6.671,0,0,0,11.567,1.953Zm-6.076,8.08L2.82,7.362l.935-.935L5.491,8.163,9.9,3.756l.935.935Z" transform="translate(-0.132 0)"/></g></g></svg></span><span>{% trans 'Personal History' %}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{#{% url 'case_history:physical_general' %}#}"><span class="select_image">
+                           <img src={% static "images/add_case_tick_image.svg" %} alt="tick images" class="completed">
+                           <img src={% static "images/selected_image.svg" %} alt="selected images" class="selected">
+                           <svg class="done" xmlns="http://www.w3.org/2000/svg" width="13.38" height="13.388" viewBox="0 0 13.38 13.388"><defs><style>.a{fill:#2c2c2c;}</style></defs><g transform="translate(-0.132 0)"><g transform="translate(0.132 0)"><path class="a" d="M11.567,1.953a6.7,6.7,0,0,0-9.482,9.482,6.65,6.65,0,0,0,9.415,0A6.671,6.671,0,0,0,11.567,1.953Zm-6.076,8.08L2.82,7.362l.935-.935L5.491,8.163,9.9,3.756l.935.935Z" transform="translate(-0.132 0)"/></g></g></svg></span><span>{% trans 'Physical General' %}</span>
+                        </a>
+                    </li>
+                    <li class="{% if 'mental_general' in request.path %} active {% endif %} {% if case_id %}{% if case_id|check_table_data_saved:'mental_general' %}completed{% endif %}{% endif %}">
+                        <a href="{% if case_id %}{% url 'case_history:mental_general' case_id=case_id %}{% else %}{% url 'case_history:mental_general' %}{% endif %}"><span class="select_image">
+                           <img src={% static "images/add_case_tick_image.svg" %} alt="tick images" class="completed">
+                           <img src={% static "images/selected_image.svg" %} alt="selected images" class="selected">
+                            <svg class="done" xmlns="http://www.w3.org/2000/svg" width="13.38" height="13.388" viewBox="0 0 13.38 13.388"><defs><style>.a{fill:#2c2c2c;}</style></defs><g transform="translate(-0.132 0)"><g transform="translate(0.132 0)"><path class="a" d="M11.567,1.953a6.7,6.7,0,0,0-9.482,9.482,6.65,6.65,0,0,0,9.415,0A6.671,6.671,0,0,0,11.567,1.953Zm-6.076,8.08L2.82,7.362l.935-.935L5.491,8.163,9.9,3.756l.935.935Z" transform="translate(-0.132 0)"/></g></g></svg></span><span>{% trans 'Mental General' %}</span>
+                        </a>
+                    </li>
+                    <li  class="{% if 'past_general' in request.path %} active {% endif %} {% if case_id|check_table_data_saved:'past_general' %}completed{% endif %}">
+                        <a href="{% if case_id %}{% url 'case_history:past_general' case_id=case_id %}{% else %}{% url 'case_history:past_general' %}{% endif %}"><span class="select_image">
+                           <img src={% static "images/add_case_tick_image.svg" %} alt="tick images" class="completed">
+                           <img src={% static "images/selected_image.svg" %} alt="selected images" class="selected">
+                           <svg class="done" xmlns="http://www.w3.org/2000/svg" width="13.38" height="13.388" viewBox="0 0 13.38 13.388"><defs><style>.a{fill:#2c2c2c;}</style></defs><g transform="translate(-0.132 0)"><g transform="translate(0.132 0)"><path class="a" d="M11.567,1.953a6.7,6.7,0,0,0-9.482,9.482,6.65,6.65,0,0,0,9.415,0A6.671,6.671,0,0,0,11.567,1.953Zm-6.076,8.08L2.82,7.362l.935-.935L5.491,8.163,9.9,3.756l.935.935Z" transform="translate(-0.132 0)"/></g></g></svg></span><span>{% trans 'Past History' %}</span>
+                        </a>
+                    </li>
+                    <li  class="{% if 'family_history' in request.path %} active {% endif %} {% if case_id %}{% if case_id|check_table_data_saved:'family_history' %}completed{% endif %}{% endif %}">
+                        <a href="{% if case_id %}{% url 'case_history:family_history' case_id=case_id %}{% else %}{% url 'case_history:family_history' %}{% endif %}"><span class="select_image">
+                           <img src={% static "images/add_case_tick_image.svg" %} alt="tick images" class="completed">
+                           <img src={% static "images/selected_image.svg" %} alt="selected images" class="selected">
+                           <svg class="done" xmlns="http://www.w3.org/2000/svg" width="13.38" height="13.388" viewBox="0 0 13.38 13.388"><defs><style>.a{fill:#2c2c2c;}</style></defs><g transform="translate(-0.132 0)"><g transform="translate(0.132 0)"><path class="a" d="M11.567,1.953a6.7,6.7,0,0,0-9.482,9.482,6.65,6.65,0,0,0,9.415,0A6.671,6.671,0,0,0,11.567,1.953Zm-6.076,8.08L2.82,7.362l.935-.935L5.491,8.163,9.9,3.756l.935.935Z" transform="translate(-0.132 0)"/></g></g></svg></span><span>{% trans 'Family History' %}</span>  
+                        </a>
+                    </li>
+                    <li class="{% if 'gynaecological_history' in request.path %} active {% endif %}{% if case_id %} {% if case_id|check_table_data_saved:'gynaecological_history' %}completed{% endif %}{% endif %}">
+                        <a href="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}"><span class="select_image">
+                           <img src={% static "images/add_case_tick_image.svg" %} alt="tick images" class="completed">
+                           <img src={% static "images/selected_image.svg" %} alt="selected images" class="selected">
+                           <svg class="done" xmlns="http://www.w3.org/2000/svg" width="13.38" height="13.388" viewBox="0 0 13.38 13.388"><defs><style>.a{fill:#2c2c2c;}</style></defs><g transform="translate(-0.132 0)"><g transform="translate(0.132 0)"><path class="a" d="M11.567,1.953a6.7,6.7,0,0,0-9.482,9.482,6.65,6.65,0,0,0,9.415,0A6.671,6.671,0,0,0,11.567,1.953Zm-6.076,8.08L2.82,7.362l.935-.935L5.491,8.163,9.9,3.756l.935.935Z" transform="translate(-0.132 0)"/></g></g></svg></span><span>{% trans 'Gynaecological History' %}</span>
+                        </a>
+                   </li>
+                    <li class="{% if 'obstreric_history' in request.path %} active {% endif %}{% if case_id %} {% if case_id|check_table_data_saved:'obstreric_history' %}completed{% endif %}{% endif %}">
+                        <a href="{% if case_id %}{% url 'case_history:obstreric_history' case_id=case_id %}{% else %}{% url 'case_history:obstreric_history' %}{% endif %}"><span class="select_image">
+                           <img src={% static "images/add_case_tick_image.svg" %} alt="tick images" class="completed">
+                           <img src={% static "images/selected_image.svg" %} alt="selected images" class="selected">
+                            <svg class="done" xmlns="http://www.w3.org/2000/svg" width="13.38" height="13.388" viewBox="0 0 13.38 13.388"><defs><style>.a{fill:#2c2c2c;}</style></defs><g transform="translate(-0.132 0)"><g transform="translate(0.132 0)"><path class="a" d="M11.567,1.953a6.7,6.7,0,0,0-9.482,9.482,6.65,6.65,0,0,0,9.415,0A6.671,6.671,0,0,0,11.567,1.953Zm-6.076,8.08L2.82,7.362l.935-.935L5.491,8.163,9.9,3.756l.935.935Z" transform="translate(-0.132 0)"/></g></g></svg></span><span>{% trans 'Obstreric History' %}</span>
+                        </a>
+                    </li>
+                    <li  class="{% if 'physical_examination_finding' in request.path %} active {% endif %} {% if case_id|check_table_data_saved:'physical_examination_finding' %}completed{% endif %}">
+                        <a href="{% if case_id %}{% url 'case_history:physical_examination_finding' case_id=case_id %}{% else %}{% url 'case_history:physical_examination_finding' %}{% endif %}"><span class="select_image">
+                            <img src={% static "images/add_case_tick_image.svg" %} alt="tick images" class="completed">
+                           <img src={% static "images/selected_image.svg" %} alt="selected images" class="selected">
+                           <svg class="done" xmlns="http://www.w3.org/2000/svg" width="13.38" height="13.388" viewBox="0 0 13.38 13.388"><defs><style>.a{fill:#2c2c2c;}</style></defs><g transform="translate(-0.132 0)"><g transform="translate(0.132 0)"><path class="a" d="M11.567,1.953a6.7,6.7,0,0,0-9.482,9.482,6.65,6.65,0,0,0,9.415,0A6.671,6.671,0,0,0,11.567,1.953Zm-6.076,8.08L2.82,7.362l.935-.935L5.491,8.163,9.9,3.756l.935.935Z" transform="translate(-0.132 0)"/></g></g></svg></span><span>{% trans 'Physical Examination Findings' %}</span>  
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{#{% url 'case_history:investigations_categories' %}#}"><span class="select_image">
+                           <img src={% static "images/add_case_tick_image.svg" %} alt="tick images" class="completed">
+                           <img src={% static "images/selected_image.svg" %} alt="selected images" class="selected">
+                           <svg class="done" xmlns="http://www.w3.org/2000/svg" width="13.38" height="13.388" viewBox="0 0 13.38 13.388"><defs><style>.a{fill:#2c2c2c;}</style></defs><g transform="translate(-0.132 0)"><g transform="translate(0.132 0)"><path class="a" d="M11.567,1.953a6.7,6.7,0,0,0-9.482,9.482,6.65,6.65,0,0,0,9.415,0A6.671,6.671,0,0,0,11.567,1.953Zm-6.076,8.08L2.82,7.362l.935-.935L5.491,8.163,9.9,3.756l.935.935Z" transform="translate(-0.132 0)"/></g></g></svg></span><span>{% trans 'Investigations' %}</span>
+                        </a>
+                    </li>
+                    <li class="{% if 'repertorisation' in request.path %} active {% endif %} {% if case_id %}{% if case_id|check_table_data_saved:'repertorisation' %}completed{% endif %}{% endif %}">
+                        <a href="{% if case_id %}{% url 'case_history:repertorisation' case_id=case_id %}{% else %}{% url 'case_history:repertorisation' %}{% endif %}"><span class="select_image">
+                           <img src={% static "images/add_case_tick_image.svg" %} alt="tick images" class="completed">
+                           <img src={% static "images/selected_image.svg" %} alt="selected images" class="selected">
+                           <svg class="done" xmlns="http://www.w3.org/2000/svg" width="13.38" height="13.388" viewBox="0 0 13.38 13.388"><defs><style>.a{fill:#2c2c2c;}</style></defs><g transform="translate(-0.132 0)"><g transform="translate(0.132 0)"><path class="a" d="M11.567,1.953a6.7,6.7,0,0,0-9.482,9.482,6.65,6.65,0,0,0,9.415,0A6.671,6.671,0,0,0,11.567,1.953Zm-6.076,8.08L2.82,7.362l.935-.935L5.491,8.163,9.9,3.756l.935.935Z" transform="translate(-0.132 0)"/></g></g></svg></span><span>{% trans 'Repertorisation' %}</span>
+                        </a>
+                    </li>
+                    <li  class="{% if 'miasamatic_analysis' in request.path %} active {% endif %}{% if case_id %} {% if case_id|check_table_data_saved:'miasamatic_analysis' %}completed{% endif %}{% endif %}">
+                        <a href="{% if case_id %}{% url 'case_history:miasamatic_analysis' case_id=case_id %}{% else %}{% url 'case_history:miasamatic_analysis' %}{% endif %}"><span class="select_image">
+                           <img src={% static "images/add_case_tick_image.svg" %} alt="tick images" class="completed">
+                           <img src={% static "images/selected_image.svg" %} alt="selected images" class="selected">
+                           <svg class="done" xmlns="http://www.w3.org/2000/svg" width="13.38" height="13.388" viewBox="0 0 13.38 13.388"><defs><style>.a{fill:#2c2c2c;}</style></defs><g transform="translate(-0.132 0)"><g transform="translate(0.132 0)"><path class="a" d="M11.567,1.953a6.7,6.7,0,0,0-9.482,9.482,6.65,6.65,0,0,0,9.415,0A6.671,6.671,0,0,0,11.567,1.953Zm-6.076,8.08L2.82,7.362l.935-.935L5.491,8.163,9.9,3.756l.935.935Z" transform="translate(-0.132 0)"/></g></g></svg></span><span>{% trans 'Miasmatic Analysis' %}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{#{% url 'case_history:follow_up_practitioners' %}#}"><span class="select_image">
+                           <img src={% static "images/add_case_tick_image.svg" %} alt="tick images" class="completed">
+                           <img src={% static "images/selected_image.svg" %} alt="selected images" class="selected">
+                           <svg class="done" xmlns="http://www.w3.org/2000/svg" width="13.38" height="13.388" viewBox="0 0 13.38 13.388"><defs><style>.a{fill:#2c2c2c;}</style></defs><g transform="translate(-0.132 0)"><g transform="translate(0.132 0)"><path class="a" d="M11.567,1.953a6.7,6.7,0,0,0-9.482,9.482,6.65,6.65,0,0,0,9.415,0A6.671,6.671,0,0,0,11.567,1.953Zm-6.076,8.08L2.82,7.362l.935-.935L5.491,8.163,9.9,3.756l.935.935Z" transform="translate(-0.132 0)"/></g></g></svg></span><span>{% trans 'Follow up Practitioners' %}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{#{% url 'case_history:investigations_categories' %}#}"><span class="select_image">
+                           <img src={% static "images/add_case_tick_image.svg" %} alt="tick images" class="completed">
+                           <img src={% static "images/selected_image.svg" %} alt="selected images" class="selected">
+                           <svg class="done" xmlns="http://www.w3.org/2000/svg" width="13.38" height="13.388" viewBox="0 0 13.38 13.388"><defs><style>.a{fill:#2c2c2c;}</style></defs><g transform="translate(-0.132 0)"><g transform="translate(0.132 0)"><path class="a" d="M11.567,1.953a6.7,6.7,0,0,0-9.482,9.482,6.65,6.65,0,0,0,9.415,0A6.671,6.671,0,0,0,11.567,1.953Zm-6.076,8.08L2.82,7.362l.935-.935L5.491,8.163,9.9,3.756l.935.935Z" transform="translate(-0.132 0)"/></g></g></svg></span><span>{% trans 'Follow up Researchers' %}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{#{% url 'case_history:add_on_therapies' %}#}"><span class="select_image">
+                           <img src={% static "images/add_case_tick_image.svg" %} alt="tick images" class="completed">
+                           <img src={% static "images/selected_image.svg" %} alt="selected images" class="selected">
+                           <svg class="done" xmlns="http://www.w3.org/2000/svg" width="13.38" height="13.388" viewBox="0 0 13.38 13.388"><defs><style>.a{fill:#2c2c2c;}</style></defs><g transform="translate(-0.132 0)"><g transform="translate(0.132 0)"><path class="a" d="M11.567,1.953a6.7,6.7,0,0,0-9.482,9.482,6.65,6.65,0,0,0,9.415,0A6.671,6.671,0,0,0,11.567,1.953Zm-6.076,8.08L2.82,7.362l.935-.935L5.491,8.163,9.9,3.756l.935.935Z" transform="translate(-0.132 0)"/></g></g></svg></span><span>{% trans 'Add on Therapies' %}</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="left_arrow" id="leftArrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12.585" height="12.577" viewBox="0 0 12.585 12.577">
+                    <defs><style>.a{fill:#a6acb5;stroke:#fff;stroke-width:0.5px;}</style></defs>
+                    <g transform="translate(0.316 0.317)">
+                    <path class="a" d="M16.989,17.015a.858.858,0,0,0,.609-1.466l-4.545-4.537L17.6,6.475a.858.858,0,0,0-1.209-1.209l-5.146,5.146a.858.858,0,0,0,0,1.209l5.146,5.146a.858.858,0,0,0,.6.249Z" transform="translate(-10.994 -5.005)"/>
+                    <path class="a" d="M11,17.006a.858.858,0,0,0,.609-1.466L7.062,11l4.545-4.537a.861.861,0,0,0-1.218-1.218L5.244,10.394a.858.858,0,0,0,0,1.209l5.146,5.146A.858.858,0,0,0,11,17.006Z" transform="translate(0.143 -4.996)"/>
+                    </g>
+                    </svg>
+                </div>
+            </div>
+
+            
+            
+            

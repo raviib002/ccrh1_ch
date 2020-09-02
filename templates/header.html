@@ -1,0 +1,66 @@
+{% load i18n staticfiles %}
+<header>
+        <div class="container-fluid p-0">
+            <div class="sub-header">
+                <div class="container  d-flex justify-content-between">
+                    <div class="government_text_left d-flex">
+                        <ul class="list-unstyled d-flex my-auto">
+                            <li class="mobile_menu">
+                                <ul class="menu_bar">
+                                    <li class="bars1"></li>
+                                    <li class="bars2"></li>
+                                    <li class="bars3"></li>
+                                </ul>
+                            </li>
+                            <li><a href="#clinical_case_registry_section">{% trans 'Skip to Main Content' %}</a></li>
+                        </ul>
+                    </div>
+                    <div class="government_text_right d-flex">
+                        <ul class="list-unstyled social_media_icons d-flex my-auto">
+                        <li class="search_icon" >
+                            <form class="search_box" id="searchBox">
+                                <input type="text" name="search" id="search" placeholder="search.." >
+                                <img src={% static "images/header_search_icon.svg" %} alt="search icon" class="img-fluid" id="searchIcon"> 
+                            </form>
+                        </li>
+                            <li><a href="javaScript:void(0);"><img src={% static "images/header_facebook_icon.svg" %} alt="facebook section"></a></li>
+                            <li><a href="javaScript:void(0);"><img src={% static "images/header_twitter_icon.svg" %} alt="twitter section"></a></li>
+                            <li><a href="javaScript:void(0);"><img src={% static "images/header_signs_icon.svg" %} alt="youtube section"> <span class="minus_sign"></span></a>
+                                <ul class="font_inc_dec">
+                                    <li class="font_increase"><a href="javaScript:void(0);">A <em>+</em></a></li>
+                                    <li class="font_normal"><a href="javaScript:void(0);">A</a></li>
+                                    <li class="font_decrease"><a href="javaScript:void(0);">A <em>-</em></a></li>
+                                </ul>
+                            </li>
+                            <li><label class="language_label">
+                                    <select class="language">
+                                        <option>EN</option>
+                                    </select>
+                                    <span></span>
+                            </label></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="sub_header2">
+                <div class="container d-flex justify-content-between">
+                    <div class="left_side d-flex">
+                        <a href="javaScript:void(0);" class=" my-auto"><img class="img-fluid" src={% static "images/HCCR_Logo.png" %} alt="logo for the website"></a>
+                        <div class="company_name my-auto">
+                            <!-- <p>{% trans 'An ISO 9001:2008 Certified Organization' %}</p> -->
+                            <h1>{% trans 'Homoeopathic Clinical Case Registry' %}</h1>
+                            <p>{% trans 'Central Council for Research in Homoeopathy Ministry of AYUSH, Government of India' %}</p>
+                        </div>
+                    </div>
+                    <div class="right_side d-flex">
+                        <div>
+                            <img src={% static "images/bharat_mirror_image.svg" %} alt="bharat mahatta image">
+                        </div>
+                        <div>
+                            <img src={% static "images/celebration_of_mahatma.png" %} class="img-fluid" alt="15 years celebrating the mahatha">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>

@@ -1,0 +1,248 @@
+ {% load i18n staticfiles  common_templatetags %}
+
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="login_container registration_container">
+                <div class="row forget-row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 login_page_right d-flex">
+                        <form id="clinical_setting_id" class="loginVisitor_form_container forget_container">
+                            <input type="hidden" id="user" name="user" value="{{user_id}}">
+                            <input type="hidden" id="edit_id" name="edit_id" value="{{edit_id}}">
+                            <input type="hidden" id="index_no" name="index_no" value="{{index}}">
+                            <div class="row">
+                                <div class="col-12 register_header">
+                                    <div class="login_header text-left">
+                                        <h2>Edit Clinical Setting</h2>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                    <label>{% trans 'Type Of Clinical Settings' %} <em>*</em></label>
+                                        <select class="form-control  edit_clinick" id="type_of_clinical_idd" name="type_of_clinical" required="">
+                                            <option value="">{% trans 'Please Select Clinical Settings' %}</option>
+                                            {% for i in clinical_setting %}
+                                                <option value="{{i|first}}" {% if pract_detail.cs_id == i|first %}selected{% endif %} >{{i|last}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <p id="clinica_error_msg"></p>
+                                    </div>
+                                </div>
+                                <p id="clinica_error_msg"></p>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label>{% trans 'Clinic / Hospital Name' %} <em>*</em></label>
+                                        <input type="text" name="clinic_name" value="{{pract_detail.clinic_name}}" class="form-control hospital_name clinical_name" placeholder="Please enter 2 or more characters" id="id_clinic_namee" autocomplete="" required="">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                            <label>{% trans 'Clinical/Hospital Address 1' %} <em>*</em></label>
+                                           <textarea  placeholder="" class="form-control address_1" id="address_11" name="address_1" required="">{% if pract_detail.clinic_address_1 %}{{ pract_detail.clinic_address_1 }}{% endif %}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                            <label>{% trans 'Clinical/Hospital Address 2' %} <em>*</em></label>
+                                           <textarea  placeholder="" class="form-control address_2" id="address_22" name="address_2" required="">{% if pract_detail.clinic_address_2 %}{{ pract_detail.clinic_address_2 }}{% endif %}</textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                            <label>{% trans 'City' %}<em>*</em></label>
+                                            <input type="hidden" value="" name="city" id="id_city">
+                                            <input type="text" name="city_name" value="{{pract_detail.city_id|get_city_name}}" class="form-control city" placeholder="Please enter 2 or more characters" id="city_idd" autocomplete="" required="">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label>{% trans 'State' %} <em>*</em></label>
+                                          <input type="hidden" value="" name="state" id="id_state">
+                                          <input type="text" name="state_name" value="{{pract_detail.state_id|get_state_name}}" class="form-control state" placeholder="Please enter 2 or more characters" id="state_idd" autocomplete="" required="">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label>{% trans 'Pincode' %} <em>*</em></label>
+                                        <input type="text" placeholder="" class="form-control pincode" id="pincodee" maxlength="6" value="{% if pract_detail.pincode %}{{ pract_detail.pincode }}{% endif %}" name="pincode" required="">
+                                    </div>
+                                </div>
+                                <input type="hidden" name="edit_clinical_value" value="edit_registartion_clinica" id="edit_clinical_value_id">
+                                <input type="hidden" id="clinical_type_id" name="clinical_type_id" value="{{clinical_dtl}}">
+                                <div class="col-sm-12">
+                                    <div class="button">
+                                        <button class="cancel" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="add edit_clinical_setting">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document.body).on('click','.edit_clinical_setting',function(){
+        var form = $("#clinical_setting_id").valid();
+        if(form){
+            var edit_clinical = $("#edit_clinical_value_id").val()
+            var Url = "{% url 'user_profile:clinical_settings_data' %}"
+            var user = $("#user").val();
+            var edit_id = $("#edit_id").val();
+            var type_of_clinical = $("#type_of_clinical_idd").val();
+            var clinic_name = $("#id_clinic_namee").val();
+            var address_1 = $("#address_11").val();
+            var address_2 = $("#address_22").val();
+            var city_name = $("#city_idd").val();
+            var state_name = $("#state_idd").val();
+            var pincode = $("#pincodee").val();
+            var index_no = $("#index_no").val();
+            $.ajax({
+                url: Url,
+                method : 'POST',
+                data : { csrfmiddlewaretoken: '{{ csrf_token }}','edit_id':edit_id,'user_id':user,
+                'type_of_clinical':type_of_clinical,'clinic_name':clinic_name,
+                'address_1':address_1,'address_2':address_2,'state_name':state_name,'city_name':city_name,
+                'pincode':pincode,'edit_clinical':edit_clinical,'index_no':index_no},
+                success: function(data){
+                if (data) {
+                    var aa = JSON.stringify(data);
+                    var a = JSON.parse(aa);
+                    if (a.success){
+                        $('#editClinicalSetting').hide();
+                        window.location.reload();
+                    }
+                }
+                
+                }
+            });
+        }
+    });
+    
+/***********Auto complete fucntionality starts here *************/
+$(document.body).on('change',"#type_of_clinical_idd",function(){
+    $('#clinical_setting_id').find('input:text, textarea').val('');    
+    $('#edit_clinica_error_msg-error').remove();//Removing an error message base on the selection of type of cinical seting
+    var clinic_type_id = $("#type_of_clinical_idd option:selected").val();
+    var clinical_dtl =$("#clinical_type_id").val(clinic_type_id);
+}); 
+jQuery(function() {
+    $(document.body).on('keyup',".clinical_name", function(){
+        var checking_clinical_type_id = $("#clinical_type_id").val();
+        if (checking_clinical_type_id) {
+            $('#edit_clinica_error_msg-error').remove();
+            var value = $(this).val();
+            $.ajax({
+                url: "{% url 'user_profile:get_hospital_names' %}",
+                data: {
+                  'value': value,'checking_clinical_type_id':checking_clinical_type_id, 
+            },
+            dataType: 'json',
+            success: function (data) {
+                list=data.list,
+                $(".clinical_name").autocomplete({
+                    source: list,
+                    minLength: 1,
+                    select:function (event, ui) {
+                        var hosiptal_nam = ui.item.value;
+                        var jsn_hsptl_id = ui.item.id;
+                        var hosiptal_id = [];
+                        var a = ''
+                        $.each(jsn_hsptl_id, function(k, v) {
+                            hosiptal_id.push(v);
+                        });
+                        $.ajax({
+                           url: "{% url 'user_profile:get_hospital_names' %}",
+                            data: {
+                              'hosiptal_nam':hosiptal_nam ,'hspt_id':hosiptal_id,
+                            },
+                            dataType: 'json',
+                            success: function (data) {
+                               $.each(data, function(index0, l) {
+                                    $.each(l, function(index1, n) {
+                                        $('#id_clinic_namee').val(n.hospital_name);
+                                        $('#address_11').val(n.address_1);
+                                        $('#address_22').val(n.address_2);
+                                        $('#city_idd').val(n.city);
+                                        $('#state_idd').val(n.state);
+                                        $('#pincodee').val(n.pincode);
+                                        $('#id_state').val(n.state_id);
+                                        $('#id_city').val(n.city_id);
+                                    });
+                                    });
+                                }
+                            });
+                            },
+                        }); 
+                    }
+                });   
+            }else{
+                $('#edit_clinica_error_msg-error').remove();
+                $('.edit_clinick').after('<label style="margin-left: 2px;" for="edit_clinick" id="edit_clinica_error_msg-error" class="error">Please Select Type of Clinical Settings</label>');
+            } 
+        });
+    });
+/***********Auto complete fucntionality Ends here *************/
+
+/***********Auto complete fucntionality starts here *************/
+
+jQuery(function() {
+    $(document.body).on('keyup',".city", function(){
+        var value = $(this).val();
+        $.ajax({
+            url: "{% url 'user_profile:get_city_names' %}",
+            data: {
+              'value': value 
+            },
+            dataType: 'json',
+            success: function (data) {
+                list=data.list,
+                $(".city").autocomplete({
+                    source: list,
+                    minLength: 1,
+                    select:function (event, ui) {
+                        var city_name = ui.item.value;
+                        var jsn_city_id = ui.item.id;
+                        $('#city_idd').val(city_name);
+                        },
+                    }); 
+                }
+            });     
+        });
+    });
+/***********Auto complete fucntionality Ends here *************/
+
+/***********Auto complete fucntionality starts here *************/
+
+jQuery(function() {
+    $(document.body).on('keyup',".state", function(){
+        var value = $(this).val();
+        $.ajax({
+            url: "{% url 'user_profile:get_state_names' %}",
+            data: {
+              'value': value 
+            },
+            dataType: 'json',
+            success: function (data) {
+                list=data.list,
+                $(".state").autocomplete({
+                    source: list,
+                    minLength: 1,
+                    select:function (event, ui) {
+                        var state_name = ui.item.value;
+                        var jsn_state_id = ui.item.id;
+                        $('#state_idd').val(state_name);
+
+                        },
+                    }); 
+                }
+            });     
+        });
+    });
+/***********Auto complete fucntionality Ends here *************/
+</script>

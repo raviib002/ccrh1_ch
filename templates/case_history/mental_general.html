@@ -1,0 +1,266 @@
+{% extends "base.html" %}
+{% load i18n staticfiles common_templatetags%}
+{% block breadcrumbs %}
+{% trans 'Add Clinical Case' %}
+{% endblock %}
+{% block content %}
+
+
+    <!-- add case content -->
+        {% include 'case_history/add_case_menus.html' %}
+            <div class="add_case_content mental_history_blk">
+                <div class="Patient_information add_case_container" id="patientInformation">
+                    <div class="row">
+                        <div id="alert_message_strong" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
+                            <div id="alert_message"></div>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="summary_title">
+                            <div class="title d-flex justify-content-between">
+                                <h2 class="heading">{% trans 'Mental General' %}</h2>
+                                <div class="arrow" id="caseSummaryArrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15.208" height="15.208"
+                                        viewBox="0 0 15.208 15.208">
+                                        <defs>
+                                            <style>
+                                                .a {
+                                                    fill: #1c4976;
+                                                }
+                                            </style>
+                                        </defs>
+                                        <path class="a"
+                                            d="M7.6,0a7.6,7.6,0,1,0,7.6,7.6A7.626,7.626,0,0,0,7.6,0Zm2.661,11.026L8.935,12.356,4.182,7.6,8.935,2.851l1.331,1.331L6.844,7.6Z"
+                                            transform="translate(0 15.208) rotate(-90)" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="add_summary_content">
+                                <p>{% trans "Maecenas faucibus dignissim euismod. Ut suscipit sed sem in fringilla." %}
+                                    {% trans "Duis eu turpis at leo mattis dignissim. Maecenas felis leo, consequat" %}
+                                    {% trans "nec nisl tempus, vulputate viverra mauris. Nullam ullamcorper, magna eu" %}
+                                    {% trans "efficitur ultricies, nulla justovu lputate viverra mauris. Nullam" %}
+                                    {% trans "ullamcorper, Maecenas faucibus dignissim euismod. Ut suscipit sed sem in" %}
+                                    {% trans "fringilla. Duis eu turpis at leo mattis dignissim. Maecenas felis leo," %}
+                                    {% trans "consequat nec nisl tempus, vulputates. Nullam" %}</p>
+                                <p class="para">{% trans "Maecenas faucibus dignissim" %}</p>
+                                <p>{% trans "Maecenas faucibus dignissim euismod. Ut suscipit sed sem in fringilla." %}
+                                    {% trans "Duis eu turpis at leo mattis dignissim. Maecenas felis leo, consequat" %}
+                                    {% trans "nec nisl tempus, vulputate viverra mauris. Nullam ullamcorper, magna eu" %}
+                                    {% trans "efficitur ultricies, nulla justovu lputate viverra mauris. Nullam" %}
+                                    {% trans "ullamcorper, Maecenas faucibus dignissim euismod. Ut suscipit sed sem in" %}
+                                    {% trans "fringilla. Duis eu turpis at leo mattis dignissim. Maecenas felis leo," %}
+                                    {% trans "consequat nec nisl tempus, vulputates. Nullam" %}</p>
+                                <ul class="list">
+                                    <li><img src="{% static 'images/case_summary_tick_image.svg' %}" alt="case summary image">
+                                        <p>{% trans "Lorem ipsum dolor sit amet, consectetur adipiscing elit." %}</p>
+                                    </li>
+                                    <li><img src="{% static 'images/case_summary_tick_image.svg' %}" alt="case summary image">
+                                        <p>{% trans "Sed et diam at nulla tristique bibendum." %}</p>
+                                    </li>
+                                    <li><img src="{% static 'images/case_summary_tick_image.svg' %}" alt="case summary image">
+                                        <p>{% trans "Vestibulum porta nunc sit amet turpis fringilla, interdum porta" %}
+                                           {% trans "ligula laoreet." %}</p>
+                                    </li>
+                                    <li><img src="{% static 'images/case_summary_tick_image.svg' %}" alt="case summary image">
+                                        <p>{% trans "Etiam sodales erat nec lobortis rutrum." %}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <hr class="segregation_line">
+                        </div>
+                        <div class="physical_general_block">
+                            <div class="physical_general_div {% if mental_details %}active{% endif %}">
+                                <div class="phy_gen_block_col">
+                                    <div class="physical_general_detail {% if case_record.mental_generals|length > 0 %}selected{% endif %} d-flex {% if mental_details %}active{% endif %}">
+                                        <div class="image">
+                                            <svg id="notepad" xmlns="http://www.w3.org/2000/svg"
+                                                width="28.899" height="33.074" viewBox="0 0 28.899 33.074">
+                                                <g id="Group_1669" data-name="Group 1669"
+                                                    transform="translate(0.256 1.041)">
+                                                    <g id="Group_1668" data-name="Group 1668"
+                                                        transform="translate(0 0)">
+                                                        <path id="Path_2808" data-name="Path 2808"
+                                                            d="M21.586,0H2.089A2.007,2.007,0,0,0,0,1.908V25.644a3.824,3.824,0,0,0,.016.43H0a3.107,3.107,0,0,0,3.21,3.18H20.193a3.345,3.345,0,0,0,3.482-3.18V1.908A2.007,2.007,0,0,0,21.586,0Zm.7,26.074a2.007,2.007,0,0,1-2.089,1.908H3.21a1.918,1.918,0,0,1-1.818-1.911c0-.121,0-9.717,0-17.085V6.359h20.89Zm0-20.986H1.393V1.908a.668.668,0,0,1,.7-.636h19.5a.668.668,0,0,1,.7.636Z"
+                                                            transform="translate(0 0)" fill="#b4bbc6" />
+                                                        <path id="Path_2810" data-name="Path 2810"
+                                                            d="M48.62,209.124h12.4a.565.565,0,1,0,0-1.124H48.62a.565.565,0,1,0,0,1.124Z"
+                                                            transform="translate(-44.079 -197.114)"
+                                                            fill="#b4bbc6" />
+                                                        <path id="Path_2811" data-name="Path 2811"
+                                                            d="M135.279,304h-6.617a.569.569,0,1,0,0,1.124h6.617a.569.569,0,1,0,0-1.124Z"
+                                                            transform="translate(-124.078 -285.797)"
+                                                            fill="#b4bbc6" />
+                                                        <path id="Path_2812" data-name="Path 2812"
+                                                            d="M48.62,257.124h12.4a.565.565,0,1,0,0-1.124H48.62a.565.565,0,1,0,0,1.124Z"
+                                                            transform="translate(-44.079 -241.455)"
+                                                            fill="#b4bbc6" />
+                                                        <g id="Path_2813" data-name="Path 2813"
+                                                            transform="translate(16.263 19.653)"
+                                                            fill="#b4bbc6">
+                                                            <path
+                                                                d="M 6.18994140625 11.02988147735596 C 3.521191358566284 11.02988147735596 1.350001454353333 8.858691215515137 1.350001454353333 6.18994140625 C 1.350001454353333 3.521191358566284 3.521191358566284 1.350001454353333 6.18994140625 1.350001454353333 C 8.858691215515137 1.350001454353333 11.02988147735596 3.521191358566284 11.02988147735596 6.18994140625 C 11.02988147735596 8.858691215515137 8.858691215515137 11.02988147735596 6.18994140625 11.02988147735596 Z"
+                                                                stroke="none" />
+                                                            <path
+                                                                d="M 6.18994140625 2.70000171661377 C 4.265581130981445 2.70000171661377 2.70000171661377 4.265581130981445 2.70000171661377 6.18994140625 C 2.70000171661377 8.114301681518555 4.265581130981445 9.67988109588623 6.18994140625 9.67988109588623 C 8.114301681518555 9.67988109588623 9.67988109588623 8.114301681518555 9.67988109588623 6.18994140625 C 9.67988109588623 4.265581130981445 8.114301681518555 2.70000171661377 6.18994140625 2.70000171661377 M 6.18994140625 9.5367431640625e-07 C 9.608551025390625 9.5367431640625e-07 12.37988185882568 2.771331787109375 12.37988185882568 6.18994140625 C 12.37988185882568 9.608551025390625 9.608551025390625 12.37988185882568 6.18994140625 12.37988185882568 C 2.771331787109375 12.37988185882568 9.5367431640625e-07 9.608551025390625 9.5367431640625e-07 6.18994140625 C 9.5367431640625e-07 2.771331787109375 2.771331787109375 9.5367431640625e-07 6.18994140625 9.5367431640625e-07 Z"
+                                                                stroke="none" fill="#f5f8f8" />
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <rect id="Rectangle_1807" data-name="Rectangle 1807"
+                                                    width="27" height="6.3" fill="#f5f8f8" />
+                                            </svg>
+
+                                        </div>
+                                        <div class="physical_general_label">
+                                            <div class="label_div">
+                                                <span class="label_image">{% trans 'Symptoms' %}</span>
+
+                                            </div>
+                                            <span class="arrow_image" id="physicalGeneralArrow">
+                                                {% if case_record.mental_generals|length > 0 %}
+                                                <span class="view_close_btn">{% trans 'View' %}</span>
+                                                {% endif %}
+                                                <img src="{% static 'images/right_arrow_image.png' %}"
+                                                    alt="right arrow image">
+                                            </span>
+                                        </div>
+
+                                        <!-- miam section -->
+                                        
+                                        <div class="physical_genral_right_block">
+                                            <div class="physical_general_appearence" id="miasmaticAnalysis">
+                                                <div class="appearence_blk">
+                                                    <form id="add_case_mental" class="add_case_mental" action="{% if case_id %}{% url 'case_history:mental_general' case_id=case_id %}{% else %}{% url 'case_history:mental_general' %}{% endif %}" method="post">{% csrf_token %}
+{#                                                  <input type="hidden" id="id_mental_update" value="{% if case_record %}{{ case_record|get_id:'_id' }}{% endif %}" name="mental_record">#}
+                                                    {% if mental_details %}
+                                                    <input type="hidden" id="mental_edit" value="{{mental_details}}" name="mental_details">
+                                                    {% endif %}  
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h2 class="heading"  id="backArrow"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                            </div>
+                                                            <div class="col-sm-12 col-md-6 mar-top padding-right">
+                                                                <div class="form-group history_of_suppression city_state_label">
+                                                                    <label>{{ form.ment_gen_id.label }}<em>*</em></label>
+                                                                    {{ form.ment_gen_id }}
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-12 col-md-6 padding-right">
+                                                                <div class="form-group history_of_suppression">
+                                                                <label>{{ form.remarks.label }}</label>
+                                                                {{ form.remarks }}
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <div class="button">
+                                                                    <button type="submit" class="save">{% trans 'Save' %}</button>
+                                                                    <a href="{% if case_id %}{% url 'case_history:mental_general' case_id=case_id %}{% else %}{% url 'case_history:mental_general' %}{% endif %}" class="cancel">{% trans 'Cancel' %}</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- miam section ends -->
+                                    </div>
+                                        
+                                    {% if case_record.mental_generals|length > 0 %}
+                                    <div class="desire_success_block">
+                                    {% for i in case_record.mental_generals %}
+                                        <div class="family_history_success gynaecological_success">
+                                            <div class="label">
+                                                <span >{% if i.ment_gen_id %}{{ i.ment_gen_id }}{% else %}{% trans 'NA' %}{% endif %}&nbsp;:&nbsp;
+                                                    <span class="label_detail">{% if i.remarks %}{{ i.remarks }}{% else %}{% trans 'NA' %}{% endif %}</span>
+                                                </span>
+                                                
+                                            </div>
+                                            <div class="acton">
+                                                <span class="delete">
+                                                    <a href="javascript:void(0);"><img src="{% static 'images/delete_img.svg' %}" alt="delete image" data-url="" data-info="{{forloop.counter}}" class="img_fluid delete_general"></a>
+                                                </span>
+                                                <span class="edit" id="miasm_edit">
+                                                    <a class="add" href="{% url 'case_history:mental_general' case_id=case_id %}?mental_index={{forloop.counter}}">
+                                                        <img src="{% static 'images/edit_img.svg' %}" alt="">
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                </div>   
+
+                                <div class="col-sm-12">
+                                    <div class="button">
+                                        <a href="{% if case_id %}{% url 'case_history:past_general' case_id=case_id %}{% else %}{% url 'case_history:past_general' %}{% endif %}" class="save">{% trans 'Save and Continue' %}</a>
+                                        <button class="exit" id="exit_button_id">{% trans 'Exit' %}</button>
+                                    </div>                            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- add case content ends -->
+           <!--Start Delete Modal Form pop-up -->
+            <div id="delete_clinical_pop" class="modal fade in msg_popup confrm_popup modal-bgcolor1">
+               <form id="add_case_mental_delete" class="add_case_mental" action="{% if case_id %}{% url 'case_history:mental_general' case_id=case_id %}{% else %}{% url 'case_history:mental_general' %}{% endif %}" method="post">{% csrf_token %}       
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                                <a href="javascript:void(0);"><button type="button" class="close" data-dismiss="modal"></button></a>
+                            </div>
+                                <div class="modal-body v_height_auto">
+                                    <p>{% trans 'Are you sure you want to delete this Mental General?' %}</p>
+                                    <input type="hidden" id="delete_mental" name="delete_mental_general" value="delete_menta">
+                                    <input type="hidden" id="index_no" name="index_no" value="">
+                                </div>
+                                <div class="modal-footer text-right ">
+                                    <button class="btn follow_up_button delete_clinc_details" type="submit" >{% trans 'Yes' %}</button>
+                                    <a href="javascript:void(0);" class="btn follow_up_button" data-dismiss="modal">{% trans 'No' %}</a>
+                                </div>
+                        </div>
+                    </div>
+                </form>
+            </div> 
+            <!--Ends Delete Modal Form pop-up -->
+                        
+                        
+{% endblock %}
+
+{% block jsfilesurls %}
+    {{form.media}}
+    <link href='{% static 'css/libraries/select2.css' %}' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="{% static 'js/libraries/select2.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/libraries/jquery-ui.min.css' %}"><!--autocomplete-->
+    <script src="{% static 'js/libraries/jquery-ui.min.js' %}"></script> <!-- autocomplete Script -->
+{% endblock %}
+
+{% block custom-js %}
+
+$(document.body).on('click','.delete_general',function(){
+        $("#delete_clinical_pop").modal();
+        var index_no = $(this).data('info');
+        var index =$("#index_no").val(index_no);
+        var clinic_obj_id =$("#clinical_id").val(clinc_setting_id);
+});
+
+/*********** For Select2 error message removing drop down Starts here***************/
+$('.select2-hidden-accessible').on('change', function() {
+    if($(this).valid()) {
+        $(this).next('span').removeClass('error').addClass('valid');
+    }
+});
+/*********** For Select2 error message removing drop down Ends here***************/
+
+{% if success_note %}
+    $("#alert_message").html("{{ success_note }}");
+    $("#alert_message_strong").css("display", "block");
+{% endif %}
+  
+{% include 'case_history/add_case_script.html' %}
+
+{% endblock %}

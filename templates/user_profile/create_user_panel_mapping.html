@@ -1,0 +1,304 @@
+{% extends 'base_admin.html' %}
+{% load i18n staticfiles common_templatetags %}
+{% block title %}
+{% trans "CCRH | Create User Panel" %}
+{% endblock %}
+{% block breadcrumbs %}
+<a href="{% url 'user_profile:new_create_user_panel' %}">{% trans 'Search User Panel' %}</a> › {% trans 'Create New User Panel' %}
+{% endblock %}
+{% block content %}
+<div class="padd_25">
+    <form class="new_subscription_settings" action="{% if edit_record %}{% url 'user_profile:create_user_panel' edit_id=edit_record|get_id:'_id' %}{% else %}{% url 'user_profile:create_user_panel' %}{% endif %}" method="post">{% csrf_token %}
+        <div class="bg_white equal_padding margin_bottom_20">
+            <div class="top_header_align">
+                 <h3 class="cmn_title">{% trans 'Create User Panel' %}</h3>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                     <div class="form-group row">
+                        <div class="col-md-2">
+                            <label>{% trans 'Panel Name' %}</label>
+                        </div>
+                        <div class="col-md-10">
+                        <input name="panel_name" value="{% if edit_record.panel_name %}{{edit_record.panel_name}}{% endif %}" placeholder="{% trans 'Panel Name' %}" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="create_category_panel col-md-4">
+                 <h6  class="">{% trans 'Category' %}<span id="category_add_button" class="add_btn" title="Add Category">+</span></h6>
+                    {% if edit_record.category %}
+                        {% for each in edit_record.category %}
+                            <div class="row category_additional">
+                                <div class="form-group col-sm-11">
+                                    <label>{% trans 'Category' %}</label>
+                                    <select name="category_{{forloop.counter}}" class="form-control">
+                                    <option value="" selected="selected">{% trans 'Select' %}</option>
+                                        {% for i in category %}
+                                            <option value="{{ i|get_id:'_id' }}" {% if i|get_id:'_id' == each.category|get_id:'_id' %}selected=selected{% endif %}>{{ i.category_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <a href="javascript:void(0);" data-info="{{forloop.counter}}" data-info1="Category" class="remove_button remove_item" title="Delete Category">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12.109" height="14.975" viewBox="0 0 12.109 14.975"><g id="delete_button" transform="translate(-46.155)"><g id="Group_1771" data-name="Group 1771" transform="translate(46.155)"><path id="Path_3277" data-name="Path 3277" d="M56.554,1.794H54.223a2.026,2.026,0,0,0-4.026,0H47.866a1.713,1.713,0,0,0-1.711,1.711v.088a1.712,1.712,0,0,0,1.081,1.589v8.082a1.713,1.713,0,0,0,1.711,1.711h6.526a1.713,1.713,0,0,0,1.711-1.711V5.182a1.713,1.713,0,0,0,1.081-1.589V3.505A1.713,1.713,0,0,0,56.554,1.794ZM52.21.811a1.218,1.218,0,0,1,1.193.983H51.017A1.218,1.218,0,0,1,52.21.811Zm4.162,12.453a.9.9,0,0,1-.9.9H48.947a.9.9,0,0,1-.9-.9V5.3h8.325Zm1.081-9.672a.9.9,0,0,1-.9.9H47.866a.9.9,0,0,1-.9-.9V3.505a.9.9,0,0,1,.9-.9h8.688a.9.9,0,0,1,.9.9v.088Z" transform="translate(-46.155)" fill="#007bff"></path><path id="Path_3278" data-name="Path 3278" d="M158.481,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,158.481,254.95Z" transform="translate(-154.601 -241.824)" fill="#007bff"></path><path id="Path_3279" data-name="Path 3279" d="M228.551,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,228.551,254.95Z" transform="translate(-222.496 -241.824)" fill="#007bff"></path><path id="Path_3280" data-name="Path 3280" d="M298.62,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,298.62,254.95Z" transform="translate(-290.39 -241.824)" fill="#007bff"></path></g></g></svg>
+                                </a>
+                            </div>
+                            
+                        {% endfor %}
+                    {% else %}
+                        <div class="row category_additional">
+                            <div class="form-group col-sm-11">
+                                <label>{% trans 'Category' %}</label>
+                                <select name="category_0" class="form-control">
+                                <option value="" selected="selected">{% trans 'Select' %}</option>
+                                    {% for i in category %}
+                                        <option value="{{ i|get_id:'_id' }}">{{ i.category_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div id="add_category"></div>
+                </div>
+                
+                
+                <div class="col-md-4 create_category_panel">
+                <h6  class="">{% trans 'Reviewer pool' %}<span id="reviewer_pool_add_button" title="Add Reviewer" class="add_btn">+</span></h6>
+                {% if edit_record.reviewer_pool %}
+                    {% for each in edit_record.reviewer_pool %}
+                        <div class="row additional_app">
+                            <div class="form-group col-sm-11">
+                                <label>{% trans 'Reviewer pool' %}</label>
+                                <select name="reviewerpool_{{forloop.counter}}" class="form-control">
+                                <option value="" selected="selected">{% trans 'Select' %}</option>
+                                    {% for i in reviewer_user %}
+                                        <option value="{{ i.id }}" {% if i.id == each.reviewer_id %}selected=selected{% endif %}>{{ i.username }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <a href="javascript:void(0);" data-info="{{forloop.counter}}" data-info1="Reviewer" class="remove_button remove_item" title="Delete Reviewer">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12.109" height="14.975" viewBox="0 0 12.109 14.975"><g id="delete_button" transform="translate(-46.155)"><g id="Group_1771" data-name="Group 1771" transform="translate(46.155)"><path id="Path_3277" data-name="Path 3277" d="M56.554,1.794H54.223a2.026,2.026,0,0,0-4.026,0H47.866a1.713,1.713,0,0,0-1.711,1.711v.088a1.712,1.712,0,0,0,1.081,1.589v8.082a1.713,1.713,0,0,0,1.711,1.711h6.526a1.713,1.713,0,0,0,1.711-1.711V5.182a1.713,1.713,0,0,0,1.081-1.589V3.505A1.713,1.713,0,0,0,56.554,1.794ZM52.21.811a1.218,1.218,0,0,1,1.193.983H51.017A1.218,1.218,0,0,1,52.21.811Zm4.162,12.453a.9.9,0,0,1-.9.9H48.947a.9.9,0,0,1-.9-.9V5.3h8.325Zm1.081-9.672a.9.9,0,0,1-.9.9H47.866a.9.9,0,0,1-.9-.9V3.505a.9.9,0,0,1,.9-.9h8.688a.9.9,0,0,1,.9.9v.088Z" transform="translate(-46.155)" fill="#007bff"></path><path id="Path_3278" data-name="Path 3278" d="M158.481,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,158.481,254.95Z" transform="translate(-154.601 -241.824)" fill="#007bff"></path><path id="Path_3279" data-name="Path 3279" d="M228.551,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,228.551,254.95Z" transform="translate(-222.496 -241.824)" fill="#007bff"></path><path id="Path_3280" data-name="Path 3280" d="M298.62,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,298.62,254.95Z" transform="translate(-290.39 -241.824)" fill="#007bff"></path></g></g></svg>
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="row additional_app">
+                        <div class="form-group col-sm-11">
+                            <label>{% trans 'Reviewer pool' %}</label>
+                            <select name="reviewerpool_0" class="form-control">
+                            <option value="" selected="selected">{% trans 'Select' %}</option>
+                                {% for i in reviewer_user %}
+                                    <option value="{{ i.id }}">{{ i.username }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                {% endif %}
+                <div id="reviewer_pool"></div>
+                </div>
+                <div class="col-md-4 create_category_panel">
+                <h6  class="">{% trans 'Supervisor pool' %}<span id="supervisor_pool_add_button" title="Add Supervisor" class="add_btn">+</span></h6>
+                {% if edit_record.supervisor_pool %}
+                    {% for each in edit_record.supervisor_pool %}
+                        <div class="row supervisor_pool_additional">
+                            <div class="form-group col-sm-11">
+                                <label>{% trans 'Supervisor pool' %}</label>
+                                <select name="supervisorpool_{{forloop.counter}}" class="form-control">
+                                <option value="" selected="selected">{% trans 'Select' %}</option>
+                                    {% for i in supervisor_user %}
+                                        <option value="{{ i.id }}" {% if i.id == each.supervisor_id %}selected=selected{% endif %}>{{ i.username }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <a href="javascript:void(0);" data-info="{{forloop.counter}}" data-info1="Supervisor" class="remove_button remove_item" title="Delete Supervisor">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12.109" height="14.975" viewBox="0 0 12.109 14.975"><g id="delete_button" transform="translate(-46.155)"><g id="Group_1771" data-name="Group 1771" transform="translate(46.155)"><path id="Path_3277" data-name="Path 3277" d="M56.554,1.794H54.223a2.026,2.026,0,0,0-4.026,0H47.866a1.713,1.713,0,0,0-1.711,1.711v.088a1.712,1.712,0,0,0,1.081,1.589v8.082a1.713,1.713,0,0,0,1.711,1.711h6.526a1.713,1.713,0,0,0,1.711-1.711V5.182a1.713,1.713,0,0,0,1.081-1.589V3.505A1.713,1.713,0,0,0,56.554,1.794ZM52.21.811a1.218,1.218,0,0,1,1.193.983H51.017A1.218,1.218,0,0,1,52.21.811Zm4.162,12.453a.9.9,0,0,1-.9.9H48.947a.9.9,0,0,1-.9-.9V5.3h8.325Zm1.081-9.672a.9.9,0,0,1-.9.9H47.866a.9.9,0,0,1-.9-.9V3.505a.9.9,0,0,1,.9-.9h8.688a.9.9,0,0,1,.9.9v.088Z" transform="translate(-46.155)" fill="#007bff"></path><path id="Path_3278" data-name="Path 3278" d="M158.481,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,158.481,254.95Z" transform="translate(-154.601 -241.824)" fill="#007bff"></path><path id="Path_3279" data-name="Path 3279" d="M228.551,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,228.551,254.95Z" transform="translate(-222.496 -241.824)" fill="#007bff"></path><path id="Path_3280" data-name="Path 3280" d="M298.62,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,298.62,254.95Z" transform="translate(-290.39 -241.824)" fill="#007bff"></path></g></g></svg>
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="row supervisor_pool_additional">
+                        <div class="form-group col-sm-11">
+                            <label>{% trans 'Supervisor pool' %}</label>
+                            <select name="supervisorpool_0" class="form-control">
+                            <option value="" selected="selected">{% trans 'Select' %}</option>
+                                {% for i in supervisor_user %}
+                                    <option value="{{ i.id }}">{{ i.username }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                {% endif %}
+                <div id="supervisor_pool"></div>
+                </div>
+            </div>
+            <div class="button_area search_panel_btn create_panel_btn">
+                <button id="search_subscribr" class="btn btn_save" type="submit" title="Search" alt="Search">{% trans 'Save' %}</button>
+                <a id="id_reset_list_subscribr" class="btn btn_cancel">{% trans 'Clear' %}</a>
+            </div>
+        </div>
+    </form>
+</div>
+<!--Delete modal pup-up starts here -->
+    <div id="delete_popup_id" class="modal fade in msg_popup confrm_popup modal-bgcolor1">
+        <form id="delete_modal_form" action="{% if edit_record %}{% url 'user_profile:create_user_panel' edit_id=edit_record|get_id:'_id' %}{% endif %}" method="post">{% csrf_token %}
+            <div class="modal-dialog">
+                <div class="modal-content">
+                   <div class="modal-header">
+                        <a href="javascript:void(0);"><button type="button" class="close" data-dismiss="modal"></button></a>
+                    </div>
+                        <div class="modal-body v_height_auto">
+                            <p id="delete_confirm_msg_id"></p>
+                            <input type="hidden" id="id_delete_type" name="delete_type" value="">
+                            <input type="hidden" id="id_delete_index_no" name="delete_index_no" value="">
+                        </div>
+                        <div class="modal-footer text-right ">
+                            <button class="btn follow_up_button delete_clinc_details" type="submit" >{% trans 'Yes' %}</button>
+                            <a href="javascript:void(0);" class="btn follow_up_button" data-dismiss="modal">{% trans 'No' %}</a>
+                        </div>
+                </div>
+            </div>
+        </form>
+    </div> 
+<!--Delete modal pup-up ends here -->
+<!--Modal for displaying messages Starts -->
+     <div class="modal fade modal-bgcolor1" id="suc_msg_popup" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header forget-link-header1">
+                <button class="link1 close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body forget-link-body1">
+                <div class="row">
+                <p id="suc_msg" class="para-link-center p1"></p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- Modal for displaying messages Ends -->
+{% endblock %}
+
+{% block custom-js %}
+
+/****************** For Reloading the page on click of clear -Starts**********************/
+    $(document.body).on('click',"#id_reset_list_subscribr",function(){
+        window.location.href = "{% if edit_record %}{% url 'user_profile:create_user_panel' edit_id=edit_record|get_id:'_id' %}{% else %}{% url 'user_profile:create_user_panel' %}{% endif %}";
+    });
+/****************** For Reloading the page on click of clear -Ends**********************/
+
+/*********** Displaying popup for delete confirmation - starts *********/
+$(document.body).on('click','.remove_item',function(){
+        $("#delete_popup_id").modal();
+        var index_no = $(this).data('info');
+        var delete_type = $(this).data('info1');
+        $('#delete_confirm_msg_id').html("Are you sure you want to delete this " +delete_type+ "?");
+        $("#id_delete_index_no").val(index_no);
+        $("#id_delete_type").val(delete_type);
+});
+/*********** Displaying popup for delete confirmation - ends *********/
+
+/*********** Displaying popup after Deleted successfully - starts *********/
+    {% if success_msg %}
+        $("#suc_msg_popup").modal();
+        $('#suc_msg').text('{{ success_msg }}');
+    {% endif %}
+    /**** Displaying popup after Deleted successfully - ends *****/
+/**** For Category Add More - starts *****/
+    var cat_maxField = 10;
+    {% if edit_record.category %}
+        var add_more_cat = {{ edit_record.category|length }}+1;
+    {% else %}
+        var add_more_cat = 1;
+    {% endif %}
+    $('#category_add_button').on('click', function(){
+        if(add_more_cat <= cat_maxField){
+            $('#add_category').append(' <div class="row category_additional"> \
+                                    <div class="form-group col-sm-11"> \
+                                        <label>{% trans 'Category' %}</label> \
+                                        <select name="category_'+(add_more_cat)+'" class="form-control"> \
+                                        <option value="" selected="selected">{% trans 'Select' %}</option> \
+                                            {% for i in category %} \
+                                                <option value="{{ i|get_id:'_id' }}" {% if i|get_id:'_id' == srch_domain %}selected=selected{% endif %}>{{ i.category_name }}</option> \
+                                            {% endfor %} \
+                                        </select> \
+                                    </div> \
+                            <a href="javascript:void(0);" class="remove_button category_additional_pf_rmv" title="Delete Category">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12.109" height="14.975" viewBox="0 0 12.109 14.975"><g id="delete_button" transform="translate(-46.155)"><g id="Group_1771" data-name="Group 1771" transform="translate(46.155)"><path id="Path_3277" data-name="Path 3277" d="M56.554,1.794H54.223a2.026,2.026,0,0,0-4.026,0H47.866a1.713,1.713,0,0,0-1.711,1.711v.088a1.712,1.712,0,0,0,1.081,1.589v8.082a1.713,1.713,0,0,0,1.711,1.711h6.526a1.713,1.713,0,0,0,1.711-1.711V5.182a1.713,1.713,0,0,0,1.081-1.589V3.505A1.713,1.713,0,0,0,56.554,1.794ZM52.21.811a1.218,1.218,0,0,1,1.193.983H51.017A1.218,1.218,0,0,1,52.21.811Zm4.162,12.453a.9.9,0,0,1-.9.9H48.947a.9.9,0,0,1-.9-.9V5.3h8.325Zm1.081-9.672a.9.9,0,0,1-.9.9H47.866a.9.9,0,0,1-.9-.9V3.505a.9.9,0,0,1,.9-.9h8.688a.9.9,0,0,1,.9.9v.088Z" transform="translate(-46.155)" fill="#007bff"></path><path id="Path_3278" data-name="Path 3278" d="M158.481,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,158.481,254.95Z" transform="translate(-154.601 -241.824)" fill="#007bff"></path><path id="Path_3279" data-name="Path 3279" d="M228.551,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,228.551,254.95Z" transform="translate(-222.496 -241.824)" fill="#007bff"></path><path id="Path_3280" data-name="Path 3280" d="M298.62,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,298.62,254.95Z" transform="translate(-290.39 -241.824)" fill="#007bff"></path></g></g></svg>
+                            </a>\
+                        </div>');
+            add_more_cat ++;
+        }
+    });
+    $('#add_category').on('click', '.category_additional_pf_rmv', function(e){
+        e.preventDefault();
+        $(this).parents('.category_additional').remove();
+    });
+/***For Category Add More - ends ****/
+
+/**** For Supervisor pool Add More - starts *****/
+    var sup_maxField = 10;
+    {% if edit_record.supervisor_pool %}
+        var add_more_sup = {{ edit_record.supervisor_pool|length }}+1;
+    {% else %}
+        var add_more_sup = 1;
+    {% endif %}
+    $('#supervisor_pool_add_button').on('click', function(){
+        if(add_more_sup <= sup_maxField){
+            $('#supervisor_pool').append(' <div class="row supervisor_pool_additional"> \
+                                    <div class="form-group col-sm-11"> \
+                                        <label>{% trans 'Supervisor pool' %}</label> \
+                                        <select name="supervisorpool_'+(add_more_sup)+'" class="form-control"> \
+                                        <option value="" selected="selected">{% trans 'Select' %}</option> \
+                                            {% for i in supervisor_user %} \
+                                                <option value="{{ i.id }}" {% if i.id == srch_domain %}selected=selected{% endif %}>{{ i.username }}</option> \
+                                            {% endfor %} \
+                                        </select> \
+                                    </div> \
+                            <a href="javascript:void(0);" class="remove_button supervisor_pool_additional_pf_rmv" title="Delete Supervisor">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12.109" height="14.975" viewBox="0 0 12.109 14.975"><g id="delete_button" transform="translate(-46.155)"><g id="Group_1771" data-name="Group 1771" transform="translate(46.155)"><path id="Path_3277" data-name="Path 3277" d="M56.554,1.794H54.223a2.026,2.026,0,0,0-4.026,0H47.866a1.713,1.713,0,0,0-1.711,1.711v.088a1.712,1.712,0,0,0,1.081,1.589v8.082a1.713,1.713,0,0,0,1.711,1.711h6.526a1.713,1.713,0,0,0,1.711-1.711V5.182a1.713,1.713,0,0,0,1.081-1.589V3.505A1.713,1.713,0,0,0,56.554,1.794ZM52.21.811a1.218,1.218,0,0,1,1.193.983H51.017A1.218,1.218,0,0,1,52.21.811Zm4.162,12.453a.9.9,0,0,1-.9.9H48.947a.9.9,0,0,1-.9-.9V5.3h8.325Zm1.081-9.672a.9.9,0,0,1-.9.9H47.866a.9.9,0,0,1-.9-.9V3.505a.9.9,0,0,1,.9-.9h8.688a.9.9,0,0,1,.9.9v.088Z" transform="translate(-46.155)" fill="#007bff"></path><path id="Path_3278" data-name="Path 3278" d="M158.481,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,158.481,254.95Z" transform="translate(-154.601 -241.824)" fill="#007bff"></path><path id="Path_3279" data-name="Path 3279" d="M228.551,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,228.551,254.95Z" transform="translate(-222.496 -241.824)" fill="#007bff"></path><path id="Path_3280" data-name="Path 3280" d="M298.62,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,298.62,254.95Z" transform="translate(-290.39 -241.824)" fill="#007bff"></path></g></g></svg>
+                            </a>\
+                        </div>');
+            add_more_sup ++;
+        }
+    });
+    $('#supervisor_pool').on('click', '.supervisor_pool_additional_pf_rmv', function(e){
+        e.preventDefault();
+        $(this).parents('.supervisor_pool_additional').remove();
+    });
+/***For Supervisor pool Add More - ends ****/
+
+/**** For Reviewer pool Add More - starts *****/
+    var rev_maxField = 10;
+    {% if edit_record.reviewer_pool %}
+        var add_more_rev = {{ edit_record.reviewer_pool|length }}+1;
+    {% else %}
+        var add_more_rev = 1;
+    {% endif %}
+    $('#reviewer_pool_add_button').on('click', function(){
+        if(add_more_rev <= rev_maxField){
+            $('#reviewer_pool').append(' <div class="row reviewer_pool_additional"> \
+                                    <div class="form-group col-sm-11"> \
+                                        <label>{% trans 'Reviewer pool' %}</label> \
+                                        <select name="reviewerpool_'+(add_more_rev)+'" class="form-control"> \
+                                        <option value="" selected="selected">{% trans 'Select' %}</option> \
+                                            {% for i in reviewer_user %} \
+                                                <option value="{{ i.id }}" {% if i.id == srch_domain %}selected=selected{% endif %}>{{ i.username }}</option> \
+                                            {% endfor %} \
+                                        </select> \
+                                    </div> \
+                            <a href="javascript:void(0);" class="remove_button reviewer_pool_additional_pf_rmv" title="Delete Reviewer">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12.109" height="14.975" viewBox="0 0 12.109 14.975"><g id="delete_button" transform="translate(-46.155)"><g id="Group_1771" data-name="Group 1771" transform="translate(46.155)"><path id="Path_3277" data-name="Path 3277" d="M56.554,1.794H54.223a2.026,2.026,0,0,0-4.026,0H47.866a1.713,1.713,0,0,0-1.711,1.711v.088a1.712,1.712,0,0,0,1.081,1.589v8.082a1.713,1.713,0,0,0,1.711,1.711h6.526a1.713,1.713,0,0,0,1.711-1.711V5.182a1.713,1.713,0,0,0,1.081-1.589V3.505A1.713,1.713,0,0,0,56.554,1.794ZM52.21.811a1.218,1.218,0,0,1,1.193.983H51.017A1.218,1.218,0,0,1,52.21.811Zm4.162,12.453a.9.9,0,0,1-.9.9H48.947a.9.9,0,0,1-.9-.9V5.3h8.325Zm1.081-9.672a.9.9,0,0,1-.9.9H47.866a.9.9,0,0,1-.9-.9V3.505a.9.9,0,0,1,.9-.9h8.688a.9.9,0,0,1,.9.9v.088Z" transform="translate(-46.155)" fill="#007bff"></path><path id="Path_3278" data-name="Path 3278" d="M158.481,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,158.481,254.95Z" transform="translate(-154.601 -241.824)" fill="#007bff"></path><path id="Path_3279" data-name="Path 3279" d="M228.551,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,228.551,254.95Z" transform="translate(-222.496 -241.824)" fill="#007bff"></path><path id="Path_3280" data-name="Path 3280" d="M298.62,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,298.62,254.95Z" transform="translate(-290.39 -241.824)" fill="#007bff"></path></g></g></svg>
+                            </a>\
+                        </div>');
+            add_more_rev ++;
+        }
+    });
+    $('#reviewer_pool').on('click', '.reviewer_pool_additional_pf_rmv', function(e){
+        e.preventDefault();
+        $(this).parents('.reviewer_pool_additional').remove();
+    });
+/***For Reviewer pool Add More - ends ****/
+{% endblock %}

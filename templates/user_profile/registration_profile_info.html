@@ -1,0 +1,142 @@
+{% extends "base_before_login.html" %}
+{% load i18n staticfiles common_templatetags %}
+{% block content %}
+<!-- banner starts -->
+                 
+ <!-- create new account -->
+    <div class="create_account_wrapper">
+        <div class="login_container registration_container">
+            <div class="row forget-row">
+                <div class="col-sm-12 col-md-5 col-lg-5 login_page_image d-flex">
+                   <div class="login_image">
+                    <div class="overlay"></div>
+                    <div class="login_page_left">
+                        <h2 class="heading">{% trans 'Homoeopathic Clinical Case Registry' %}</h2>
+                        <p>{% trans 'India has atleast 284,471 registered homoeopathic medical practitioners, practicing in government or private clinical/research settings.' %}</p>
+                        <div class="segeregation_line"></div>
+                    </div>
+                   </div>
+                </div>
+                <div class="col-sm-12 col-md-7 col-lg-7 login_page_right d-flex">
+                    <form id="profile_info" class="loginVisitor_form_container forget_container" action="{% url 'user_profile:profile_info' %}" method="post">{% csrf_token %}
+                        <div class="row">
+                            {% include "user_profile/registration_header_file.html" %}
+                            <div id="alert_message" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
+                                <div id="alert_message_strong"></div>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="registration_form_container">
+                                <div class="row">
+                                     <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>{% trans 'First Name' %} <em>*</em></label>
+                                            <input type="text" placeholder="{% trans 'First Name' %}" class="form-control" value="{% if first_name %}{{first_name}}{% elif additional_details.user.first_name %}{{additional_details.user.first_name}}{% elif user_obj.first_name %}{{user_obj.first_name}}{% endif %}" name="first_name"{% if not backend_reg == 'fr' and user_obj.first_name  %}readonly{% endif %}>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                           <label>{% trans 'Last Name' %} <em>*</em></label>
+                                            <input type="text" placeholder="{% trans 'Last Name' %}" class="form-control" value="{% if last_name %}{{last_name}}{% elif additional_details.user.last_name %}{{ additional_details.user.last_name }}{% elif user_obj.last_name %}{{user_obj.last_name}}{% endif %}" name="last_name" {% if user_obj.last_name and backend_reg and not backend_reg == 'fr' %}readonly{% endif %}>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>{% trans 'Mobile Number' %} <em>*</em></label>
+                                            <input type="text" placeholder="{% trans 'Mobile Number'%}" class="form-control" value="{% if mobile_no %}{{mobile_no}}{% elif additional_details.mobile_no %}{{ additional_details.mobile_no}}{% endif %}"  name="mobile_no" maxlength="10">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>{% trans 'Email' %} <em>*</em> </label>
+                                            <input type="text" placeholder="{% trans 'Email' %}" class="form-control" value="{% if email %}{{email}}{% elif additional_details.user.email %}{{ additional_details.user.email }}{% elif user_obj.email %}{{user_obj.email}}{% endif %}" name="email" {% if user_obj.email and not backend_reg == 'fr' %}readonly{% endif %}>
+                                        </div>
+                                    </div>
+                               
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group ">
+                                            <label>{{ additional_form.address_line_1.label }} <em>*</em></label>
+                                            {{ additional_form.address_line_1}}
+                                        </div>
+                                    </div>
+                                      <div class="col-sm-12 col-md-6">
+                                          <div class="form-group ">
+                                            <label>{{ additional_form.address_line_2.label }} <em>*</em></label>
+                                            {{ additional_form.address_line_2}}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group city_state_label">
+                                            <label>{{ additional_form.city.label }} <em>*</em> </label>
+                                            {{ additional_form.city}}
+                                        </div>
+                                    </div>
+                                     <div class="col-sm-12 col-md-6">
+                                        <div class="form-group city_state_label">
+                                            <label>{{ additional_form.state.label }} <em>*</em> </label>
+                                            {{ additional_form.state}}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>{{ additional_form.pincode.label }} <em>*</em></label>
+                                            {{ additional_form.pincode}}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-sm-12 col-md-6" >
+                                        <div class="form-group">
+                                         <label>{% trans 'Country' %}</label>
+                                          <input type="text" placeholder="{% trans 'Country' %}" class="form-control" value="India" name="country" readonly >
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="backend_reg" value="{{backend_reg}}">
+                                    <input type="hidden" name="user_id" value="{% if user_obj %}{{user_obj.id}} {% else %}{{additional_details.user_id}}{% endif %}">
+                                    {% if user_obj.email %}
+                                            <input type="hidden" name="backend_registration" value="backend_registration">
+
+                                    {% endif %}
+                                    <div class="col-sm-12">
+                                        <div class="button">
+                                            <button type="button" onclick="window.location.href='{% settings_value "CCRH_HOME_URL" %}';" id="" class="exit_btn submit">Exit</button>
+                                            <button type="submit"  class="next" >{% trans 'Next' %}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- create new account ends -->
+       
+        <!-- banner ends -->
+{% endblock %}
+{% block jsfilesurls %}
+{{additional_form.media}}
+
+<script type="text/javascript" src="{% static 'js/validation.js'%}"></script>
+{% endblock %}
+
+{% block custom-js %}
+/*********** For Select2 error message removing drop down Starts here***************/
+ $('.select2-hidden-accessible').on('change', function() {
+    if($(this).valid()) {
+        $(this).next('span').removeClass('error').addClass('valid');
+    }
+});
+ /*********** For Select2 error message removing drop down Ends here***************/
+
+    /********* Based on the tab index adding class of active - starts *******/
+$('button').focus(function() {
+    $("button").removeClass("active");
+    $("this").addClass("active");
+    });
+{% if message %}  
+    $("#alert_message_strong").html("{{ message }}");
+    $("#alert_message").css("display", "block");
+{% endif %}
+{% endblock %}        

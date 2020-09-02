@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+{% block page_heading %}{% trans 'Add Clinical Case' %}{% endblock %}
+
+{% block breadcrumbs %}
+    {% trans 'Medical Management' %}
+{% endblock %}
+
+{% block content %}
+    <div class="dashboard_wrapper addcase_wrapper">
+        <div class="dashboard_container">
+            <div class="addcase_container">
+                {% include 'case_history/add_case_menus.html' %}
+                <form id="medical_management_form" class="add_case_form" action="{% if case_id %}{% url 'case_history:medical_management' case_id=case_id %}{% endif %}" method="post">{% csrf_token %}  
+                    <input type="hidden" id="id_case_record" value="{{ case_id }}" name="case_record_id">
+                    <input type="hidden" id="id_prescription_order" value="1" name="prescription_order">
+                    <input type="hidden" name="medicine_managmentid" value="{{case_record.id}}" >
+                    <input type="hidden" id="medi_pres_map_id" name="medi_pres_map" value="{{medi_pre_map.id}}" >
+                    <div id="case_details" class="advance_filter_block">
+                        <div class="advance_container">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{{ med_form.prescription_date.label }}</label>
+                                        {{ med_form.prescription_date }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Prescription*' %}</label>
+                                        <input type="hidden" id="id_medicine_name" value="{{medi_pre_map.prescription_id}}" name="medicine_name">
+                                        <input type="text" value="{{medi_pre_map.prescription}}" name="psrescription" class="form-control psrescription" placeholder="Prescription(Suggestion after 2 or more characters)" id="id_psrescription">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Potency*' %}</label>
+                                        <input type="text" value="{{medi_pre_map.potency}}" name="potency" class="form-control" placeholder="Potency" id="id_potency">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{% trans 'Dosage*' %}</label>
+                                        <input type="text" value="{{medi_pre_map.dosage}}" name="dosage" class="form-control" placeholder="Dosage" id="id_dosage">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{{ med_form.prescription_oridl_scale.label }}</label>
+                                        {{ med_form.prescription_oridl_scale }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{{ med_form.outcome_of_prev_presc.label }}</label>
+                                        {{ med_form.outcome_of_prev_presc }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <div class="form-group">
+                                        <label>{{ med_form.marks_for_improvement.label }}</label>
+                                        {{ med_form.marks_for_improvement }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- banner ends -->
+
+<!-- footer starts -->
+{% include 'case_history/add_case_footer.html' %}
+<!-- footer ends -->
+{% endblock %}
+
+
+{% block jsfilesurls %}
+<link rel="stylesheet" href="{% static 'css/libraries/jquery-ui.min.css' %}"><!--autocomplete-->
+<script src="{% static 'js/libraries/jquery-ui.min.js' %}"></script> <!-- autocomplete Script -->
+<script src="{% static 'js/libraries/jquery.datetimepicker.full.min.js' %}"></script> <!-- Datetime picker Script -->
+<link rel="stylesheet" href="{% static 'css/libraries/jquery.datetimepicker.min.css' %}">
+{% endblock %}
+
+{% block custom-js %}
+{% include 'case_history/add_case_script.html' %}
+
+/*******on click th date picker starts here******/
+$(".date_picker").datetimepicker({
+          format:'Y-m-d',
+          timepicker:false
+    });
+
+{% endblock %}

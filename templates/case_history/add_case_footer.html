@@ -1,0 +1,11 @@
+{% load i18n staticfiles %}
+
+<div class="button_botton">
+    <button class="save" type="submit"  id="save_btn">{% trans 'Save' %}</button>
+    {% if case_id %}
+        <button class="save" ><a class="submit_save" href="{% url 'case_history:case_submitted_status' case_id=case_id %}">{% trans 'Submit' %}</a></button>
+    {% else %}
+        <button class="save submit_btn">{% trans 'Submit' %}</button>
+    {% endif %}
+    <button id="exit_btn" class="exit" type="button">{% trans 'Exit' %}</button>
+</div>

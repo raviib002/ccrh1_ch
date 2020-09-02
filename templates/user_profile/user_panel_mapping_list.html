@@ -1,0 +1,238 @@
+{% extends 'base_admin.html' %}
+{% load i18n staticfiles common_templatetags %}
+{% block title %}
+{% trans "CCRH | Search User Panel" %}
+{% endblock %}
+{% block breadcrumbs %}
+{% trans 'Search User Panel' %}
+{% endblock %}
+{% block content %}
+<div class="padd_25">
+    <form action="{% url 'user_profile:new_create_user_panel' %}" method="get">{% csrf_token %}
+        <div class="bg_white equal_padding  margin_bottom_20">
+            <div class="top_header_align">
+                 <h3 class="cmn_title">{% trans 'Search User Panel' %}</h3>
+                 <a href="{% url 'user_profile:create_user_panel' %}" class="btn btn_save btn_create">{% trans 'Create User Panel' %}</a>
+            </div>
+            <div class="row clearfix">
+                <div class="form-group col-sm-3">
+                    <label>{% trans 'Panel Name' %}</label>
+                    <input name="panel_name" value="{% if panel_name %}{{panel_name}}{% endif %}" placeholder="{% trans 'Panel Name' %}" class="form-control">
+                </div>
+                <!-- <div class="form-group col-sm-3 suscriber_email ">
+                    <label>{% trans 'Category' %}</label>
+                    <select name="category" class="form-control">
+                    <option value="" selected="selected">{% trans 'Select' %}</option>
+                        {% for i in category %}
+                            <option value="{% if records %}{{ i|get_id:'_id' }}{% endif %}" {% if records %}{% if i|get_id:'_id' == category_search %}selected=selected{% endif %}{% endif %}>{{ i.category_name }}</option>
+                        {% endfor %}                    
+                    </select>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label>{% trans 'Supervisor pool' %}</label>
+                    <select name="supervisorpool" class="form-control">
+                    <option value="" selected="selected">{% trans 'Select' %}</option>
+                        {% for i in user %}
+                            <option value="{{ i.id }}" {% if i.id == supervisorpool_search %}selected=selected{% endif %}>{{ i.username }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label>{% trans 'Reviewer pool' %}</label>
+                    <select name="reviewerpool" class="form-control">
+                    <option value="" selected="selected">{% trans 'Select' %}</option>
+                        {% for i in user %}
+                            <option value="{{ i.id }}" {% if i.id == reviewerpool_search %}selected=selected{% endif %}>{{ i.username }}</option>
+                        {% endfor %}
+                    </select>
+                </div> -->
+                <div class="form-group col-sm-3">
+                     <div class="button_area search_panel_btn">
+                        <button id="search_subscribr" class="btn btn_save" type="submit" title="Search" alt="Search">{% trans 'Search' %}</button>
+                        <a id="id_reset_list_subscribr" class="btn btn_cancel">{% trans 'Clear' %}</a>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </form>
+     <!-- Display search except for subscriber role - ends -->
+    <div class="list_postinv table-responsive table_position common_table bg_white equal_padding margin_bottom_sp ac_table">
+    <h3 class="cmn_title">{% trans 'List User Panel' %}</h3>
+        <div class="table-scroll_backend">
+             <table class="table list_subscribers plan_history_table">
+                <thead>
+                    <tr>
+                        <th class="address_wid">{% trans 'Panel Name' %}</th>
+                        <th class="address_wid">{% trans 'Category' %}</th>
+                        <th class="address_wid">{% trans 'Reviewer pool' %}</th>
+                        <th class="address_wid">{% trans 'Supervisor pool' %}</th>
+                        <th class="address_wid">{% trans 'Action' %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% if records %}
+                    {% for each in records %}
+                        <tr>
+                            <td><a href="{% if records %}{% url 'user_profile:create_user_panel' edit_id=each|get_id:'_id' %}{% endif %}">{{ each.panel_name }}</a></td>
+                            <td>{% if each.category %}{% for i in each.category %}{{i}} {% endfor %}{% else %}{% trans 'NA' %}{% endif %}</td>
+                            <td>{% if each.reviewer_pool %}{% for i in each.reviewer_pool %}{{i}} {% endfor %}{% else %}{% trans 'NA' %}{% endif %}</td>
+                            <td>{% if each.supervisor_pool %}{% for i in each.supervisor_pool %}{{i}} {% endfor %}{% else %}{% trans 'NA' %}{% endif %}</td>
+                            <td>
+                                <a href="javascript:void(0);" id="id_delete" data-info="{% if records %}{{ each|get_id:'_id' }}{% endif %}"><svg xmlns="http://www.w3.org/2000/svg" width="12.109" height="14.975" viewBox="0 0 12.109 14.975">
+                                    <g id="delete_button" transform="translate(-46.155)">
+                                        <g id="Group_1771" data-name="Group 1771" transform="translate(46.155)">
+                                          <path id="Path_3277" data-name="Path 3277" d="M56.554,1.794H54.223a2.026,2.026,0,0,0-4.026,0H47.866a1.713,1.713,0,0,0-1.711,1.711v.088a1.712,1.712,0,0,0,1.081,1.589v8.082a1.713,1.713,0,0,0,1.711,1.711h6.526a1.713,1.713,0,0,0,1.711-1.711V5.182a1.713,1.713,0,0,0,1.081-1.589V3.505A1.713,1.713,0,0,0,56.554,1.794ZM52.21.811a1.218,1.218,0,0,1,1.193.983H51.017A1.218,1.218,0,0,1,52.21.811Zm4.162,12.453a.9.9,0,0,1-.9.9H48.947a.9.9,0,0,1-.9-.9V5.3h8.325Zm1.081-9.672a.9.9,0,0,1-.9.9H47.866a.9.9,0,0,1-.9-.9V3.505a.9.9,0,0,1,.9-.9h8.688a.9.9,0,0,1,.9.9v.088Z" transform="translate(-46.155)" fill="#007bff"/>
+                                          <path id="Path_3278" data-name="Path 3278" d="M158.481,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,158.481,254.95Z" transform="translate(-154.601 -241.824)" fill="#007bff"/>
+                                          <path id="Path_3279" data-name="Path 3279" d="M228.551,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,228.551,254.95Z" transform="translate(-222.496 -241.824)" fill="#007bff"/>
+                                          <path id="Path_3280" data-name="Path 3280" d="M298.62,254.95a.406.406,0,0,0,.406-.406v-4.568a.406.406,0,1,0-.811,0v4.568A.406.406,0,0,0,298.62,254.95Z" transform="translate(-290.39 -241.824)" fill="#007bff"/>
+                                        </g>
+                                      </g>
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                        <tr><td colspan="5" class="text-center">{% trans 'No Record Found' %}</td></tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <nav aria-label="pagination">
+        <ul class="pagination">
+            {% if not records.has_previous %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="javascript:void(0);">&laquo; First</a>
+                </li>
+                <li class="page-item disabled">
+                    <a class="page-link" href="javascript:void(0);">Prev</a>
+                </li>
+            {% elif records.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?{% param_replace page=1 %}">&laquo; First</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?{% param_replace page=records.previous_page_number %}">Prev</a>
+                </li>
+            {% if records.number > 3 %}
+                <li class="page-item">
+                    <a class="page-link" href="?{% param_replace page=1 %}">1</a>
+                </li>
+            {% if records.number > 4 %}
+                <li class="page-item">
+                    <a class="page-link" href="javascript:void(0);">...</a>
+                </li>
+            {% endif %}
+            {% endif %}
+            {% endif %}
+            
+            {% for n in records.paginator.page_range %}
+              {% if records.number == n %}
+                <li class="page-item active"><a class="page-link" href="javascript:void(0);"><span>{{ n }} <span class="sr-only">(current)</span></span></a></li>
+              {% elif n > subscriber.number|add:'-3' and n < records.number|add:'3' %}
+                 <li class="page-item"><a class="page-link" href="?{% param_replace page=n %}">{{ n }}</a></li>
+              {% endif %}
+            {% endfor %}
+
+            {% if records.has_next %}
+                {% if records.number < records.paginator.num_pages|add:'-3' %}
+                <li class="page-item">
+                    <a class="page-link" href="javascript:void(0);">...</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?{% param_replace page=records.paginator.num_pages %}">{{ records.paginator.num_pages }}</a>
+                </li>
+                {% elif records.number < records.paginator.num_pages|add:'-2' %}
+                 <li class="page-item">
+                    <a class="page-link" href="?{% param_replace page=records.paginator.num_pages %}">{{ records.paginator.num_pages }}</a>
+                </li>
+                {% endif %}
+                <li class="page-item">
+                    <a class="page-link" href="?{% param_replace page=records.next_page_number %}">Next</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?{% param_replace page=records.paginator.num_pages %}">Last &raquo;</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="javascript:void(0);">Next</a>
+                </li>
+                <li class="page-item disabled">
+                    <a class="page-link" href="javascript:void(0);">Last &raquo;</a>   
+                </li>
+            {% endif %}
+        </ul>
+        </nav>
+        {% if records %}
+            <p class="align_entry disply_entries_cnt">Showing {{ records.start_index }} to {{ records.end_index }} of {{ records.paginator.count }} entries</p>
+        {% endif %}
+    </div>
+</div>
+    
+    <!--Start Delete Modal Pop-up -->
+    <div id="delete_record" class="modal fade in modal-bgcolor1">
+        <form action="{% url 'user_profile:create_user_panel' %}" method="post">{% csrf_token %}
+            <div class="modal-dialog">
+                <div class="modal-content">
+                   <div class="modal-header">
+                        <a href="javascript:void(0);"><button type="button" class="close" data-dismiss="modal"></button></a>
+                    </div>
+                    <div class="modal-body v_height_auto">
+                        <p>{% trans 'Are you sure you want to delete ?' %}</p>
+                        <input id="rec_id" type="hidden" name="delete_id" value="">
+                    </div>
+                    <div class="modal-footer text-right ">
+                        <button class="btn" type="submit" >{% trans 'Yes' %}</button>
+                        <a href="javascript:void(0);" class="btn" data-dismiss="modal">{% trans 'No' %}</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div> 
+    <!--Ends Delete Modal Pop-up -->
+    <!--Modal for displaying messages Starts -->
+     <div class="modal fade modal-bgcolor1" id="suc_msg_popup" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header forget-link-header1">
+                <button class="link1 close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body forget-link-body1">
+                <div class="row">
+                <p id="suc_msg" class="para-link-center p1"></p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- Modal for displaying messages Ends -->
+    
+{% endblock %}
+
+
+{% block custom-js %}
+    /****************** For Reloading the page on click of clear -Starts**********************/
+        $(document.body).on('click',"#id_reset_list_subscribr",function(){
+            window.location.href = "{% url 'user_profile:new_create_user_panel' %}";
+        });
+    /****************** For Reloading the page on click of clear -Ends**********************/
+
+    /*********** Displaying popup on click of delete - starts ***********/
+    $(document.body).on('click',"#id_delete",function(){
+        var del_rec = $(this).data('info');
+        $('#rec_id').val(del_rec);
+        $('#delete_record').modal();
+    });
+    /********** Displaying popup on click of delete- Ends *********/
+    
+    /*********** Displaying popup after Deleted successfully - starts *********/
+    {% if success_msg %}
+        $("#suc_msg_popup").modal();
+        $('#suc_msg').text('{{ success_msg }}');
+    {% endif %}
+    /**** Displaying popup after Deleted successfully - ends *****/
+    
+{% endblock %}

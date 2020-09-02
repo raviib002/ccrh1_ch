@@ -1,0 +1,139 @@
+/*****click on exit button go to dashboard --start*****/
+
+$(document.body).on('click',"#exit_btn",function(){
+    window.location.href = "{% url 'case_history:dashboard' %}";
+});
+
+/*****click on exit button go to dashboard --ends*****/
+
+/*****click on save button submit the add cases & the follow-up forms --start*****/
+
+$(document.body).on('click','#save_btn',function(){
+    $(".add_case_form").submit(); 
+});
+
+/*****click on save button submit the add cases & the follow-up forms --ends*****/
+
+
+/*** For add follow-up visit starts ***/
+
+var template_add = $('#hidden-template_add').html();
+$('.add_follow_up').click(function() {
+    {% if follow_up_order %}
+        {% for i in follow_up_order %}
+            var order_number = {{ i }}
+        {% endfor %}
+    {% else %}
+        var order_number = 1;
+    {% endif %}
+    $('#add_followup_visit').append(template_add);
+    var order_num = parseInt(order_number)+1;
+    $('#id_new_follow_up_visit_order').val(order_num);
+    
+});
+
+var template_view = $('#hidden-template_view').html();
+{% if follow_up %}
+    $('#add_followup_visit').append(template_view);
+{% endif %}
+
+/*** For add follow-up visit ends ***/
+
+/*** For add follow-up tabs on click tab changes functionality --starts here ***/
+
+$(document.body).on('click', '.list_follow_up_tabs > li > a', function(event) {
+
+    event.preventDefault();//stop browser to take action for clicked anchor
+                
+    //find actived navigation and remove 'active' css
+    var actived_nav = $('.list_follow_up_tabs > li.active');
+    
+    var parentUl =  $(this).parents('li').parents('ul').find('.active');
+    parentUl.removeClass('active');
+    
+    //add 'active' css into clicked navigation
+    $(this).parents('li').addClass('active');
+                
+    //get displaying tab content jQuery selector
+    var active_tab_selector = parentUl.find('a').attr('href');
+                
+    //hide displaying tab content
+    $(active_tab_selector).removeClass('active');
+    $(active_tab_selector).addClass('hide');
+                
+    //show target tab content
+    var target_tab_selector = $(this).attr('href');
+    
+    //show target tab content
+    $(target_tab_selector).removeClass('hide');
+    $(target_tab_selector).addClass('active');
+});
+
+/*** For add follow-up tabs on click tab changes functionality --ends here ***/
+
+/************On Change of Qualification Add more showing an specilization starts here***********/
+$(document.body).on('change',".state_name",function(){
+    var Url = '{% url 'user_profile:get_city_name' %}';
+    var state_name=$("select[name='case_patient_state']").val();
+    $('#city_id').empty();
+    $.ajax({
+        url:Url,
+        method:'get',
+        dataType: 'json',
+        data:{ csrfmiddlewaretoken: '{{ csrf_token }}', state_name:state_name},
+        success: function(data){
+                    var toAppend="";
+                    toAppend += "<option value='' selected>Select City</option>";
+                    if (data != 'fail'){
+                         $.each(data, function(index0, l) {
+                                $.each(l, function(index1, n) {
+                                    toAppend += '<option value="' + n.id + '">'+n.city_name+'</option>';
+                        });
+                    });
+                     $('#city_id').append(toAppend);
+                    }
+                }
+        });
+});
+
+/********click on city name showing an error message starts here ************/
+$(document.body).on('click',"#city_id",function(){
+    city_value = $('select[name="case_patient_state"] option:selected').val();
+    $("#city_id-error").remove();
+        if (city_value){
+            $('#state-error').remove();
+            return true;
+        }else{
+            $('#state-error').remove();
+            $('#city_id').after('<label id="state-error" class="error" for="state">Please first select state</label>');
+            return false;
+        }
+});
+/********click on city name showing an error message ends here ************/
+
+
+/*****************Datetimepicker function starts here*******/
+$(document).on('click', '.date_picker', function(event) {
+    $('.date_picker').datetimepicker({
+        format:'Y-m-d',
+        timepicker:false,
+    });
+});
+/*****************Datetimepicker function Ends here*******/
+
+$(document.body).on('click',".delete_follow_up",function(){
+    var value = $(this).data('info');
+    var value1 = $(this).data('info1');
+
+    $('#followup_case_id').val(value);
+    $('#followup_order_id').val(value1);
+    
+    $("#delete_follow_up_model").modal();
+});
+
+/********* To show success messages --starts *******/
+    {% if success_msg %}
+        $('#suc_msg_popup').modal();
+        $('#suc_msg').text('{{ success_msg }}');
+    {% endif %}
+/********* To show success messages --ends *******/

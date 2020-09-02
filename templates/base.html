@@ -1,0 +1,219 @@
+{% load i18n staticfiles %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>CCRH - {% block title_block %} {% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        {% include "cssfiles.html" %}
+        {% block staticurls %}
+        {% endblock %}
+    </head>
+<body>
+    {% include "header.html" %}
+    <div class="main_section">
+    <main>
+            <nav class="navbar_link dashboard_link">
+                <div class="container  d-flex justify-content-between">
+                    <ul class="navigation list-unstyled d-flex justify-content-between">
+                        <li><a href="{% url 'case_history:dashboard' %}">{% trans 'My Dashboard' %}</a></li>
+                        <li><a href="#">{% trans 'Report' %}</a></li>
+                        <li><a href="{% url 'user_profile:change_password' %}">{% trans 'Change Password' %}</a></li>
+                        <li><a href="{% url 'notifications:all' %}">{% trans 'Notifications' %}</a></li>
+                    </ul>
+                    <ul class="navigation2 dashboard_navigation1 list-unstyled d-flex">
+                                <li class="d-flex"><a href="{% url 'notifications:all' %}">
+                                    <span><svg xmlns="http://www.w3.org/2000/svg" width="14.243" height="18" viewBox="0 0 14.243 18">
+                                            <defs> <style>
+                                                    .a {
+                                                        fill: #fff;
+                                                    }
+                                            </style> </defs>
+                                            <path class="a"
+                                                d="M67.383,14.324a2.8,2.8,0,0,1-.85-1.157,13.39,13.39,0,0,1-.886-5.291c0-.007,0-.013,0-.02A5.107,5.107,0,0,0,62.64,3.224V2.005a2.006,2.006,0,0,0-2-2.005h-.166a2.006,2.006,0,0,0-2,2.005V3.223a5.107,5.107,0,0,0-3.007,4.652,13.391,13.391,0,0,1-.886,5.291,2.8,2.8,0,0,1-.85,1.157.513.513,0,0,0-.282.583.536.536,0,0,0,.529.412h3.865a2.715,2.715,0,0,0,5.43,0h3.865a.537.537,0,0,0,.529-.412A.513.513,0,0,0,67.383,14.324ZM59.525,2.005a.949.949,0,0,1,.947-.949h.166a.949.949,0,0,1,.947.949v.876a5.107,5.107,0,0,0-2.06,0V2.005Zm1.03,14.938A1.664,1.664,0,0,1,58.9,15.32h3.32A1.664,1.664,0,0,1,60.556,16.943Zm2.123-2.68h-7.5a5.525,5.525,0,0,0,.276-.485,13.351,13.351,0,0,0,1.065-5.9,4.037,4.037,0,1,1,8.073,0c0,.007,0,.013,0,.019a13.324,13.324,0,0,0,1.065,5.881,5.536,5.536,0,0,0,.276.485Z"
+                                                transform="translate(-53.434)" />
+                                        </svg>
+                                        <span class="red-alert"></span>
+                                    </span>
+                                    </a>
+                                </li>
+                        <li class="profile_div">
+                            <a href="#">
+                                <div class="profile_name d-flex">
+                                    {% if request.user.additionalprofile.photo %}
+                                      <span><img src="{{request.user.additionalprofile.photo.url}}" alt="user profile image"></span>
+                                  {% else %}
+                                      <span><img src="{% static 'images/dashboard_profile.png' %}" alt="user profile image"></span>
+                                  {% endif %}  
+                                </div>
+                            </a>
+                            <ul class="profile_name_sub">
+                                <li><a href="#">
+                                      <div class="profile_content">
+                                          <p>{{ request.user.first_name|capfirst }} {{ request.user.last_name|capfirst }}</p>
+                                          <p>{{user.groups.all.0}}</p>
+{#                                          <span class="name">Manish Kumar</span>#}
+{#                                          <span class="content">Researcher</span>#}
+                                      </div>
+                                    </a></li>
+                                    <li class="myprofile"><a href="#"><img src={% static "images/myprofile_image.svg" %}
+                                                alt="myprofile image"><span>My Profile</span></a></li>
+                                    <li class="myprofile logout"><a href="{% url 'user_profile:logout' %}"><img src={% static "images/logout_image.svg" %}
+                                                alt="logout image"><span>Logout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="mydashboard_wrapper  add_clinical_case_wrapper">
+                <div class="add_clinical_case_container">
+                    <!-- breadcrumb block -->
+                    <div class="breadcrumb_block">
+                       <div class="container">
+                            <ol class="breadcrumb">
+                                <li><a href="{% url 'case_history:dashboard' %}">{% trans 'My Dashboard' %}</a></li>
+                                <li>{% block breadcrumbs %}{% endblock %}</li>
+                            </ol>
+                            {% if 'dashboard' in request.path %}
+                            {% if perms.roles_permissions.can_add_case %}
+                                <button class="login" onclick="location.href='{% url 'case_history:add_case' %}'">{% trans 'Add Clinical Case' %}</button>
+                            {% endif %}
+                            {% endif %}
+                       </div>
+                    </div>
+                    <!-- breadcrumb block ends -->
+                    <div class="add_clinical_case_blk">
+                    {% block content %}
+                    {% endblock %}
+                    </div>
+                </div>   
+            </div>
+    </main>
+    </div>
+    {% include "jsfiles.html" %}
+{#    {% include "footer.html" %}#}
+    
+    <!--modal for displaying messages -- starts -->
+     <div class="modal fade modal-bgcolor1" id="suc_msg_popup" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header forget-link-header1">
+                <button class="link1 close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body forget-link-body1">
+                <div class="row">
+                <p id="suc_msg" class="para-link-center p1"></p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ <!-- modal for displaying messages -- Ends -->
+    <!--Start Exits Modal-->
+    <div id="id_exit_modal_pop" style="opacity: 1;" class="modal fade in msg_popup confrm_popup modal-bgcolor1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                    <a href="javascript:void(0);"><button type="button" class="close" data-dismiss="modal"></button></a>
+                </div>
+                <div class="modal-body v_height_auto">
+                    <p id="exit_confirm_msg_id">{% trans 'Are you sure to want to exit?' %}</p>
+                </div>
+                <div class="modal-footer text-right ">
+                    <a href="{% url 'case_history:dashboard' %}" class="exit">{% trans 'Yes' %}</a>
+                    <a href="javascript:void(0);" class="btn follow_up_button" data-dismiss="modal">{% trans 'No' %}</a>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <!--Ends Exits Modal-->
+    
+</body>
+{% block jsfilesurls %}{% endblock %}
+<script type="text/javascript" src="{% static 'js/validation.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/style.js' %}"></script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            {% block custom-js %}{% endblock %}
+             /**** js changed on 18/06/2020 *****/
+//   mobile menu
+    var effect = "slide";
+    var option = {direction: "left"};
+    var duration = 500;
+    $(".menu_bar").click(function() {
+        $(".navbar_link").show(effect, option, duration);
+    });
+    $("nav .close").click(function() {
+        $(".navbar_link").hide(effect, option, duration);
+    });
+// font increase and decrease
+    var size = "100%";
+    size1 = parseFloat(size);
+    
+    // font increase
+
+    $(".font_increase").click(function() {
+        if ((size1 + 6) <= 110) {
+            size2 = size1 += 6;
+            size3 = size2 + "%";
+            $(".main_section").css("fontSize", size3);
+        }
+        $(".font_inc_dec li").removeClass("active");
+        $(this).addClass("active");
+    });
+
+    // font decrease
+
+    $(".font_decrease").click(function() {
+        if ((size1 - 6) >= 90) {
+            size2 = size1 -= 6;
+            size3 = size2  + "%";
+            $(".main_section").css("fontSize", size3);
+        }
+        $(".font_inc_dec li").removeClass("active");
+        $(this).addClass("active");
+    });
+
+    // font reset
+
+    $(".font_normal").click(function() {
+        if ((size1) = 100) {
+            size2 = size1  + "%";
+            $(".main_section").css("fontSize", size2);
+        }
+        $(".font_inc_dec li").removeClass("active");
+        $(this).addClass("active");
+    });
+/**** js changed ends on 18/06/2020 ****/
+
+// tooltip
+    $('[data-toggle="tooltip"]').tooltip()
+/************* search icon jquery ************/
+    $(".search_icon").click(function() {
+        $("#searchBox input").toggleClass("show");
+        $("#searchBox input:focus").addClass("show");
+    });
+/************* search icon jquery ends ************/
+/************* Exit jquery ************/
+    $("#exit_button_id").click(function() {
+        $("#id_exit_modal_pop").css("display", "block");
+        $("#id_exit_modal_pop").addClass("show");
+        $("#id_exit_modal_pop").css("opacity", "1");
+    });
+    $('#id_exit_modal_pop a.btn.follow_up_button[data-dismiss="modal"]').click(function() {
+        $("#id_exit_modal_pop").css("display", "none");
+        $("#id_exit_modal_pop").removeClass("show");
+        $("#id_exit_modal_pop").css("opacity", "0");
+    });
+/************* Exit jquery ends ************/
+        });
+</script>
+</html>

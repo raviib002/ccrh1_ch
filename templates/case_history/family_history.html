@@ -1,0 +1,437 @@
+{% extends "base.html" %}
+{% load i18n staticfiles common_templatetags%}
+{% block breadcrumbs %}
+{% trans 'Add Clinical Case' %}
+{% endblock %}
+{% block content %}
+{% include 'case_history/add_case_menus.html' %}
+        <!-- add case content -->
+            <div class="add_case_content mental_history_blk">
+                <div class="Patient_information add_case_container" id="patientInformation">
+                    <div class="row">
+                        <div id="alert_fam_message" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
+                            <div id="alert_fam_message_strong"></div>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="summary_title">
+                            <div class="title d-flex justify-content-between">
+                                <h2 class="heading">{% trans 'Family History' %}</h2>
+                                <div class="arrow" id="caseSummaryArrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15.208" height="15.208"
+                                        viewBox="0 0 15.208 15.208">
+                                        <defs>
+                                            <style>
+                                                .a {
+                                                    fill: #1c4976;
+                                                }
+                                            </style>
+                                        </defs>
+                                        <path class="a"
+                                            d="M7.6,0a7.6,7.6,0,1,0,7.6,7.6A7.626,7.626,0,0,0,7.6,0Zm2.661,11.026L8.935,12.356,4.182,7.6,8.935,2.851l1.331,1.331L6.844,7.6Z"
+                                            transform="translate(0 15.208) rotate(-90)" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="add_summary_content">
+                                <p>{% trans "Maecenas faucibus dignissim euismod. Ut suscipit sed sem in fringilla." %}
+                                    {% trans "Duis eu turpis at leo mattis dignissim. Maecenas felis leo, consequat" %}
+                                    {% trans "nec nisl tempus, vulputate viverra mauris. Nullam ullamcorper, magna eu" %}
+                                    {% trans "efficitur ultricies, nulla justovu lputate viverra mauris. Nullam" %}
+                                    {% trans "ullamcorper, Maecenas faucibus dignissim euismod. Ut suscipit sed sem in" %}
+                                    {% trans "fringilla. Duis eu turpis at leo mattis dignissim. Maecenas felis leo," %}
+                                    {% trans "consequat nec nisl tempus, vulputates. Nullam" %}</p>
+                                <p class="para">{% trans "Maecenas faucibus dignissim" %}</p>
+                                <p>{% trans "Maecenas faucibus dignissim euismod. Ut suscipit sed sem in fringilla." %}
+                                    {% trans "Duis eu turpis at leo mattis dignissim. Maecenas felis leo, consequat" %}
+                                    {% trans "nec nisl tempus, vulputate viverra mauris. Nullam ullamcorper, magna eu" %}
+                                    {% trans "efficitur ultricies, nulla justovu lputate viverra mauris. Nullam" %}
+                                    {% trans "ullamcorper, Maecenas faucibus dignissim euismod. Ut suscipit sed sem in" %}
+                                    {% trans "fringilla. Duis eu turpis at leo mattis dignissim. Maecenas felis leo," %}
+                                    {% trans "consequat nec nisl tempus, vulputates. Nullam" %}</p>
+                                <ul class="list">
+                                    <li><img src={% static "images/case_summary_tick_image.svg" %}
+                                            alt="case summary image">
+                                        <p>{% trans "Lorem ipsum dolor sit amet, consectetur adipiscing elit." %}</p>
+                                    </li>
+                                    <li><img src={% static "images/case_summary_tick_image.svg" %}
+                                            alt="case summary image">
+                                        <p>{% trans "Sed et diam at nulla tristique bibendum." %}</p>
+                                    </li>
+                                    <li><img src={% static "images/case_summary_tick_image.svg" %}
+                                            alt="case summary image">
+                                        <p>{% trans "Vestibulum porta nunc sit amet turpis fringilla, interdum porta" %}
+                                           {% trans "ligula laoreet." %}</p>
+                                    </li>
+                                    <li><img src={% static "images/case_summary_tick_image.svg" %}
+                                            alt="case summary image">
+                                        <p>{% trans "Etiam sodales erat nec lobortis rutrum." %}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <hr class="segregation_line">
+                        </div>
+                        <div class="physical_general_block">
+                            <div class="physical_general_div {% if relation_index_no %}active{% endif %}">
+                                
+                                {% for relation_name in relation_list %}
+                                <div class="phy_gen_block_col">
+                                    <div class="physical_general_detail {% if family_hist.family_history|length > 0 %}{% for i in family_hist.family_history %}{% if i.relation == relation_name %}selected{% endif %}{% endfor %}{% endif %} d-flex {% if relation_index_no and relation_details.relation == relation_name %} active {% endif %}">
+                                        <div class="image">
+                                            <svg id="notepad" xmlns="http://www.w3.org/2000/svg"
+                                                width="28.899" height="33.074" viewBox="0 0 28.899 33.074">
+                                                <g id="Group_1669" data-name="Group 1669"
+                                                    transform="translate(0.256 1.041)">
+                                                    <g id="Group_1668" data-name="Group 1668"
+                                                        transform="translate(0 0)">
+                                                        <path id="Path_2808" data-name="Path 2808"
+                                                            d="M21.586,0H2.089A2.007,2.007,0,0,0,0,1.908V25.644a3.824,3.824,0,0,0,.016.43H0a3.107,3.107,0,0,0,3.21,3.18H20.193a3.345,3.345,0,0,0,3.482-3.18V1.908A2.007,2.007,0,0,0,21.586,0Zm.7,26.074a2.007,2.007,0,0,1-2.089,1.908H3.21a1.918,1.918,0,0,1-1.818-1.911c0-.121,0-9.717,0-17.085V6.359h20.89Zm0-20.986H1.393V1.908a.668.668,0,0,1,.7-.636h19.5a.668.668,0,0,1,.7.636Z"
+                                                            transform="translate(0 0)" fill="#b4bbc6" />
+                                                        <path id="Path_2810" data-name="Path 2810"
+                                                            d="M48.62,209.124h12.4a.565.565,0,1,0,0-1.124H48.62a.565.565,0,1,0,0,1.124Z"
+                                                            transform="translate(-44.079 -197.114)"
+                                                            fill="#b4bbc6" />
+                                                        <path id="Path_2811" data-name="Path 2811"
+                                                            d="M135.279,304h-6.617a.569.569,0,1,0,0,1.124h6.617a.569.569,0,1,0,0-1.124Z"
+                                                            transform="translate(-124.078 -285.797)"
+                                                            fill="#b4bbc6" />
+                                                        <path id="Path_2812" data-name="Path 2812"
+                                                            d="M48.62,257.124h12.4a.565.565,0,1,0,0-1.124H48.62a.565.565,0,1,0,0,1.124Z"
+                                                            transform="translate(-44.079 -241.455)"
+                                                            fill="#b4bbc6" />
+                                                        <g id="Path_2813" data-name="Path 2813"
+                                                            transform="translate(16.263 19.653)"
+                                                            fill="#b4bbc6">
+                                                            <path
+                                                                d="M 6.18994140625 11.02988147735596 C 3.521191358566284 11.02988147735596 1.350001454353333 8.858691215515137 1.350001454353333 6.18994140625 C 1.350001454353333 3.521191358566284 3.521191358566284 1.350001454353333 6.18994140625 1.350001454353333 C 8.858691215515137 1.350001454353333 11.02988147735596 3.521191358566284 11.02988147735596 6.18994140625 C 11.02988147735596 8.858691215515137 8.858691215515137 11.02988147735596 6.18994140625 11.02988147735596 Z"
+                                                                stroke="none" />
+                                                            <path
+                                                                d="M 6.18994140625 2.70000171661377 C 4.265581130981445 2.70000171661377 2.70000171661377 4.265581130981445 2.70000171661377 6.18994140625 C 2.70000171661377 8.114301681518555 4.265581130981445 9.67988109588623 6.18994140625 9.67988109588623 C 8.114301681518555 9.67988109588623 9.67988109588623 8.114301681518555 9.67988109588623 6.18994140625 C 9.67988109588623 4.265581130981445 8.114301681518555 2.70000171661377 6.18994140625 2.70000171661377 M 6.18994140625 9.5367431640625e-07 C 9.608551025390625 9.5367431640625e-07 12.37988185882568 2.771331787109375 12.37988185882568 6.18994140625 C 12.37988185882568 9.608551025390625 9.608551025390625 12.37988185882568 6.18994140625 12.37988185882568 C 2.771331787109375 12.37988185882568 9.5367431640625e-07 9.608551025390625 9.5367431640625e-07 6.18994140625 C 9.5367431640625e-07 2.771331787109375 2.771331787109375 9.5367431640625e-07 6.18994140625 9.5367431640625e-07 Z"
+                                                                stroke="none" fill="#f5f8f8" />
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <rect id="Rectangle_1807" data-name="Rectangle 1807"
+                                                    width="27" height="6.3" fill="#f5f8f8" />
+                                            </svg>
+
+                                        </div>
+                                        <div class="physical_general_label">
+                                            <div class="label_div">
+                                                <span class="label_image">{{relation_name}}</span>
+
+                                            </div>
+                                            {% if family_hist.family_history|length > 0 %}
+                                                {% for i in family_hist.family_history %}
+                                                    {% if i.relation == relation_name %}
+                                                    <span class="arrow_image" id="physicalGeneralArrow">
+                                                        <span class="view_close_btn">{% trans 'View' %}</span>
+                                                        <a href="{% url 'case_history:family_history' case_id=case_id %}?relation_index_no={{forloop.counter}}">
+                                                         <img src="{% static 'images/right_arrow_image.png' %}" alt="right arrow image" class="else">
+                                                        </a>
+                                                    </span>
+                                                    {% elif i.relation != relation_name and forloop.counter == 1 %}
+                                                         <span class="arrow_image" id="physicalGeneralArrow"><img src="{% static 'images/right_arrow_image.png' %}" alt="right arrow image" class="else"></span>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% else %}
+                                                 <span class="arrow_image" id="physicalGeneralArrow"><img src="{% static 'images/right_arrow_image.png' %}" alt="right arrow image" class="shankae" ></span>
+                                            {% endif %}
+                                        </div>
+
+                                        <!-- father section -->
+                                        <div class="physical_genral_right_block">
+                                            <div class="physical_general_appearence" id="backArrow">
+                                                <form id="id_father_form" class="add_case_famil" action="{% if case_id %}{% url 'case_history:family_history' case_id=case_id %}{% else %}{% url 'case_history:family_history' %}{% endif %}" method="post">{% csrf_token %}
+                                                    <input type="hidden" id="case_record_id" value="{% if case_id %}{{ case_id }}{% endif %}" name="case_update"> 
+                                                    <input type="hidden" value="{{relation_name}}" name="relation_name">
+                                                    {% if relation_index_no %}<input type="hidden"  value="{{relation_index_no}}" name="relation_index_no">{% endif %}
+                                                    <div class="appearence_blk">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h2 class="heading"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                            </div>
+                                                            <div class="col-sm-12 col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>{{relation_name}}</label>
+                                                                   <div class="alive_dead_div">
+                                                                    <label class="dead_alive_blk">
+                                                                        <input type="radio" name="alive_dead" id="alive" data-info="{{forloop.counter}}" class="alive_checkbox" value="Alive" {% if relation_details.alive_dead == "Alive" %}checked {% else %}checked{% endif %}>
+                                                                        <span>{% trans 'Alive' %}</span>
+                                                                    </label>
+                                                                    <label  class="dead_alive_blk">
+                                                                        <input type="radio" name="alive_dead" id="dead" data-info="{{forloop.counter}}" class="dead_checkbox" value="Dead" {% if relation_details.alive_dead == "Dead" %}checked{% endif %}>
+                                                                        <span >{% trans 'Dead' %}</span>
+                                                                    </label>
+                                                                   </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-12 crequest.POSTol-md-6 empty">
+                                                            </div>
+                                                            <div class="col-sm-12 col-md-12">
+                                                                <div class="col-sm-12 col-md-6 family_history_block">
+                                                                    <div class="form-group city_state_label phy_general_height">
+                                                                        <label>{% trans 'Past Disease' %}</label>
+                                                                        <select id="diseases_past"  name="past_disease[]" class="input_conatiner select_box_past form-control" multiple="multiple">
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-12 col-md-12" style="{% if relation_details.alive_dead == 'Dead' %}display: none;{% endif %}" id="prez_dis_{{forloop.counter}}">
+                                                                <div class="col-sm-12 col-md-6 family_history_block">
+                                                                    <div class="form-group city_state_label  phy_general_height">
+                                                                        <label>{% trans 'Present Disease Suffering' %}</label>
+                                                                        <select id="diseases_present"  name="present_disease[]" class="input_conatiner select_box_present form-control " multiple="multiple">
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-12 col-md-12" {% if relation_details.alive_dead == 'Dead' %}style="display: block;"{% else %}style="display: none;"{% endif %} id="accident_{{forloop.counter}}">
+                                                                <div class="col-sm-12 col-md-6 family_history_block">
+                                                                    <div class="form-group">
+                                                                        <label>{% trans 'Accidents' %}</label>
+                                                                        <input type="text" class="form-control acciden" name="accident" value="{% if relation_details.accidents %}{{relation_details.accidents}}{% endif %}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <div class="button">
+                                                                    <input type="submit" class="save" value="{% trans 'Save' %}" name="add_relation_data"/>
+                                                                    <a href="{% if case_id %}{% url 'case_history:family_history' case_id=case_id %}{% else %}{% url 'case_history:family_history' %}{% endif %}" class="cancel">{% trans 'Cancel' %}</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <!-- father section ends -->
+
+                                    </div>
+                                    {% if family_hist.family_history|length > 0 %}
+                                    {% for i in family_hist.family_history %}
+                                    {% if i.relation == relation_name %}
+                                    <div class="family_history_success">
+                                        <div class="label">{% if i.alive_dead %}{{i.alive_dead}}&nbsp;-&nbsp;{% endif %}<span class="label_detail">{% if i.diseases %}{% for j in i.diseases %}{{j}},&nbsp;{% endfor %}{% endif %}&nbsp;{% if i.present_diseases %}{% for j in i.present_diseases %}{{j}},&nbsp;{% endfor %}{% endif %}{% if i.accidents %}{{i.accidents}}{% endif %}</span>
+                                        </div>
+                                        <div class="acton">
+                                            <span class="delete">
+                                            <a href="javascript:void(0);"><img src="{% static 'images/delete_img.svg' %}" alt="delete image" data-url="" data-info="{{forloop.counter}}" data-info2="{{relation_name}}" class="img_fluid delete_entity"></a>
+                                            </span>
+                                            <span class="edit">
+                                            <a class="add" href="{% url 'case_history:family_history' case_id=case_id %}?relation_index_no={{forloop.counter}}">
+                                                <img src="{% static 'images/edit_img.svg' %}" alt=""></a>
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                                
+                                <div class="col-sm-12">
+                                    <div class="button">
+                                        <a href="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}" class="save">{% trans 'Save and Continue' %}</a>
+                                        <button type="button" class="exit" id="exit_button_id">{% trans 'Exit' %}</button>
+                                    </div>                            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- add case content ends -->
+
+            <div id="delete_entity_pop" class="modal fade in msg_popup confrm_popup modal-bgcolor1">
+               <form id="add_case_mental_deletemgm" class="add_case_mental" action="{% if case_id %}{% url 'case_history:family_history' case_id=case_id %}{% else %}{% url 'case_history:family_history' %}{% endif %}" method="post">{% csrf_token %}       
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                                <a href="javascript:void(0);"><button type="button" class="close" data-dismiss="modal"></button></a>
+                            </div>
+                            <div class="modal-body v_height_auto">
+                                <p id="delete_confirm_msg_id"></p>
+                                <input type="hidden" id="field_id" name="field_name" value="">
+                                <input type="hidden" id="index_no_id" name="index_no" value="">
+                            </div>
+                            <div class="modal-footer text-right ">
+                                <button class="btn follow_up_button delete_clinc_details" type="submit" >{% trans 'Yes' %}</button>
+                                <a href="javascript:void(0);" class="btn follow_up_button" data-dismiss="modal">{% trans 'No' %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div> 
+            {% if relation_index_no %}<input type="hidden" value="{{relation_index_no}}" id="relation_index_no_id">{% endif %}
+<!--Ends Delete Modal Form to delete follow-up -->
+
+
+{% endblock %}
+{% block jsfilesurls %}
+
+<link href="{% static 'css/libraries/select2.css' %}" rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="{% static 'js/libraries/select2.min.js' %}"></script>
+
+{% endblock %}
+{% block custom-js %}
+
+/********Based on Alive or Dead Showing Accident/Present Disease Starts here*******/
+$(document.body).on('click','.alive_checkbox',function(){
+    var coun = $(this).data('info');
+    //alert(coun);
+    //$('#dead_'+coun).prop('checked', false);
+    //$('#alive_'+coun).prop('checked', true);
+    $("#accident_"+coun).hide()
+    $("#prez_dis_"+coun).show();
+});
+$(document.body).on('click','.dead_checkbox',function(){
+    var coun = $(this).data('info');
+    //alert(coun);
+    //$('#alive_'+coun).prop('checked', false);
+    //$('#dead_'+coun).prop('checked', true);
+    $("#accident_"+coun).show();
+    $("#prez_dis_"+coun).hide();
+});
+/********Based on Alive or Dead Showing Accident/Present Disease Ends here*******/
+
+/********Success Pop-up Start Here*******/
+{% if success_note %}  
+    $("#alert_fam_message_strong").html("{{ success_note }}");
+    $("#alert_fam_message").css("display", "block");
+{% endif %}
+/********Success Pop-up Ends Here*******/
+
+/********Delete Entity Start Here*******/
+$(document.body).on('click','.delete_entity',function(){
+    $("#delete_entity_pop").modal();
+    var index_no = $(this).data('info');
+    var delete_type = $(this).data('info2');
+    $("#field_id").val(delete_type);
+    $("#index_no_id").val(index_no);
+    $('#delete_confirm_msg_id').html("Are you sure you want to delete this " +delete_type+ "?");
+});
+/********Delete Entity Ends Here*******/
+
+/*****Pre populating the multpile selected values in Past Disease starts here*******/
+    {% if case_id and relation_index_no%}
+        var pastdiseaseSelect = $('.select_box_past');
+        var case_id = $("#case_record_id").val();
+        var realtion_index_no =  $("#relation_index_no_id").val();
+        var past_disease = 'Past Disease';
+        $.ajax({
+            type: 'GET',
+            url: "{% url 'case_history:get_disease_names' %}",
+            data : { csrfmiddlewaretoken: '{{ csrf_token }}','case_id':case_id,'realtion_index_no':realtion_index_no,'past_disease':past_disease },
+        }).then(function (data) {
+                $.map(data.list, function (item) {
+                   var option = new Option(item.value , item.id, true, true);
+                    pastdiseaseSelect.append(option).trigger('change');
+                });
+        });
+    {% endif %}
+/*****Pre populating the multpile selected values in Past Disease Ends here*******/
+/****************Past Disease select multiple dropdown Starts Here************/
+var select2 = $(".select_box_past").select2({
+    tags: true,
+    multiple: true,
+    tokenSeparators: [',', ' '],
+    minimumInputLength: 2,
+    minimumResultsForSearch: 10,
+    ajax: {
+        url: "{% url 'case_history:get_disease_names' %}",
+        dataType: "json",
+        type: "GET",
+        data: function (params) {
+            var queryParameters = {
+                term: params.term
+            }
+            return queryParameters;
+        },
+        processResults: function (data) {
+        list=data.list
+        if(list!=''){
+               return {
+               results: $.map(list, function (item) {
+                return {
+                    text: item.value,
+                    id: item.id,
+                }
+                $('#diseases_past').val("");
+                $('#diseases_past-error').remove();
+            })
+        };
+        }
+        else
+        {
+            $('#diseases_past').val("");
+            $('#diseases_past-error').remove();
+            $('#diseases_past').after('<label id="diseases_past-error" class="error" for="diseases_past">Please Select Past Diseases from the options</label>');
+        }
+      }
+    }
+});
+/****************Past Disease select multiple dropdown Ends Here************/
+
+/*****Pre populating the multpile selected values in Present Disease starts here*******/
+    {% if case_id and relation_index_no %}
+        var presentdiseaseSelect = $('.select_box_present');
+        var case_id = $("#case_record_id").val();
+        var realtion_index_no =  $("#relation_index_no_id").val();
+        var present_diseases = 'Present Disease';
+        $.ajax({
+            type: 'GET',
+            url: "{% url 'case_history:get_disease_names' %}",
+            data : { csrfmiddlewaretoken: '{{ csrf_token }}','case_id':case_id,'realtion_index_no':realtion_index_no,'present_diseases':present_diseases },
+            }).then(function (data) {
+                $.map(data.list, function (item) {
+                           var option = new Option(item.value, item.id, true, true);
+                            presentdiseaseSelect.append(option).trigger('change');
+                        });
+                });
+    {% endif %}
+/*****Pre populating the multpile selected values in Present Disease Ends here*******/
+/****************Present Disease select multiple dropdown Starts Here************/
+var select2 = $(".select_box_present").select2({
+    tags: true,
+    multiple: true,
+    tokenSeparators: [',', ' '],
+    minimumInputLength: 2,
+    minimumResultsForSearch: 10,
+    ajax: {
+        url: "{% url 'case_history:get_disease_names' %}",
+        dataType: "json",
+        type: "GET",
+        data: function (params) {
+            var queryParameters = {
+                term: params.term
+            }
+            return queryParameters;
+        },
+        processResults: function (data) {
+        list=data.list
+        if(list!=''){
+               return {
+               results: $.map(list, function (item) {
+                return {
+                    text: item.value,
+                    id: item.id,
+                }
+                $('#diseases_present').val("");
+                $('#diseases_present-error').remove();
+            })
+        };
+        }
+        else
+        {
+            $('#diseases_present').val("");
+            $('#diseases_present-error').remove();
+            $('#diseases_present').after('<label id="diseases_present-error" class="error" for="diseases_present">Please Select Present Diseases from the options</label>');
+        }
+      }
+    }
+});
+/****************Present Disease select multiple dropdown Ends Here************/
+{% endblock %}

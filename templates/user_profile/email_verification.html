@@ -1,0 +1,14 @@
+{% extends "base_before_login.html"  %}
+{% load i18n staticfiles  %}
+{% block content %}
+        <div class="create_account_wrapper">
+            <div class="regis_success_page email_verification">
+                <div class="login_container registration_container">
+                    <img src="{% static 'images/emailverification_image.svg' %}" alt="Email verification images">
+                    <h2>{% trans 'Verified!' %}</h2>
+                    <p>{{activation_message}}</p>
+                    <a href="{{home_url}}/" class="ok">Ok</a>
+                </div>
+            </div>
+        </div>
+{% endblock %}

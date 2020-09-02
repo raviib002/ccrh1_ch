@@ -1,0 +1,82 @@
+{% load i18n staticfiles notifications_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% trans "CCRH" %}{% endblock %}</title>
+    {% block staticurls %} 
+    <link rel="stylesheet" href="{% static 'css/libraries/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/admin_layout.css' %}">
+    {% endblock %}
+    </head>
+    {% spaceless %}
+    <body class="blue-bg">
+        <!-- Start header section -->
+        <header>
+            <div class="container-fluid">
+                <div id="header-logo">
+                    <a class="icon-logo" href="/gwavecrm"><img src="{% static 'images/HCCR_Logo.png' %}" /></a>
+                </div>
+            </div>
+            <div id="backend-user-tools">
+                    <p class="admin_top_menu click_menu">{% trans 'Welcome ' %}<strong>{% firstof user.get_short_name user.get_username %}</strong> </p>
+                    <a class="noti_welcm" href="{% url 'notifications:all' %}">
+                        <svg class="svg_noti" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="699.428px" height="699.428px" viewBox="0 0 699.428 699.428" style="enable-background:new 0 0 699.428 699.428;" xml:space="preserve">
+                            <path d="M618.666,487.262c-42.119-36.414-72.238-133.176-72.238-246.833c0-86.03-55.298-158.967-132.235-185.676     C409.013,23.715,382.216,0,349.714,0c-32.501,0-59.298,23.715-64.479,54.752C208.298,81.461,153,154.399,153,240.429     c0,113.636-30.097,210.374-72.238,246.833c-23.518,20.35-37.048,49.9-37.048,81.023c0,36.219,29.354,65.572,65.571,65.572     h174.857c0,36.217,29.354,65.57,65.571,65.57c36.217,0,65.571-29.354,65.571-65.57h174.857c36.217,0,65.571-29.354,65.571-65.572     C655.714,537.184,642.206,507.611,618.666,487.262z M109.285,568.285c0-12.064,5.246-23.539,14.36-31.43     c58.555-50.621,94.925-164.213,94.925-296.427c0-72.325,58.818-131.143,131.143-131.143s131.143,58.818,131.143,131.143     c0,132.214,36.37,245.806,94.926,296.427c9.137,7.912,14.36,19.365,14.36,31.43H109.285z"/>
+                        </svg>{% notifications_unread as unread_count %}
+                    {% if unread_count %}{% live_notify_badge %}{% endif %}
+                    </a>
+                    
+                    
+                   <div class="admin_top_mn_outre"> 
+                        <div class="mobile_usr_pic click_menu"><img src="{% static 'images/user.svg' %}" /></div>
+                    <ul class="admin_right_menu">
+                         <li><a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a></li>
+                        <li><a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a></li>
+                    </ul>
+                    </div>
+                </div>
+        </header>
+        <div class="backend_cmn_head_top">
+            <div class="">
+                <h1>{% block top_heading %}{% endblock %}</h1>
+                {% block add_btn %}{% endblock %}
+                <div class="breadcrumbs">
+                       <a href="/en/admin/">{% trans 'Home' %}</a> ›{% block breadcrumbs %} {% endblock %}
+                </div>
+                {% block header_tabs %}
+                {% endblock %}
+            </div>
+        </div>
+        <div class="main_content">
+            <div class="container-fluid">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+     {% include "jsfiles.html" %}
+    </body>
+    {% block jsfilesurls %}{% endblock %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            /******** For On click of Name, displaying logout options - Starts ********/
+            $(function() {
+              $(".click_menu").on("click", function(e) {
+                if ($('.admin_right_menu').hasClass('open')){
+                    $('.admin_right_menu').removeClass('open').hide();
+                }else{
+                    $('.admin_right_menu').addClass('open').show();
+                    e.stopPropagation()
+                }
+              });
+            });
+            /******** For On click of Name, displaying logout options - Ends ********/
+            {% block custom-js %}{% endblock %}
+        });
+    </script>
+    {% endspaceless %}
+</html>
+

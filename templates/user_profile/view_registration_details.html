@@ -1,0 +1,113 @@
+{% extends "base_admin.html" %}
+{% load i18n staticfiles  common_templatetags %}
+{% block content %}
+<!-- banner starts -->
+            <div class="banner_section1 create_section">
+                <div class="create_new_acc_sec approval_statuts">
+                    <form id="admin_approval_reg" class="login_form_container"  action="{% url 'user_profile:view_registration_details' notify_id=notify_id %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+                                <div class="select_option">
+                                        <div class="row">
+                                         <div class="col-sm-12 col-md-4 col-lg-4">
+                                                <div class="form-group">
+                                                   <label>{% trans 'Registration Number' %} <em>*</em></label>
+                                                   <input type="text" placeholder="" class="form-control" value="{% if certificate_upload.pract_reg_no  %}{{certificate_upload.pract_reg_no}}{% endif %}" name="regsr_no">
+                                                </div>
+                                            </div> 
+                                            <div class="col-sm-12 col-md-4 col-lg-4">
+                                                <div class="form-group">
+                                                    <label>{% trans 'Profie Status' %} <em>*</em></label>
+                                                    <select class="form-control state_name prfile_status_id" name="prfile_status_id" id="prfile_status_id_id">
+                                                        <option value="">Please Profile Status</option>
+                                                            <option value="Pending for Approval" {% if aditional_profile.profile_status == 'Pending for Approval' %}selected{% endif %}>{% trans 'Pending for Approval' %}</option>
+                                                            <option value="Approved" {% if aditional_profile.profile_status == 'Approved' %}selected{% endif %}>{% trans 'Approved' %}</option>
+                                                            <option value="Revert" {% if aditional_profile.profile_status ==  'Revert' %}selected{% endif %}>{% trans 'Revert' %}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-4 col-lg-4">
+                                                <div class="form-group"><label>{% trans 'Uploaded Document' %}</label>
+                                                    <a  id="uploaded_doc" href="{% url 'user_profile:uploaded_document_downloaded' doc_id=certificate_upload|get_id:'_id' %}">{{certificate_upload.document_path|get_filename}}</a>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-sm-12 col-md-4 col-lg-4">
+                                                <div class="form-group upload_photo_sec reg_cer_sec">
+                                                    <label>{% trans 'Registration Certificate' %}</label>
+                                                    <div class="choose_afile">
+                                                        <input type="file" name="document_path" class="form-control" id="id_document_path">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-sm-12 col-md-8 col-lg-8 message_dtl" style="display:none">
+                                                <div class="form-group">
+                                                    <label>{% trans 'Message' %} </label>
+                                                   <textarea   placeholder="" class="form-control" value="" name="message" rows="4" cols="5"></textarea >
+                                                </div>
+                                            </div> 
+                                       
+                                    <input type="hidden" value="{{certificate_upload.user_id}}" name="practical_details_id">
+                                    <input type="hidden" value="{{aditional_profile.user_id}}" name="additona_profile_id">
+                                    <input type="hidden" value="{{notify_id}}" name="notify_id">
+                                    <div class="continue_button">
+                                        <button class="go_back" onclick="location.href='{% url 'notifications:read_list' %}'" type="button">{% trans 'Go Back' %} </button>
+                                        <button class="next"  type="submit">Save </button>
+                                    </div>
+                                </div>
+                                </div>  
+                    </form>
+                </div>
+            </div>
+        <!-- banner ends -->
+        <!-- Modal Div for activat button  -Ends --> 
+
+            <div class="">
+                 <div class="modal fade msg_popup" id="cmn_msg_popup" role="dialog">
+                     <div class="modal-dialog delete_conform">
+                         <div class="modal-content">
+                             <div class="modal-header">
+                             <button type="button" class="close" data-dismiss="modal">&times;</button>
+                             </div>
+                             <div class="modal-body">
+                                   <p id="cmn_msg"></p>
+                             </div>
+{#                               <div class="modal-footer">#}
+{#                                   <button type="submit" class="btn btn-danger del-btn" id="ok_dev" data-dismiss="modal">Ok</button>#}
+{#                               </div>#}
+                         </div>
+                     </div>
+                 </div>
+             </div>
+{% endblock %}
+{% block jsfilesurls %}
+<script type="text/javascript" src="{% static 'js/validation.js'%}"></script>
+{% endblock %}
+{% block custom-js %}
+
+ {% if succes_page %}
+        $('#cmn_msg_popup').modal();
+        $('#cmn_msg').text('{{ succes_page }}');
+    {% endif %}
+
+    /********* Based on the tab index adding class of active - starts *******/
+$('button').focus(function() {
+    $("button").removeClass("active");
+    $("this").addClass("active");
+    });
+    
+/********Based on the registration Profile status showing messsgae Starts herer*********/
+var selected_profile = $("#prfile_status_id_id option:selected").text(); 
+if (selected_profile == "Revert"){
+ $(".message_dtl").show();
+}
+$(document.body).on('change',".prfile_status_id",function(){
+    var regg_body_value = $(this).find(":selected").text()
+    if ( regg_body_value == "Revert"){
+        $(".message_dtl").show();
+    }else {
+        $(".message_dtl").hide();
+    }
+});
+/********Based on the registration Profile status showing messsgae Ends herer*********/
+    
+{% endblock %}        

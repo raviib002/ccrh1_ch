@@ -1,0 +1,84 @@
+{% extends "base_admin.html" %}
+
+{% load i18n staticfiles notifications_tags  %}
+
+{% block breadcrumbs %}
+{% trans 'Notifications' %}
+{% endblock %}
+{% block title %}{% trans "CCRH - Notification" %}{% endblock %}
+
+{% block content %}
+{% notifications_unread as unread_count %}
+<!-- Profile right Side Content -->
+<div class="prf_right_sec request_sec">
+    <div class="title_sec noti_bknd">
+        <h3 class="cmn_title">{% trans 'Notifications' %}</h3>
+    </div>
+    <div class="bg_normal_white notification_sec backnd_notifi">
+        
+        <ul class="nav nav-tabs">
+          <li class="unread_notify"><a {% if not read_list %}class="active"{% endif %} href="{% url 'notifications:all' %}">{% trans 'Unread' %}</a></li>
+          <li class="read_notify"><a {% if read_list %}class="active"{% endif %} href="{% url 'notifications:read_list' %}">{% trans 'Read' %}</a></li>
+        </ul>
+        <div class="tab-content">
+              <div id="unread" class="tab-pane {% if not read_list %}active{% endif %}">
+                    <div class="common_table table-responsive table_position">
+                        <table class="table bg_grey_hover">
+                            <tbody>
+                                  {% for notice in unread_notify %}
+                                    <tr>
+                                        <td class="no_circle">
+                                            <p class="color_{{ notice.actor.first_name|slice:"1"|lower }}">{{ notice.actor.first_name|slice:"1" }}</p>
+                                        </td>
+                                        <td>
+                                            <h5><a id="view_notify" href="{% url 'user_profile:view_registration_details' notify_id=notice.id %}">{{ notice.verb|capfirst|truncatechars:120 }}</a></h5>
+                                        </td>
+                                        <td class="noti_wdth">
+                                            <h6>{{ notice.timestamp|date:'Y-m-d h:i A' }}</h6>
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="8" class="text-center">{% trans 'No Records Found' %}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                      
+                    </div>
+              </div>
+              <div id="read" class="tab-pane {% if read_list %}active{% else %}fade{% endif %}">
+                    <div class="common_table table-responsive table_position">
+                        <table class="table bg_grey_hover">
+                            <tbody>
+                               {% for notice in read_notify %} 
+                                    <tr>
+                                        <td class="no_circle">
+                                            <p class="color_{{ notice.actor.first_name|slice:"1"|lower }}">{{ notice.actor.first_name|slice:"1" }}</p>
+                                        </td>
+                                        <td>
+                                            <h5><a id="view_notify" href="{% url 'user_profile:view_registration_details' notify_id=notice.id %}">{{ notice.verb|capfirst|truncatechars:120 }}</a></h5>
+                                        </td>
+                                        <td class="noti_wdth">
+                                            <h6>{{ notice.timestamp|date:'Y-m-d h:i A' }}</h6>
+                                           <a id="id_delete" class="delet_link" href="{% url 'notifications:delete' notice.slug %}">Delete</a>
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="8" class="text-center">{% trans 'No Records Found' %}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+              </div>
+        </div>
+    </div>
+</div>
+
+<!-- Profile right Side Content End -->
+{% endblock %}
+
+{% block custom-js %}
+
+{% endblock %}

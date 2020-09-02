@@ -1,0 +1,1615 @@
+{% extends "base.html" %}
+{% load i18n staticfiles common_templatetags%}
+{% block page_heading %}{% trans 'Add Clinical Case' %}{% endblock %}
+{% block breadcrumbs %}
+{% trans 'Gynaecological History' %}
+{% endblock %}
+{% block content %}
+{% include 'case_history/add_case_menus.html' %}
+        <!-- add case content -->
+        <div class="add_case_content mental_history_blk gynaecological_history">
+            <div class="Patient_information add_case_container" id="patientInformation">
+                <div class="row">
+                    <div id="alert_message" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
+                        <div id="alert_message_strong"></div>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="summary_title">
+                        <div class="title d-flex justify-content-between">
+                            <h2 class="heading">{% trans 'Gynaecological History' %}</h2>
+                            <div class="arrow" id="caseSummaryArrow">
+                                <svg width="15.208" height="15.208" viewBox="0 0 15.208 15.208">
+                                    <defs>
+                                        <style>
+                                            .a {
+                                            fill: #1c4976;
+                                            }
+                                        </style>
+                                    </defs>
+                                    <path class="a" d="M7.6,0a7.6,7.6,0,1,0,7.6,7.6A7.626,7.626,0,0,0,7.6,0Zm2.661,11.026L8.935,12.356,4.182,7.6,8.935,2.851l1.331,1.331L6.844,7.6Z" transform="translate(0 15.208) rotate(-90)"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="add_summary_content">
+                            <p>Maecenas faucibus dignissim euismod. Ut suscipit sed sem in fringilla.
+                                Duis eu turpis at leo mattis dignissim. Maecenas felis leo, consequat
+                                nec nisl tempus, vulputate viverra mauris. Nullam ullamcorper, magna eu
+                                efficitur ultricies, nulla justovu lputate viverra mauris. Nullam
+                                ullamcorper, Maecenas faucibus dignissim euismod. Ut suscipit sed sem in
+                                fringilla. Duis eu turpis at leo mattis dignissim. Maecenas felis leo,
+                                consequat nec nisl tempus, vulputates. Nullam
+                            </p>
+                            <p class="para">Maecenas faucibus dignissim</p>
+                            <p>Maecenas faucibus dignissim euismod. Ut suscipit sed sem in fringilla.
+                                Duis eu turpis at leo mattis dignissim. Maecenas felis leo, consequat
+                                nec nisl tempus, vulputate viverra mauris. Nullam ullamcorper, magna eu
+                                efficitur ultricies, nulla justovu lputate viverra mauris. Nullam
+                                ullamcorper, Maecenas faucibus dignissim euismod. Ut suscipit sed sem in
+                                fringilla. Duis eu turpis at leo mattis dignissim. Maecenas felis leo,
+                                consequat nec nisl tempus, vulputates. Nullam
+                            </p>
+                            <ul class="list">
+                                <li>
+                                    <img src="{% static 'images/case_summary_tick_image.svg' %}" alt="case summary image">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                </li>
+                                <li>
+                                    <img src="{% static 'images/case_summary_tick_image.svg' %}" alt="case summary image">
+                                    <p>Sed et diam at nulla tristique bibendum.</p>
+                                </li>
+                                <li>
+                                    <img src="{% static 'images/case_summary_tick_image.svg' %}" alt="case summary image">
+                                    <p>Vestibulum porta nunc sit amet turpis fringilla, interdum porta
+                                        ligula laoreet.
+                                    </p>
+                                </li>
+                                <li>
+                                    <img src="{% static 'images/case_summary_tick_image.svg' %}" alt="case summary image">
+                                    <p>Etiam sodales erat nec lobortis rutrum.</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <hr class="segregation_line">
+                    </div>
+                    <div class="physical_general_block">
+                        <div class="physical_general_div {% if abnormal_dise_sav or ho_gyna_surgeries or menstrual_save or complaints_index_no or other_index_no or contraceptive_index_no %}active{% endif %}">
+                            <div class="phy_gen_block_col">
+                                <div class="physical_general_detail {% if gyno_record.menarche.age %}selected{% endif %} d-flex">
+                                    <div class="image">
+                                        <svg id="notepad" width="28.899" height="33.074" viewBox="0 0 28.899 33.074">
+                                            <g id="Group_1669" data-name="Group 1669" transform="translate(0.256 1.041)">
+                                                <g id="Group_1668" data-name="Group 1668" transform="translate(0 0)">
+                                                    <path id="Path_2808" data-name="Path 2808" d="M21.586,0H2.089A2.007,2.007,0,0,0,0,1.908V25.644a3.824,3.824,0,0,0,.016.43H0a3.107,3.107,0,0,0,3.21,3.18H20.193a3.345,3.345,0,0,0,3.482-3.18V1.908A2.007,2.007,0,0,0,21.586,0Zm.7,26.074a2.007,2.007,0,0,1-2.089,1.908H3.21a1.918,1.918,0,0,1-1.818-1.911c0-.121,0-9.717,0-17.085V6.359h20.89Zm0-20.986H1.393V1.908a.668.668,0,0,1,.7-.636h19.5a.668.668,0,0,1,.7.636Z" transform="translate(0 0)" fill="#b4bbc6"></path>
+                                                    <path id="Path_2810" data-name="Path 2810" d="M48.62,209.124h12.4a.565.565,0,1,0,0-1.124H48.62a.565.565,0,1,0,0,1.124Z" transform="translate(-44.079 -197.114)" fill="#b4bbc6"></path>
+                                                    <path id="Path_2811" data-name="Path 2811" d="M135.279,304h-6.617a.569.569,0,1,0,0,1.124h6.617a.569.569,0,1,0,0-1.124Z" transform="translate(-124.078 -285.797)" fill="#b4bbc6"></path>
+                                                    <path id="Path_2812" data-name="Path 2812" d="M48.62,257.124h12.4a.565.565,0,1,0,0-1.124H48.62a.565.565,0,1,0,0,1.124Z" transform="translate(-44.079 -241.455)" fill="#b4bbc6"></path>
+                                                    <g id="Path_2813" data-name="Path 2813" transform="translate(16.263 19.653)" fill="#b4bbc6">
+                                                        <path d="M 6.18994140625 11.02988147735596 C 3.521191358566284 11.02988147735596 1.350001454353333 8.858691215515137 1.350001454353333 6.18994140625 C 1.350001454353333 3.521191358566284 3.521191358566284 1.350001454353333 6.18994140625 1.350001454353333 C 8.858691215515137 1.350001454353333 11.02988147735596 3.521191358566284 11.02988147735596 6.18994140625 C 11.02988147735596 8.858691215515137 8.858691215515137 11.02988147735596 6.18994140625 11.02988147735596 Z" stroke="none"></path>
+                                                        <path d="M 6.18994140625 2.70000171661377 C 4.265581130981445 2.70000171661377 2.70000171661377 4.265581130981445 2.70000171661377 6.18994140625 C 2.70000171661377 8.114301681518555 4.265581130981445 9.67988109588623 6.18994140625 9.67988109588623 C 8.114301681518555 9.67988109588623 9.67988109588623 8.114301681518555 9.67988109588623 6.18994140625 C 9.67988109588623 4.265581130981445 8.114301681518555 2.70000171661377 6.18994140625 2.70000171661377 M 6.18994140625 9.5367431640625e-07 C 9.608551025390625 9.5367431640625e-07 12.37988185882568 2.771331787109375 12.37988185882568 6.18994140625 C 12.37988185882568 9.608551025390625 9.608551025390625 12.37988185882568 6.18994140625 12.37988185882568 C 2.771331787109375 12.37988185882568 9.5367431640625e-07 9.608551025390625 9.5367431640625e-07 6.18994140625 C 9.5367431640625e-07 2.771331787109375 2.771331787109375 9.5367431640625e-07 6.18994140625 9.5367431640625e-07 Z" stroke="none" fill="#f5f8f8"></path>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                            <rect id="Rectangle_1807" data-name="Rectangle 1807" width="27" height="6.3" fill="#f5f8f8"></rect>
+                                        </svg>
+                                    </div>
+                                    <div class="physical_general_label">
+                                       <div class="label_div">
+                                           <span class="label_image">{% trans 'Menarche' %} <em>*</em>   </span>
+                                       </div>
+                                       <span class="arrow_image" id="physicalGeneralArrow">
+                                       {% if gyno_record.menarche.age or gyno_record.menarche.date or gyno_record.menarche.related_complaints_during %}<span class="view_close_btn">View</span>{% endif %}
+                                       <img src="{% static 'images/right_arrow_image.png' %}" alt="right arrow image">
+                                       </span>
+                                   </div>
+                                    <!-- menarche -->
+                                    <div class="physical_genral_right_block">
+                                        <div class="physical_general_appearence" id="addAppearence">
+                                            <div class="appearence_blk history_suggestion">
+                                                <form id="id_menarche_form_id" class="" action="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif%}" method="post">{% csrf_token %}
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <h2 class="heading" id="backArrow"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                        </div>
+                                                        <div class="col-sm-12 col-md-3 mar-top padding-right">
+                                                            <div class="form-group history_of_suppression">
+                                                                <label>{{ menarche_form.age.label }}</label>
+                                                                {{ menarche_form.age }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12 col-md-3 padding-right">
+                                                            <div class="form-group history_of_suppression">
+                                                            <label>{{ menarche_form.date.label }}</label>
+                                                                {{ menarche_form.date }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 emp"></div>
+                                                        <div class="col-sm-12 col-md-6 padding-right">
+                                                            <div class="form-group history_of_suppression">
+                                                                <label>{{ menarche_form.related_complaints_during.label }}</label>
+                                                                {{ menarche_form.related_complaints_during }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <div class="button">
+                                                                <input type="submit" id="menarche_form_id" class="save checking_value" value="{% trans 'Save' %}" name="menarche"/>
+                                                                <a href="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}" class="cancel">{% trans 'Cancel' %}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- menarche ends -->
+                                </div>
+                                {% if gyno_record.menarche.age or gyno_record.menarche.date or gyno_record.menarche.related_complaints_during %}
+                                <div class="desire_success_block">
+                                    <div class="family_history_success gynaecological_success">
+                                        <div class="label">  
+                                                <span class="label_detail"><span>{% trans 'Menarche' %}</span> - 
+                                                    {% if gyno_record.menarche.age %}{{gyno_record.menarche.age}}{% endif %}
+                                                    {% if gyno_record.menarche.date %},&nbsp;{{gyno_record.menarche.date|date:"Y-M-d"}}{% endif %}
+                                                    {% if gyno_record.menarche.related_complaints_during %},&nbsp;{{gyno_record.menarche.related_complaints_during}}{% endif %}
+                                                </span>
+                                        </div>
+                                        <div class="acton">
+                                            <span class="delete">
+                                                <a href="javascript:void(0);">
+                                                    <img src="{% static 'images/trash.svg' %}" alt="delete image" data-info="menarche" data-info1="Menarche" class="delete_entity">
+                                                </a>
+                                            </span>
+                                            <span class="edit">
+                                                <img src="{% static 'images/edit_img.svg' %}" alt="">
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                
+                            </div>
+                            <div class="phy_gen_block_col">
+                                <div class="physical_general_detail {% if gyno_record.menstrual_cycle_particulars.lmp.date %}selected{% endif %} d-flex {% if complaints_index_no or menstrual_save %}active{% endif %}">
+                                    <div class="image">
+                                        <svg id="notepad" width="28.899" height="33.074" viewBox="0 0 28.899 33.074">
+                                            <g id="Group_1669" data-name="Group 1669" transform="translate(0.256 1.041)">
+                                                <g id="Group_1668" data-name="Group 1668" transform="translate(0 0)">
+                                                    <path id="Path_2808" data-name="Path 2808" d="M21.586,0H2.089A2.007,2.007,0,0,0,0,1.908V25.644a3.824,3.824,0,0,0,.016.43H0a3.107,3.107,0,0,0,3.21,3.18H20.193a3.345,3.345,0,0,0,3.482-3.18V1.908A2.007,2.007,0,0,0,21.586,0Zm.7,26.074a2.007,2.007,0,0,1-2.089,1.908H3.21a1.918,1.918,0,0,1-1.818-1.911c0-.121,0-9.717,0-17.085V6.359h20.89Zm0-20.986H1.393V1.908a.668.668,0,0,1,.7-.636h19.5a.668.668,0,0,1,.7.636Z" transform="translate(0 0)" fill="#b4bbc6"></path>
+                                                    <path id="Path_2810" data-name="Path 2810" d="M48.62,209.124h12.4a.565.565,0,1,0,0-1.124H48.62a.565.565,0,1,0,0,1.124Z" transform="translate(-44.079 -197.114)" fill="#b4bbc6"></path>
+                                                    <path id="Path_2811" data-name="Path 2811" d="M135.279,304h-6.617a.569.569,0,1,0,0,1.124h6.617a.569.569,0,1,0,0-1.124Z" transform="translate(-124.078 -285.797)" fill="#b4bbc6"></path>
+                                                    <path id="Path_2812" data-name="Path 2812" d="M48.62,257.124h12.4a.565.565,0,1,0,0-1.124H48.62a.565.565,0,1,0,0,1.124Z" transform="translate(-44.079 -241.455)" fill="#b4bbc6"></path>
+                                                    <g id="Path_2813" data-name="Path 2813" transform="translate(16.263 19.653)" fill="#b4bbc6">
+                                                        <path d="M 6.18994140625 11.02988147735596 C 3.521191358566284 11.02988147735596 1.350001454353333 8.858691215515137 1.350001454353333 6.18994140625 C 1.350001454353333 3.521191358566284 3.521191358566284 1.350001454353333 6.18994140625 1.350001454353333 C 8.858691215515137 1.350001454353333 11.02988147735596 3.521191358566284 11.02988147735596 6.18994140625 C 11.02988147735596 8.858691215515137 8.858691215515137 11.02988147735596 6.18994140625 11.02988147735596 Z" stroke="none"></path>
+                                                        <path d="M 6.18994140625 2.70000171661377 C 4.265581130981445 2.70000171661377 2.70000171661377 4.265581130981445 2.70000171661377 6.18994140625 C 2.70000171661377 8.114301681518555 4.265581130981445 9.67988109588623 6.18994140625 9.67988109588623 C 8.114301681518555 9.67988109588623 9.67988109588623 8.114301681518555 9.67988109588623 6.18994140625 C 9.67988109588623 4.265581130981445 8.114301681518555 2.70000171661377 6.18994140625 2.70000171661377 M 6.18994140625 9.5367431640625e-07 C 9.608551025390625 9.5367431640625e-07 12.37988185882568 2.771331787109375 12.37988185882568 6.18994140625 C 12.37988185882568 9.608551025390625 9.608551025390625 12.37988185882568 6.18994140625 12.37988185882568 C 2.771331787109375 12.37988185882568 9.5367431640625e-07 9.608551025390625 9.5367431640625e-07 6.18994140625 C 9.5367431640625e-07 2.771331787109375 2.771331787109375 9.5367431640625e-07 6.18994140625 9.5367431640625e-07 Z" stroke="none" fill="#f5f8f8"></path>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                            <rect id="Rectangle_1807" data-name="Rectangle 1807" width="27" height="6.3" fill="#f5f8f8"></rect>
+                                        </svg>
+                                    </div>
+                                    <div class="physical_general_label">
+                                        <div class="label_div">
+                                            <span class="label_image">{% trans 'Menstrual Cycle Particulars' %} <em>* </em></span>
+                                        </div>
+                                        <span class="arrow_image" id="physicalGeneralArrow">
+                                        {% if gyno_record.menstrual_cycle_particulars.lmp.date or gyno_record.menstrual_cycle_particulars.bleeding.days or gyno_record.menstrual_cycle_particulars.cycle.cycle or gyno_record.menstrual_cycle_particulars.colour.colour or gyno_record.menstrual_cycle_particulars.consistency.consistency or gyno_record.menstrual_cycle_particulars.odour.odour or gyno_record.menstrual_cycle_particulars.character.character or gyno_record.menstrual_cycle_particulars.dysmenorrhoea.dysmenorrhoea or gyno_record.menstrual_cycle_particulars.complaints|length > 0 %}<span class="view_close_btn">View</span>{% endif %}
+                                        <img src="{% static 'images/right_arrow_image.png' %}" alt="right arrow image">
+                                        </span>
+                                    </div>
+                                    
+                                    <!-- mensural cycle section -->
+                                    <div class="physical_genral_right_block {% if complaints_index_no %}active{% endif %}">
+                                        <div class="physical_general_appearence {% if complaints_index_no %}active{% endif %}" id="addAppearence">
+                                            <div class="appearence_blk">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h2 class="heading" id="backArrow"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                    </div>
+                                                    <div class="col-sm-12 radio_button_block">
+                                                        <div class="appetite_block">
+                                                            <label class="appetite_radio mens_lmp_edit">
+                                                            <input type="checkbox" {% if lmp_data %}checked{% endif %} id="radioCheck" name="" value="LMP">
+                                                            <span>L.M.P</span>
+                                                            </label>
+                                                            <div class="appetite_sub_div">
+                                                                <div class="appetite_sub_block">
+                                                                    <form id="id_lmp_form_id" class="" action="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif%}" method="post">{% csrf_token %}
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <h2 class="heading"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top">
+                                                                                <div class="form-group">
+                                                                                    <label>{{lmp_form.date.label}}</label>
+                                                                                    {{lmp_form.date}}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="button">
+                                                                                    <input type="submit" id="lmp_form_id" class="save checking_value" value="{% trans 'Save' %}" name="lmp_form"/>
+                                                                                    <a href="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}" class="cancel">{% trans 'Cancel' %}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <label class="appetite_radio mens_bleeding_edit">
+                                                            <input type="checkbox" {% if bleeding_data %}checked{% endif %} id="radioCheck" name="" value="Bleeding">
+                                                            <span>Bleeding</span>
+                                                            </label>
+                                                            <div class="appetite_sub_div">
+                                                                <div class="appetite_sub_block">
+                                                                    <form id="id_bleeding_form_id" class="" action="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif%}" method="post">{% csrf_token %}
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <h2 class="heading"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top">
+                                                                                <div class="form-group">
+                                                                                    <label>{{bleeding_form.days.label}}</label>
+                                                                                    {{bleeding_form.days}}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top bleeding_class">
+                                                                                <div class="form-group">
+                                                                                    <label>{{bleeding_form.quantity.label}}</label>
+                                                                                    {{bleeding_form.quantity}}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="button">
+                                                                                    <input type="submit" id="bleeding_form_id" class="save checking_value" value="{% trans 'Save' %}" name="bleeding_form"/>
+                                                                                    <a href="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}" class="cancel">{% trans 'Cancel' %}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <label class="appetite_radio mens_cycle_edit">
+                                                            <input type="checkbox" {% if cycle_data %}checked{% endif %} id="radioCheck" name="" value="Cycle">
+                                                            <span>Cycle</span>
+                                                            </label>
+                                                            <div class="appetite_sub_div">
+                                                                <div class="appetite_sub_block">
+                                                                    <form id="id_cycle_form_id" class="" action="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif%}" method="post">{% csrf_token %}
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <h2 class="heading"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top">
+                                                                                <div class="form-group">
+                                                                                    <label>{{cycle_form.cycle.label}}</label>
+                                                                                    {{cycle_form.cycle}}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top cycle_remarks" {% if gyno_record.menstrual_cycle_particulars.cycle.remarks %}style="display: block;"{% else %}style="display: none;"{% endif %}>
+                                                                                <div class="form-group">
+                                                                                    <label>{{cycle_form.remarks.label}}</label>
+                                                                                    {{cycle_form.remarks}}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="button">
+                                                                                    <input type="submit" id="cycle_form_id" class="save checking_value" value="{% trans 'Save' %}" name="cycle_form"/>
+                                                                                    <a href="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}" class="cancel">{% trans 'Cancel' %}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <label class="appetite_radio mens_colour_edit">
+                                                            <input type="checkbox" {% if colour_data %}checked{% endif %} id="radioCheck" name="" value="Colour">
+                                                            <span>Colour</span>
+                                                            </label>
+                                                            <div class="appetite_sub_div">
+                                                                <div class="appetite_sub_block">
+                                                                    <form id="id_color_form_id" class="" action="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif%}" method="post">{% csrf_token %}
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <h2 class="heading"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top">
+                                                                                <div class="form-group">
+                                                                                    <label>{{color_form.colour.label}}</label>
+                                                                                    {{color_form.colour}}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top colour_remarks" {% if gyno_record.menstrual_cycle_particulars.colour.other_remarks %}style="display: block;"{% else %}style="display: none;"{% endif %}>
+                                                                                <div class="form-group">
+                                                                                    <label>{{color_form.other_remarks.label}}</label>
+                                                                                    {{color_form.other_remarks}}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="button">
+                                                                                    <input type="submit" id="color_form_id" class="save checking_value" value="{% trans 'Save' %}" name="color_form"/>
+                                                                                    <a href="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}" class="cancel">{% trans 'Cancel' %}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <label class="appetite_radio mens_consistency_edit">
+                                                            <input type="checkbox" {% if consis_data %}checked{% endif %} id="radioCheck" name="" value="Consistency">
+                                                            <span>Consistency</span>
+                                                            </label>
+                                                            <div class="appetite_sub_div">
+                                                                <div class="appetite_sub_block">
+                                                                    <form id="id_consis_form_id" class="" action="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif%}" method="post">{% csrf_token %}
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <h2 class="heading"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top">
+                                                                                <div class="form-group">
+                                                                                    <label>{{consis_form.consistency.label}}</label>
+                                                                                    {{consis_form.consistency}}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="button">
+                                                                                    <input type="submit" id="consis_form_id" class="save checking_value"  value="{% trans 'Save' %}" name="consis_form"/>
+                                                                                    <a href="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}" class="cancel">{% trans 'Cancel' %}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <label class="appetite_radio mens_odour_edit">
+                                                            <input type="checkbox" {% if odour_data %}checked{% endif %} id="radioCheck" name="" value="Odour">
+                                                            <span>Odour</span>
+                                                            </label>
+                                                            <div class="appetite_sub_div">
+                                                                <div class="appetite_sub_block">
+                                                                    <form id="id_odur_form_id" class="" action="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif%}" method="post">{% csrf_token %}
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <h2 class="heading"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top">
+                                                                                <div class="form-group">
+                                                                                    <label>{{odur_form.odour.label}}</label>
+                                                                                    {{odur_form.odour}}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top odur_remarks" {% if gyno_record.menstrual_cycle_particulars.odour.remarks %}style="display: block;"{% else %}style="display: none;"{% endif %}>
+                                                                                <div class="form-group">
+                                                                                    <label>{{odur_form.remarks.label}}</label>
+                                                                                    {{odur_form.remarks}}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="button">
+                                                                                    <input type="submit" id="odur_form_id" class="save checking_value" value="{% trans 'Save' %}" name="odur_form"/>
+                                                                                    <a href="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}" class="cancel">{% trans 'Cancel' %}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <label class="appetite_radio mens_character_edit">
+                                                            <input type="checkbox" {% if character_data %}checked{% endif %} id="radioCheck"  name="" value="Character">
+                                                            <span>Character</span>
+                                                            </label>
+                                                            <div class="appetite_sub_div">
+                                                                <div class="appetite_sub_block">
+                                                                    <form id="id_charact_form_id" class="" action="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif%}" method="post">{% csrf_token %}
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <h2 class="heading"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top">
+                                                                                <div class="form-group">
+                                                                                    <label>{{charact_form.character.label}}</label>
+                                                                                    {{charact_form.character}}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top character_remarks" {% if gyno_record.menstrual_cycle_particulars.character.other_remarks %}style="display: block;"{% else %}style="display: none;"{% endif %}>
+                                                                                <div class="form-group">
+                                                                                    <label>{{charact_form.other_remarks.label}}</label>
+                                                                                    {{charact_form.other_remarks}}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="button">
+                                                                                    <input type="submit" id="charact_form_id" class="save checking_value" value="{% trans 'Save' %}" name="charact_form"/>
+                                                                                    <a href="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}" class="cancel">{% trans 'Cancel' %}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <label class="appetite_radio mens_dysmeno_edit">
+                                                            <input type="checkbox" {% if dysmen_data %}checked{% endif %} id="radioCheck" name="" value="Dysmenorrhoea">
+                                                            <span>Dysmenorrhoea</span>
+                                                            </label>
+                                                            <div class="appetite_sub_div">
+                                                                <div class="appetite_sub_block">
+                                                                    <form id="id_dysm_form_id" class="" action="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif%}" method="post">{% csrf_token %}
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <h2 class="heading"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top">
+                                                                                <div class="form-group">
+                                                                                    <label>{{dysm_form.dysmenorrhoea.label}}</label>
+                                                                                    {{dysm_form.dysmenorrhoea}}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top">
+                                                                                <div class="form-group">
+                                                                                    <label>{{dysm_form.complaints.label}}</label>
+                                                                                    {{dysm_form.complaints}}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="button">
+                                                                                    <input type="submit" id="dysm_form_id" class="save checking_value" value="{% trans 'Save' %}" name="dysm_form"/>
+                                                                                    <a href="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}" class="cancel">{% trans 'Cancel' %}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <label class="appetite_radio {% if complaints_index_no %}active{% endif %}">
+                                                            <input type="checkbox" id="radioCheck" name="Menstrual" value="Complaints" {% if complaints_index_no %}checked{% endif %}>
+                                                            <span>Complaints</span>
+                                                            </label>
+                                                            <div class="appetite_sub_div">
+                                                                <div class="appetite_sub_block">
+                                                                    <form id="id_compa_form_id" class="" action="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif%}" method="post">{% csrf_token %}
+                                                                        {% if complaints_index_no %}<input type="hidden" name="complaints_index_no" value="{{complaints_index_no}}">{% endif %}
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <h2 class="heading"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top">
+                                                                                <div class="form-group">
+                                                                                    <label>{{compa_form.complaints.label}}</label>
+                                                                                    {{compa_form.complaints}}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top">
+                                                                                <div class="form-group">
+                                                                                    <label>{{compa_form.remarks.label}}</label>
+                                                                                    {{compa_form.remarks}}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="button">
+                                                                                    <input type="submit" id="compa_form_id" class="save checking_value"  value="{% trans 'Save' %}" name="compa_form"/>
+                                                                                    <a href="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}" class="cancel">{% trans 'Cancel' %}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <label for="" class="show_more">Show More ...</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- mensural cycle section ends -->
+                                </div>
+                                {% if gyno_record.menstrual_cycle_particulars %}
+                                <div class="desire_success_block">
+                                    {% if gyno_record.menstrual_cycle_particulars.lmp.date %}
+                                    <div class="family_history_success gynaecological_success">
+                                        <div class="label">  
+                                                <span class="label_detail"><span>{% trans 'LMP' %}</span> - 
+                                                    {{gyno_record.menstrual_cycle_particulars.lmp.date|date:"Y-M-d"}}
+                                                </span>
+                                        </div>
+                                        <div class="acton">
+                                            <span class="delete">
+                                                <a href="javascript:void(0);">
+                                                    <img src="{% static 'images/trash.svg' %}" alt="delete image" data-info="lmp" data-info1="LMP" class="delete_entity">
+                                                </a>
+                                            </span>
+                                            <span class="edit" id="mens_lmp_edit">
+                                                <img src="{% static 'images/edit_img.svg' %}" alt="">
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    
+                                    {% if gyno_record.menstrual_cycle_particulars.bleeding.days %}
+                                    <div class="family_history_success gynaecological_success">
+                                        <div class="label">  
+                                                <span class="label_detail"><span>{% trans 'Bleeding' %}</span> - 
+                                                    {% if gyno_record.menstrual_cycle_particulars.bleeding.days %}{{gyno_record.menstrual_cycle_particulars.bleeding.days}}{% endif %}
+                                                    {% if gyno_record.menstrual_cycle_particulars.bleeding.quantity  %},&nbsp;{{gyno_record.menstrual_cycle_particulars.bleeding.quantity}}{% endif %}
+                                                </span>
+                                        </div>
+                                        <div class="acton">
+                                            <span class="delete">
+                                                <a href="javascript:void(0);">
+                                                    <img src="{% static 'images/trash.svg' %}" alt="delete image" data-info="bleeding" data-info1="Bleeding" class="delete_entity">
+                                                </a>
+                                            </span>
+                                            <span class="edit" id="mens_bleeding_edit">
+                                                <img src="{% static 'images/edit_img.svg' %}" alt="">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% if gyno_record.menstrual_cycle_particulars.cycle.cycle %}
+                                    <div class="family_history_success gynaecological_success">
+                                        <div class="label">  
+                                                <span class="label_detail"><span>{% trans 'Cycle' %}</span> - 
+                                                    {% if gyno_record.menstrual_cycle_particulars.cycle.cycle %}{{gyno_record.menstrual_cycle_particulars.cycle.cycle}}{% endif %}
+                                                    {% if gyno_record.menstrual_cycle_particulars.cycle.remarks %},&nbsp;{{gyno_record.menstrual_cycle_particulars.cycle.remarks}}{% endif %}
+                                                </span>
+                                        </div>
+                                        <div class="acton">
+                                            <span class="delete">
+                                                <a href="javascript:void(0);">
+                                                    <img src="{% static 'images/trash.svg' %}" alt="delete image" data-info="cycle" data-info1="Cycle" class="delete_entity">
+                                                </a>
+                                            </span>
+                                            <span class="edit" id="mens_cycle_edit">
+                                                <img src="{% static 'images/edit_img.svg' %}" alt="">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% if gyno_record.menstrual_cycle_particulars.colour.colour %}
+                                    <div class="family_history_success gynaecological_success">
+                                        <div class="label">  
+                                                <span class="label_detail"><span>{% trans 'Colour' %}</span> - 
+                                                    {% if gyno_record.menstrual_cycle_particulars.colour.colour %}{{gyno_record.menstrual_cycle_particulars.colour.colour}}{% endif %}
+                                                    {% if gyno_record.menstrual_cycle_particulars.colour.other_remarks %},&nbsp;{{gyno_record.menstrual_cycle_particulars.colour.other_remarks}}{% endif %}
+                                                </span>
+                                        </div>
+                                        <div class="acton">
+                                            <span class="delete">
+                                                <a href="javascript:void(0);">
+                                                    <img src="{% static 'images/trash.svg' %}" alt="delete image" data-info="colour" data-info1="Color" class="delete_entity">
+                                                </a>
+                                            </span>
+                                            <span class="edit" id="mens_colour_edit">
+                                                <img src="{% static 'images/edit_img.svg' %}" alt="">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% if gyno_record.menstrual_cycle_particulars.consistency.consistency %}
+                                    <div class="family_history_success gynaecological_success">
+                                        <div class="label">  
+                                                <span class="label_detail"><span>{% trans 'Consistency' %}</span> - 
+                                                    {{gyno_record.menstrual_cycle_particulars.consistency.consistency|get_string_value}}
+                                                </span>
+                                        </div>
+                                        <div class="acton">
+                                            <span class="delete">
+                                                <a href="javascript:void(0);">
+                                                    <img src="{% static 'images/trash.svg' %}" alt="delete image" data-info="consistency" data-info1="Consistency" class="delete_entity">
+                                                </a>
+                                            </span>
+                                            <span class="edit" id="mens_consistency_edit">
+                                                <img src="{% static 'images/edit_img.svg' %}" alt="">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% if gyno_record.menstrual_cycle_particulars.odour.odour %}
+                                    <div class="family_history_success gynaecological_success">
+                                        <div class="label">  
+                                                <span class="label_detail"><span>{% trans 'Odour' %}</span> - 
+                                                    {% if gyno_record.menstrual_cycle_particulars.odour.odour %}{{gyno_record.menstrual_cycle_particulars.odour.odour}}{% endif %}
+                                                    {% if gyno_record.menstrual_cycle_particulars.odour.remarks %},&nbsp;{{gyno_record.menstrual_cycle_particulars.odour.remarks}}{% endif %}
+                                                </span>
+                                        </div>
+                                        <div class="acton">
+                                            <span class="delete">
+                                                <a href="javascript:void(0);">
+                                                    <img src="{% static 'images/trash.svg' %}" alt="delete image" data-info="odour" data-info1="Odour" class="delete_entity">
+                                                </a>
+                                            </span>
+                                            <span class="edit" id="mens_odour_edit">
+                                                <img src="{% static 'images/edit_img.svg' %}" alt="">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% if gyno_record.menstrual_cycle_particulars.character.character %}
+                                    <div class="family_history_success gynaecological_success">
+                                        <div class="label">  
+                                                <span class="label_detail"><span>{% trans 'Character' %}</span> - 
+                                                    {% if gyno_record.menstrual_cycle_particulars.character.character %}{{gyno_record.menstrual_cycle_particulars.character.character}}{% endif %}
+                                                    {% if gyno_record.menstrual_cycle_particulars.character.other_remarks %},&nbsp;{{gyno_record.menstrual_cycle_particulars.character.other_remarks}}{% endif %}
+                                                </span>
+                                        </div>
+                                        <div class="acton">
+                                            <span class="delete">
+                                                <a href="javascript:void(0);">
+                                                    <img src="{% static 'images/trash.svg' %}" alt="delete image" data-info="character" data-info1="Character" class="delete_entity">
+                                                </a>
+                                            </span>
+                                            <span class="edit" id="mens_character_edit">
+                                                <img src="{% static 'images/edit_img.svg' %}" alt="">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% if gyno_record.menstrual_cycle_particulars.dysmenorrhoea.dysmenorrhoea %}
+                                    <div class="family_history_success gynaecological_success">
+                                        <div class="label">  
+                                                <span class="label_detail"><span>{% trans 'Dysmenorrhoea' %}</span> - 
+                                                    {% if gyno_record.menstrual_cycle_particulars.dysmenorrhoea.dysmenorrhoea %}{{gyno_record.menstrual_cycle_particulars.dysmenorrhoea.dysmenorrhoea}}{% endif %}
+                                                    {% if gyno_record.menstrual_cycle_particulars.dysmenorrhoea.complaints %},&nbsp;{{gyno_record.menstrual_cycle_particulars.dysmenorrhoea.complaints}}{% endif %}
+                                                </span>
+                                        </div>
+                                        <div class="acton">
+                                            <span class="delete">
+                                                <a href="javascript:void(0);">
+                                                    <img src="{% static 'images/trash.svg' %}" alt="delete image" data-info="dysmenorrhoea" data-info1="Dysmenorrhoea" class="delete_entity">
+                                                </a>
+                                            </span>
+                                            <span class="edit" id="mens_dysmeno_edit">
+                                                <img src="{% static 'images/edit_img.svg' %}" alt="">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% if gyno_record.menstrual_cycle_particulars.complaints|length > 0 %}
+                                    {% for i in gyno_record.menstrual_cycle_particulars.complaints %}
+                                    <div class="family_history_success gynaecological_success">
+                                        <div class="label">  
+                                                <span class="label_detail"><span>{% trans 'Complaints' %}</span> - 
+                                                    {% if i.complaints %}{{i.complaints}}{% endif %}
+                                                    {% if i.remarks %},&nbsp;{{i.remarks}}{% endif %}
+                                                </span>
+                                        </div>
+                                        <div class="acton">
+                                            <span class="delete">
+                                                <a href="javascript:void(0);">
+                                                    <img src="{% static 'images/trash.svg' %}" alt="delete image" data-info="complaints" data-info1="Complaints" data-info2="{{forloop.counter}}" class="delete_entity">
+                                                </a>
+                                            </span>
+                                            <span class="edit">
+                                                <a href="{% url 'case_history:gynaecological_history' case_id=case_id %}?complaints_index_no={{forloop.counter}}" id="edit_other">
+                                                    <img src={% static "images/edit_img.svg" %} alt="edit image">
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="phy_gen_block_col">
+                                <div class="physical_general_detail {% if gyno_record.abnormal_discharge.leucorrhea.quantity or gyno_record.abnormal_discharge.bleeding_per_vagina.quantity %}selected{% endif %} d-flex {% if abnormal_dise_sav %}active{% endif %}">
+                                    <div class="image">
+                                        <svg id="notepad" width="28.899" height="33.074" viewBox="0 0 28.899 33.074">
+                                            <g id="Group_1669" data-name="Group 1669" transform="translate(0.256 1.041)">
+                                                <g id="Group_1668" data-name="Group 1668" transform="translate(0 0)">
+                                                    <path id="Path_2808" data-name="Path 2808" d="M21.586,0H2.089A2.007,2.007,0,0,0,0,1.908V25.644a3.824,3.824,0,0,0,.016.43H0a3.107,3.107,0,0,0,3.21,3.18H20.193a3.345,3.345,0,0,0,3.482-3.18V1.908A2.007,2.007,0,0,0,21.586,0Zm.7,26.074a2.007,2.007,0,0,1-2.089,1.908H3.21a1.918,1.918,0,0,1-1.818-1.911c0-.121,0-9.717,0-17.085V6.359h20.89Zm0-20.986H1.393V1.908a.668.668,0,0,1,.7-.636h19.5a.668.668,0,0,1,.7.636Z" transform="translate(0 0)" fill="#b4bbc6"></path>
+                                                    <path id="Path_2810" data-name="Path 2810" d="M48.62,209.124h12.4a.565.565,0,1,0,0-1.124H48.62a.565.565,0,1,0,0,1.124Z" transform="translate(-44.079 -197.114)" fill="#b4bbc6"></path>
+                                                    <path id="Path_2811" data-name="Path 2811" d="M135.279,304h-6.617a.569.569,0,1,0,0,1.124h6.617a.569.569,0,1,0,0-1.124Z" transform="translate(-124.078 -285.797)" fill="#b4bbc6"></path>
+                                                    <path id="Path_2812" data-name="Path 2812" d="M48.62,257.124h12.4a.565.565,0,1,0,0-1.124H48.62a.565.565,0,1,0,0,1.124Z" transform="translate(-44.079 -241.455)" fill="#b4bbc6"></path>
+                                                    <g id="Path_2813" data-name="Path 2813" transform="translate(16.263 19.653)" fill="#b4bbc6">
+                                                        <path d="M 6.18994140625 11.02988147735596 C 3.521191358566284 11.02988147735596 1.350001454353333 8.858691215515137 1.350001454353333 6.18994140625 C 1.350001454353333 3.521191358566284 3.521191358566284 1.350001454353333 6.18994140625 1.350001454353333 C 8.858691215515137 1.350001454353333 11.02988147735596 3.521191358566284 11.02988147735596 6.18994140625 C 11.02988147735596 8.858691215515137 8.858691215515137 11.02988147735596 6.18994140625 11.02988147735596 Z" stroke="none"></path>
+                                                        <path d="M 6.18994140625 2.70000171661377 C 4.265581130981445 2.70000171661377 2.70000171661377 4.265581130981445 2.70000171661377 6.18994140625 C 2.70000171661377 8.114301681518555 4.265581130981445 9.67988109588623 6.18994140625 9.67988109588623 C 8.114301681518555 9.67988109588623 9.67988109588623 8.114301681518555 9.67988109588623 6.18994140625 C 9.67988109588623 4.265581130981445 8.114301681518555 2.70000171661377 6.18994140625 2.70000171661377 M 6.18994140625 9.5367431640625e-07 C 9.608551025390625 9.5367431640625e-07 12.37988185882568 2.771331787109375 12.37988185882568 6.18994140625 C 12.37988185882568 9.608551025390625 9.608551025390625 12.37988185882568 6.18994140625 12.37988185882568 C 2.771331787109375 12.37988185882568 9.5367431640625e-07 9.608551025390625 9.5367431640625e-07 6.18994140625 C 9.5367431640625e-07 2.771331787109375 2.771331787109375 9.5367431640625e-07 6.18994140625 9.5367431640625e-07 Z" stroke="none" fill="#f5f8f8"></path>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                            <rect id="Rectangle_1807" data-name="Rectangle 1807" width="27" height="6.3" fill="#f5f8f8"></rect>
+                                        </svg>
+                                    </div>
+                                    <div class="physical_general_label">
+                                        <div class="label_div">
+                                            <span class="label_image">{% trans 'Abnormal Discharge' %} <em>*</em></span>
+                                        </div>
+                                        <span class="arrow_image" id="physicalGeneralArrow">
+                                            {% if gyno_record.abnormal_discharge.leucorrhea.quantity or gyno_record.abnormal_discharge.leucorrhea.color or gyno_record.abnormal_discharge.leucorrhea.consistency or gyno_record.abnormal_discharge.leucorrhea.stains or gyno_record.abnormal_discharge.leucorrhea.odour or gyno_record.abnormal_discharge.leucorrhea.character or gyno_record.abnormal_discharge.leucorrhea.relation_with_menses or gyno_record.abnormal_discharge.bleeding_per_vagina.color or gyno_record.abnormal_discharge.bleeding_per_vagina.consistency or gyno_record.abnormal_discharge.bleeding_per_vagina.stains or gyno_record.abnormal_discharge.bleeding_per_vagina.odour or gyno_record.abnormal_discharge.bleeding_per_vagina.character or gyno_record.abnormal_discharge.bleeding_per_vagina.relation_with_menses or gyno_record.abnormal_discharge.bleeding_per_vagina.quantity %}
+                                            <span class="view_close_btn">View</span>
+                                            {% endif %}
+                                            <img src="{% static 'images/right_arrow_image.png' %}" alt="right arrow image">
+                                        </span>
+                                    </div>
+                                    <!-- abnormal discharge section -->
+                                    <div class="physical_genral_right_block">
+                                        <div class="physical_general_appearence" id="addAppearence">
+                                            <div class="appearence_blk">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h2 class="heading" id="backArrow"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                    </div>
+                                                    <div class="col-sm-12 radio_button_block">
+                                                        <div class="appetite_block">
+                                                            <label class="appetite_radio abnormal_leucorrhea">
+                                                           <input type="checkbox" id="radioCheck" name="" value="Leucorrhea" {% if gyno_record.abnormal_discharge.leucorrhea.quantity or gyno_record.abnormal_discharge.leucorrhea.color or gyno_record.abnormal_discharge.leucorrhea.consistency or gyno_record.abnormal_discharge.leucorrhea.stains or gyno_record.abnormal_discharge.leucorrhea.odour or gyno_record.abnormal_discharge.leucorrhea.character or gyno_record.abnormal_discharge.leucorrhea.relation_with_menses %}checked{% endif %}>
+                                                            <span>Leucorrhea</span>
+                                                            </label>
+                                                            <div class="appetite_sub_div">
+                                                                <div class="appetite_sub_block">
+                                                                    <form id="id_leu_form" class="" action="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif%}" method="post">{% csrf_token %}
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <h2 class="heading"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ leu_form.quantity.label }}</label>
+                                                                                    {{ leu_form.quantity }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ leu_form.color.label }}</label>
+                                                                                    {{ leu_form.color }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12" style="display:block">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ leu_form.color_others.label }}</label>
+                                                                                    {{ leu_form.color_others }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ leu_form.consistency.label }}</label>
+                                                                                    {{ leu_form.consistency }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12" style="display:block">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ leu_form.consistency_remarks.label }}</label>
+                                                                                    {{ leu_form.consistency_remarks }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ leu_form.stains.label }}</label>
+                                                                                    {{ leu_form.stains }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ leu_form.odour.label }}</label>
+                                                                                    {{ leu_form.odour }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12 leuco_odur_remarks" style="display:none">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ leu_form.odour_other.label }}</label>
+                                                                                    {{ leu_form.odour_other }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="form-group">
+                                                                                   <label>{{ leu_form.character.label }}</label>
+                                                                                    {{ leu_form.character }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12" style="display:block">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ leu_form.character_remarks.label }}</label>
+                                                                                    {{ leu_form.character_remarks }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ leu_form.relation_with_menses.label }}</label>
+                                                                                    {{ leu_form.relation_with_menses }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="button">
+                                                                                    <input id="leu_form" type="submit" class="save checking_value" value="{% trans 'Save' %}" name="abnormal_discharge_leucorrhea"/>
+                                                                                    <a href="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}" class="cancel">{% trans 'Cancel' %}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <label class="appetite_radio abnormal_bleeding">
+                                                          <input type="checkbox" id="BleedinPerVagina" name="" value="BleedinPerVagina" {% if gyno_record.abnormal_discharge.bleeding_per_vagina.color or gyno_record.abnormal_discharge.bleeding_per_vagina.consistency or gyno_record.abnormal_discharge.bleeding_per_vagina.stains or gyno_record.abnormal_discharge.bleeding_per_vagina.odour or gyno_record.abnormal_discharge.bleeding_per_vagina.character or gyno_record.abnormal_discharge.bleeding_per_vagina.relation_with_menses or gyno_record.abnormal_discharge.bleeding_per_vagina.quantity %}checked{% endif %}>
+                                                            <span>Bleeding Per Vagina</span>
+                                                            </label>
+                                                            <div class="appetite_sub_div">
+                                                                <div class="appetite_sub_block">
+                                                                    <form id="id_bleed_form" class="" action="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif%}" method="post">{% csrf_token %}
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <h2 class="heading"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ bleed_form.quantity.label }}</label>
+                                                                                    {{ bleed_form.quantity }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ bleed_form.color.label }}</label>
+                                                                                    {{ bleed_form.color }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12" style="display:block">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ bleed_form.color_others.label }}</label>
+                                                                                    {{ bleed_form.color_others }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ bleed_form.consistency.label }}</label>
+                                                                                    {{ bleed_form.consistency }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12" style="display:block">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ bleed_form.consistency_remarks.label }}</label>
+                                                                                    {{ bleed_form.consistency_remarks }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ bleed_form.stains.label }}</label>
+                                                                                    {{ bleed_form.stains }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ bleed_form.odour.label }}</label>
+                                                                                    {{ bleed_form.odour }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12 bleed_odur_remarks" style="display:none">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ bleed_form.odour_other.label }}</label>
+                                                                                    {{ bleed_form.odour_other }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="form-group">
+                                                                                   <label>{{ bleed_form.character.label }}</label>
+                                                                                    {{ bleed_form.character }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12" style="display:block">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ bleed_form.character_remarks.label }}</label>
+                                                                                    {{ bleed_form.character_remarks }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ bleed_form.relation_with_menses.label }}</label>
+                                                                                    {{ bleed_form.relation_with_menses }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="button">
+                                                                                    <input type="submit" id="bleed_form" class="save checking_value"  value="{% trans 'Save' %}" name="abnormal_discharge_bleeding"/>
+                                                                                    <a href="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}" class="cancel">{% trans 'Cancel' %}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- abnormal discharge section ends -->
+                                </div>
+                                <div class="desire_success_block">
+                                {% if gyno_record.abnormal_discharge.leucorrhea.quantity or gyno_record.abnormal_discharge.leucorrhea.color or gyno_record.abnormal_discharge.leucorrhea.consistency or gyno_record.abnormal_discharge.leucorrhea.stains or gyno_record.abnormal_discharge.leucorrhea.odour or gyno_record.abnormal_discharge.leucorrhea.character or gyno_record.abnormal_discharge.leucorrhea.relation_with_menses %}
+                                    <div class="family_history_success gynaecological_success">
+                                        <div class="label">  
+                                                <span class="label_detail"><span>{% trans 'Leucorrhea' %}</span> - 
+                                                    {% if gyno_record.abnormal_discharge.leucorrhea.quantity %}{{gyno_record.abnormal_discharge.leucorrhea.quantity}}{% endif %}
+                                                    {% if gyno_record.abnormal_discharge.leucorrhea.color %},&nbsp;{{gyno_record.abnormal_discharge.leucorrhea.color}}{% endif %}
+                                                    {% if gyno_record.abnormal_discharge.leucorrhea.consistency|get_string_value|length > 0 %},&nbsp;{{gyno_record.abnormal_discharge.leucorrhea.consistency|get_string_value}}{% endif %}
+                                                    {% if gyno_record.abnormal_discharge.leucorrhea.stains %},&nbsp;{{gyno_record.abnormal_discharge.leucorrhea.stains}}{% endif %}
+                                                    {% if gyno_record.abnormal_discharge.leucorrhea.odour %},&nbsp;{{gyno_record.abnormal_discharge.leucorrhea.odour}}{% endif %}
+                                                    {% if gyno_record.abnormal_discharge.leucorrhea.character %},&nbsp;{{gyno_record.abnormal_discharge.leucorrhea.character}}{% endif %}
+                                                    {% if gyno_record.abnormal_discharge.leucorrhea.relation_with_menses %},&nbsp;{{gyno_record.abnormal_discharge.leucorrhea.relation_with_menses}}{% endif %}
+                                                </span>
+                                        </div>
+                                        <div class="acton">
+                                            <span class="delete">
+                                                <img src="{% static 'images/trash.svg' %}" alt="delete image" data-info="leucorrhea" data-info1="Leucorrhea" class="delete_entity">
+                                            </span>
+                                            <span class="edit" id="abnormal_leucorrhea_edit">
+                                                <img src="{% static 'images/edit_img.svg' %}" alt="">
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if gyno_record.abnormal_discharge.bleeding_per_vagina.quantity or gyno_record.abnormal_discharge.bleeding_per_vagina.color or gyno_record.abnormal_discharge.bleeding_per_vagina.consistency or gyno_record.abnormal_discharge.bleeding_per_vagina.stains or gyno_record.abnormal_discharge.bleeding_per_vagina.odour or gyno_record.abnormal_discharge.bleeding_per_vagina.character or gyno_record.abnormal_discharge.bleeding_per_vagina.relation_with_menses %}
+                                    <div class="family_history_success gynaecological_success">
+                                        <div class="label">  
+                                                <span class="label_detail"><span>{% trans 'Bleeding Per Vagina' %}</span> - 
+                                                    {% if gyno_record.abnormal_discharge.bleeding_per_vagina.quantity %}{{gyno_record.abnormal_discharge.bleeding_per_vagina.quantity}}{% endif %}
+                                                    {% if gyno_record.abnormal_discharge.bleeding_per_vagina.color %},&nbsp;{{gyno_record.abnormal_discharge.bleeding_per_vagina.color}}{% endif %}
+                                                    {% if gyno_record.abnormal_discharge.bleeding_per_vagina.consistency|get_string_value|length > 0 %},&nbsp;{{gyno_record.abnormal_discharge.bleeding_per_vagina.consistency|get_string_value}}{% endif %}
+                                                    {% if gyno_record.abnormal_discharge.bleeding_per_vagina.stains %},&nbsp;{{gyno_record.abnormal_discharge.bleeding_per_vagina.stains}}{% endif %}
+                                                    {% if gyno_record.abnormal_discharge.bleeding_per_vagina.odour %},&nbsp;{{gyno_record.abnormal_discharge.bleeding_per_vagina.odour}}{% endif %}
+                                                    {% if gyno_record.abnormal_discharge.bleeding_per_vagina.character %},&nbsp;{{gyno_record.abnormal_discharge.bleeding_per_vagina.character}}{% endif %}
+                                                    {% if gyno_record.abnormal_discharge.bleeding_per_vagina.relation_with_menses %},&nbsp;{{gyno_record.abnormal_discharge.bleeding_per_vagina.relation_with_menses}}{% endif %}
+                                                </span>
+                                        </div>
+                                        <div class="acton">
+                                            <span class="delete">
+                                                <img src="{% static 'images/trash.svg' %}" alt="delete image" data-info="bleeding_per_vagina" data-info1="Bleeding Per Vagina" class="delete_entity">
+                                            </span>
+                                            <span class="edit" id="abnormal_bleeding_edit">
+                                                <img src="{% static 'images/edit_img.svg' %}" alt="">
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                </div>
+                            </div>
+                            <div class="phy_gen_block_col">
+                                <div class="physical_general_detail {% if gyno_record.menopause.age %}selected{% endif %} d-flex">
+                                    <div class="image">
+                                        <svg id="notepad" width="28.899" height="33.074" viewBox="0 0 28.899 33.074">
+                                            <g id="Group_1669" data-name="Group 1669" transform="translate(0.256 1.041)">
+                                                <g id="Group_1668" data-name="Group 1668" transform="translate(0 0)">
+                                                    <path id="Path_2808" data-name="Path 2808" d="M21.586,0H2.089A2.007,2.007,0,0,0,0,1.908V25.644a3.824,3.824,0,0,0,.016.43H0a3.107,3.107,0,0,0,3.21,3.18H20.193a3.345,3.345,0,0,0,3.482-3.18V1.908A2.007,2.007,0,0,0,21.586,0Zm.7,26.074a2.007,2.007,0,0,1-2.089,1.908H3.21a1.918,1.918,0,0,1-1.818-1.911c0-.121,0-9.717,0-17.085V6.359h20.89Zm0-20.986H1.393V1.908a.668.668,0,0,1,.7-.636h19.5a.668.668,0,0,1,.7.636Z" transform="translate(0 0)" fill="#b4bbc6"></path>
+                                                    <path id="Path_2810" data-name="Path 2810" d="M48.62,209.124h12.4a.565.565,0,1,0,0-1.124H48.62a.565.565,0,1,0,0,1.124Z" transform="translate(-44.079 -197.114)" fill="#b4bbc6"></path>
+                                                    <path id="Path_2811" data-name="Path 2811" d="M135.279,304h-6.617a.569.569,0,1,0,0,1.124h6.617a.569.569,0,1,0,0-1.124Z" transform="translate(-124.078 -285.797)" fill="#b4bbc6"></path>
+                                                    <path id="Path_2812" data-name="Path 2812" d="M48.62,257.124h12.4a.565.565,0,1,0,0-1.124H48.62a.565.565,0,1,0,0,1.124Z" transform="translate(-44.079 -241.455)" fill="#b4bbc6"></path>
+                                                    <g id="Path_2813" data-name="Path 2813" transform="translate(16.263 19.653)" fill="#b4bbc6">
+                                                        <path d="M 6.18994140625 11.02988147735596 C 3.521191358566284 11.02988147735596 1.350001454353333 8.858691215515137 1.350001454353333 6.18994140625 C 1.350001454353333 3.521191358566284 3.521191358566284 1.350001454353333 6.18994140625 1.350001454353333 C 8.858691215515137 1.350001454353333 11.02988147735596 3.521191358566284 11.02988147735596 6.18994140625 C 11.02988147735596 8.858691215515137 8.858691215515137 11.02988147735596 6.18994140625 11.02988147735596 Z" stroke="none"></path>
+                                                        <path d="M 6.18994140625 2.70000171661377 C 4.265581130981445 2.70000171661377 2.70000171661377 4.265581130981445 2.70000171661377 6.18994140625 C 2.70000171661377 8.114301681518555 4.265581130981445 9.67988109588623 6.18994140625 9.67988109588623 C 8.114301681518555 9.67988109588623 9.67988109588623 8.114301681518555 9.67988109588623 6.18994140625 C 9.67988109588623 4.265581130981445 8.114301681518555 2.70000171661377 6.18994140625 2.70000171661377 M 6.18994140625 9.5367431640625e-07 C 9.608551025390625 9.5367431640625e-07 12.37988185882568 2.771331787109375 12.37988185882568 6.18994140625 C 12.37988185882568 9.608551025390625 9.608551025390625 12.37988185882568 6.18994140625 12.37988185882568 C 2.771331787109375 12.37988185882568 9.5367431640625e-07 9.608551025390625 9.5367431640625e-07 6.18994140625 C 9.5367431640625e-07 2.771331787109375 2.771331787109375 9.5367431640625e-07 6.18994140625 9.5367431640625e-07 Z" stroke="none" fill="#f5f8f8"></path>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                            <rect id="Rectangle_1807" data-name="Rectangle 1807" width="27" height="6.3" fill="#f5f8f8"></rect>
+                                        </svg>
+                                    </div>
+                                    <div class="physical_general_label">
+                                        <div class="label_div">
+                                            <span class="label_image">{% trans 'Menopause' %} <em>*</em></span>
+                                        </div>
+                                        <span class="arrow_image" id="physicalGeneralArrow">
+                                        {% if gyno_record.menopause.age or gyno_record.menopause.associated_complaints %}<span class="view_close_btn">View</span>{% endif %}
+                                        <img src="{% static 'images/right_arrow_image.png' %}" alt="right arrow image">
+                                        </span>
+                                    </div>
+                                    
+                                    <!-- menopause section -->
+                                    <div class="physical_genral_right_block">
+                                        <div class="physical_general_appearence" id="addAppearence">
+                                            <div class="appearence_blk history_suggestion">
+                                                <form id="id_menop_form_id" class="" action="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif%}" method="post">{% csrf_token %}
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <h2 class="heading"  id="backArrow"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                        </div>
+                                                        <div class="col-sm-12 col-md-6 mar-top padding-right">
+                                                            <div class="form-group history_of_suppression">
+                                                                <label>{{ menop_form.age.label }}</label>
+                                                                {{ menop_form.age }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 empty"></div>
+                                                        <div class="col-sm-12 col-md-6 mar-top padding-right">
+                                                            <div class="form-group history_of_suppression menopause_margin_top">
+                                                                <label>{{ menop_form.associated_complaints.label }}</label>
+                                                                <input type="hidden" name="associated_compl_values" value="{{menop_form.instance.associated_complaints}}" id="associated_compl_values_id">
+                                                                {% if menop_form.instance.associated_complaints %}
+                                                                    {% with menop_form.instance.associated_complaints|split:"," as associated_complaints %}
+                                                                        {% for i in associated_complaints %}
+                                                                        <div class="form-group history_of_suppression">
+                                                                            <input name="associated_comp" value="{% if i %} {{ i }}{% endif %}" class="form-control values_store" id="id_associated_comp_{{forloop.counter}}" aria-invalid="false">
+                                                                        </div>
+                                                                        {% endfor %}
+                                                                    {% endwith %}
+                                                                {% else %}
+                                                                    <div class="form-group history_of_suppression">
+                                                                        <input name="associated_comp" value="" class="form-control values_store" id="id_associated_comp" aria-invalid="false">
+                                                                    </div>
+                                                                {% endif %}
+                                                            </div>
+                                                            <button id="add_associated_field" class="add_button" type="button">+</button>
+                                                        </div>
+                                                        <div class="col-md-6 empty"></div>
+                                                        <div id="add_field_here"></div>
+                                                        <div class="col-sm-12">
+                                                            <div class="button">
+                                                                <input type="submit" id="menop_form_id" class="save checking_value" value="{% trans 'Save' %}" name="menopause"/>
+                                                                <a href="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}" class="cancel">{% trans 'Cancel' %}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- menopause section ends -->
+                                </div>
+                                {% if gyno_record.menopause.age or gyno_record.menopause.associated_complaints%}
+                                <div class="desire_success_block">
+                                    <div class="family_history_success gynaecological_success">
+                                        <div class="label">  
+                                                <span class="label_detail"><span>{% trans 'Menopause' %}</span> - 
+                                                    {% if gyno_record.menopause.age %}{{gyno_record.menopause.age}}{% endif %}
+                                                    {% if gyno_record.menopause.associated_complaints %},&nbsp;{{gyno_record.menopause.associated_complaints}}{% endif %} 
+                                                </span>
+                                        </div>
+                                        <div class="acton">
+                                            <span class="delete">
+                                                <img src="{% static 'images/trash.svg' %}" alt="delete image" data-info="menopause" data-info1="Menopause" class="delete_entity">
+                                            </span>
+                                            <span class="edit">
+                                                <img src="{% static 'images/edit_img.svg' %}" alt="">
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="phy_gen_block_col">
+                                <div class="physical_general_detail {% if gyno_record.ho_gynaecological_surgeries.hysterectomy.hysterectomy or gyno_record.ho_gynaecological_surgeries.others|length > 0 %}selected{% endif %} d-flex {% if ho_gyna_surgeriesother_index_no %}active{% elif ho_gyna_surgeries %}active{% endif %}">
+                                    <div class="image">
+                                        <svg id="notepad" width="28.899" height="33.074" viewBox="0 0 28.899 33.074">
+                                            <g id="Group_1669" data-name="Group 1669" transform="translate(0.256 1.041)">
+                                                <g id="Group_1668" data-name="Group 1668" transform="translate(0 0)">
+                                                    <path id="Path_2808" data-name="Path 2808" d="M21.586,0H2.089A2.007,2.007,0,0,0,0,1.908V25.644a3.824,3.824,0,0,0,.016.43H0a3.107,3.107,0,0,0,3.21,3.18H20.193a3.345,3.345,0,0,0,3.482-3.18V1.908A2.007,2.007,0,0,0,21.586,0Zm.7,26.074a2.007,2.007,0,0,1-2.089,1.908H3.21a1.918,1.918,0,0,1-1.818-1.911c0-.121,0-9.717,0-17.085V6.359h20.89Zm0-20.986H1.393V1.908a.668.668,0,0,1,.7-.636h19.5a.668.668,0,0,1,.7.636Z" transform="translate(0 0)" fill="#b4bbc6"></path>
+                                                    <path id="Path_2810" data-name="Path 2810" d="M48.62,209.124h12.4a.565.565,0,1,0,0-1.124H48.62a.565.565,0,1,0,0,1.124Z" transform="translate(-44.079 -197.114)" fill="#b4bbc6"></path>
+                                                    <path id="Path_2811" data-name="Path 2811" d="M135.279,304h-6.617a.569.569,0,1,0,0,1.124h6.617a.569.569,0,1,0,0-1.124Z" transform="translate(-124.078 -285.797)" fill="#b4bbc6"></path>
+                                                    <path id="Path_2812" data-name="Path 2812" d="M48.62,257.124h12.4a.565.565,0,1,0,0-1.124H48.62a.565.565,0,1,0,0,1.124Z" transform="translate(-44.079 -241.455)" fill="#b4bbc6"></path>
+                                                    <g id="Path_2813" data-name="Path 2813" transform="translate(16.263 19.653)" fill="#b4bbc6">
+                                                        <path d="M 6.18994140625 11.02988147735596 C 3.521191358566284 11.02988147735596 1.350001454353333 8.858691215515137 1.350001454353333 6.18994140625 C 1.350001454353333 3.521191358566284 3.521191358566284 1.350001454353333 6.18994140625 1.350001454353333 C 8.858691215515137 1.350001454353333 11.02988147735596 3.521191358566284 11.02988147735596 6.18994140625 C 11.02988147735596 8.858691215515137 8.858691215515137 11.02988147735596 6.18994140625 11.02988147735596 Z" stroke="none"></path>
+                                                        <path d="M 6.18994140625 2.70000171661377 C 4.265581130981445 2.70000171661377 2.70000171661377 4.265581130981445 2.70000171661377 6.18994140625 C 2.70000171661377 8.114301681518555 4.265581130981445 9.67988109588623 6.18994140625 9.67988109588623 C 8.114301681518555 9.67988109588623 9.67988109588623 8.114301681518555 9.67988109588623 6.18994140625 C 9.67988109588623 4.265581130981445 8.114301681518555 2.70000171661377 6.18994140625 2.70000171661377 M 6.18994140625 9.5367431640625e-07 C 9.608551025390625 9.5367431640625e-07 12.37988185882568 2.771331787109375 12.37988185882568 6.18994140625 C 12.37988185882568 9.608551025390625 9.608551025390625 12.37988185882568 6.18994140625 12.37988185882568 C 2.771331787109375 12.37988185882568 9.5367431640625e-07 9.608551025390625 9.5367431640625e-07 6.18994140625 C 9.5367431640625e-07 2.771331787109375 2.771331787109375 9.5367431640625e-07 6.18994140625 9.5367431640625e-07 Z" stroke="none" fill="#f5f8f8"></path>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                            <rect id="Rectangle_1807" data-name="Rectangle 1807" width="27" height="6.3" fill="#f5f8f8"></rect>
+                                        </svg>
+                                    </div>
+                                    <div class="physical_general_label">
+                                        <div class="label_div">
+                                            <span class="label_image">{% trans 'H/O Gynaecological Surgeries' %} <em>*</em></span>
+                                        </div>
+                                        <span class="arrow_image" id="physicalGeneralArrow">
+                                        {% if gyno_record.ho_gynaecological_surgeries.hysterectomy.hysterectomy or gyno_record.ho_gynaecological_surgeries.hysterectomy.reason or gyno_record.ho_gynaecological_surgeries.hysterectomy.age or gyno_record.ho_gynaecological_surgeries.others|length > 0 %}<span class="view_close_btn">View</span>{% endif %}
+                                        <img src="{% static 'images/right_arrow_image.png' %}" alt="right arrow image">
+                                        </span>
+                                    </div>
+                                    
+                                    <!-- surgery -->
+                                    <div class="physical_genral_right_block {% if other_index_no %}active{% endif %}">
+                                        <div class="physical_general_appearence {% if other_index_no %}active{% endif %}" id="addAppearence">
+                                            <div class="appearence_blk">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h2 class="heading"  id="backArrow"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                    </div>
+                                                    <div class="col-sm-12 radio_button_block">
+                                                        <div class="appetite_block">
+                                                            <label class="appetite_radio shown ho_hysterectomy">
+                                                            <input type="checkbox" id="radioCheck" {% if hysterectomy_data %}checked{% endif %} name="" value="Hysterectomy">
+                                                            <span>{% trans 'Hysterectomy' %}</span>
+                                                            </label>
+                                                            <div class="appetite_sub_div">
+                                                                <div class="appetite_sub_block">
+                                                                    <form id="id_hyst_form_id" class="" action="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif%}" method="post">{% csrf_token %}
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <h2 class="heading"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ hyst_form.hysterectomy.label }}</label>
+                                                                                    {{ hyst_form.hysterectomy }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ hyst_form.reason.label }}</label>
+                                                                                    {{ hyst_form.reason }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ hyst_form.age.label }}</label>
+                                                                                    {{ hyst_form.age }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="button">
+                                                                                    <input type="submit" id="hyst_form_id" class="save checking_value" value="{% trans 'Save' %}" name="ho_gynaecological_surgeries_hysterectomy"/>
+                                                                                    <a href="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}" class="cancel">{% trans 'Cancel' %}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <label class="appetite_radio shown {% if other_index_no %}active {% endif %}" >
+                                                            <input type="checkbox" id="radioCheck" name="" value="Others" {% if other_index_no %}checked{% endif %} >
+                                                            <span>{% trans 'Others' %}</span>
+                                                            </label>
+                                                            <div class="appetite_sub_div">
+                                                                <div class="appetite_sub_block">
+                                                                    <form id="id_oth_form_id" class="" action="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif%}" method="post">{% csrf_token %}
+                                                                        {% if other_index_no %}<input type="hidden" name="other_index_no" value="{{other_index_no}}">{% endif %}
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <h2 class="heading"><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                                            </div>
+                                                                            <div class="col-sm-12 margin-top">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ oth_form.others.label }}</label>
+                                                                                    {{ oth_form.others }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ oth_form.reason.label }}</label>
+                                                                                    {{ oth_form.reason }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="form-group">
+                                                                                    <label>{{ oth_form.age.label }}</label>
+                                                                                    {{ oth_form.age }}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-12">
+                                                                                <div class="button">
+                                                                                    <input type="submit" id="oth_form_id" class="save checking_value" value="{% trans 'Save' %}" name="ho_gynaecological_surgeries_other"/>
+                                                                                    <a href="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}" class="cancel">{% trans 'Cancel' %}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- surgery ends -->
+                                </div> 
+                                {% if gyno_record.ho_gynaecological_surgeries.hysterectomy.hysterectomy or gyno_record.ho_gynaecological_surgeries.hysterectomy.reason or gyno_record.ho_gynaecological_surgeries.hysterectomy.age or gyno_record.ho_gynaecological_surgeries.others|length > 0 %}
+                                <div class="desire_success_block">
+                                {% if gyno_record.ho_gynaecological_surgeries.hysterectomy.hysterectomy or gyno_record.ho_gynaecological_surgeries.hysterectomy.reason or gyno_record.ho_gynaecological_surgeries.hysterectomy.age %}
+                                    <div class="family_history_success gynaecological_success">
+                                        <div class="label">  
+                                                <span class="label_detail"><span>{% trans 'Hysterectomy' %}</span> - 
+                                                    {% if gyno_record.ho_gynaecological_surgeries.hysterectomy.hysterectomy %}{{gyno_record.ho_gynaecological_surgeries.hysterectomy.hysterectomy}}{% endif %}
+                                                    {% if gyno_record.ho_gynaecological_surgeries.hysterectomy.reason %},&nbsp;{{gyno_record.ho_gynaecological_surgeries.hysterectomy.reason}}{% endif %}
+                                                    {% if gyno_record.ho_gynaecological_surgeries.hysterectomy.age %},&nbsp;{{gyno_record.ho_gynaecological_surgeries.hysterectomy.age}}{% endif %}
+                                                </span>
+                                        </div>
+                                        <div class="acton">
+                                            <span class="delete">
+                                                <img src="{% static 'images/trash.svg' %}" alt="delete image" data-info="hysterectomy" data-info1="Hysterectomy" class="delete_entity">
+                                            </span>
+                                            <span class="edit" id="ho_hysterectomy_edit">
+                                                <img src="{% static 'images/edit_img.svg' %}" alt="">
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% if gyno_record.ho_gynaecological_surgeries.others|length > 0 %}
+                                    {% for i in gyno_record.ho_gynaecological_surgeries.others %}
+                                    <div class="family_history_success gynaecological_success">
+                                        <div class="label">  
+                                                <span class="label_detail"><span>{% trans 'Others' %}</span> -
+                                                    {% if i.others %}{{i.others}}{% endif %}
+                                                    {% if i.reason %},&nbsp;{{i.reason}}{% endif %}
+                                                    {% if i.age %},&nbsp;{{i.age}}{% endif %}
+                                                </span>
+                                        </div>
+                                        <div class="acton">
+                                            <span class="delete">
+                                                <img src="{% static 'images/trash.svg' %}" alt="delete image" data-info="others" data-info1="Others" data-info2="{{forloop.counter}}" class="delete_entity">
+                                            </span>
+                                            <span class="edit">
+                                                <a href="{% url 'case_history:gynaecological_history' case_id=case_id %}?other_index_no={{forloop.counter}}" id="edit_other">
+                                                    <img src={% static "images/edit_img.svg" %} alt="edit image">
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="phy_gen_block_col">
+                                <div class="physical_general_detail {% if gyno_record.contraceptive_methods|length > 0 %}selected{% endif %} d-flex {% if contraceptive_index_no %}active{% endif %}">
+                                    <div class="image">
+                                        <svg id="notepad" width="28.899" height="33.074" viewBox="0 0 28.899 33.074">
+                                            <g id="Group_1669" data-name="Group 1669" transform="translate(0.256 1.041)">
+                                                <g id="Group_1668" data-name="Group 1668" transform="translate(0 0)">
+                                                    <path id="Path_2808" data-name="Path 2808" d="M21.586,0H2.089A2.007,2.007,0,0,0,0,1.908V25.644a3.824,3.824,0,0,0,.016.43H0a3.107,3.107,0,0,0,3.21,3.18H20.193a3.345,3.345,0,0,0,3.482-3.18V1.908A2.007,2.007,0,0,0,21.586,0Zm.7,26.074a2.007,2.007,0,0,1-2.089,1.908H3.21a1.918,1.918,0,0,1-1.818-1.911c0-.121,0-9.717,0-17.085V6.359h20.89Zm0-20.986H1.393V1.908a.668.668,0,0,1,.7-.636h19.5a.668.668,0,0,1,.7.636Z" transform="translate(0 0)" fill="#b4bbc6"></path>
+                                                    <path id="Path_2810" data-name="Path 2810" d="M48.62,209.124h12.4a.565.565,0,1,0,0-1.124H48.62a.565.565,0,1,0,0,1.124Z" transform="translate(-44.079 -197.114)" fill="#b4bbc6"></path>
+                                                    <path id="Path_2811" data-name="Path 2811" d="M135.279,304h-6.617a.569.569,0,1,0,0,1.124h6.617a.569.569,0,1,0,0-1.124Z" transform="translate(-124.078 -285.797)" fill="#b4bbc6"></path>
+                                                    <path id="Path_2812" data-name="Path 2812" d="M48.62,257.124h12.4a.565.565,0,1,0,0-1.124H48.62a.565.565,0,1,0,0,1.124Z" transform="translate(-44.079 -241.455)" fill="#b4bbc6"></path>
+                                                    <g id="Path_2813" data-name="Path 2813" transform="translate(16.263 19.653)" fill="#b4bbc6">
+                                                        <path d="M 6.18994140625 11.02988147735596 C 3.521191358566284 11.02988147735596 1.350001454353333 8.858691215515137 1.350001454353333 6.18994140625 C 1.350001454353333 3.521191358566284 3.521191358566284 1.350001454353333 6.18994140625 1.350001454353333 C 8.858691215515137 1.350001454353333 11.02988147735596 3.521191358566284 11.02988147735596 6.18994140625 C 11.02988147735596 8.858691215515137 8.858691215515137 11.02988147735596 6.18994140625 11.02988147735596 Z" stroke="none"></path>
+                                                        <path d="M 6.18994140625 2.70000171661377 C 4.265581130981445 2.70000171661377 2.70000171661377 4.265581130981445 2.70000171661377 6.18994140625 C 2.70000171661377 8.114301681518555 4.265581130981445 9.67988109588623 6.18994140625 9.67988109588623 C 8.114301681518555 9.67988109588623 9.67988109588623 8.114301681518555 9.67988109588623 6.18994140625 C 9.67988109588623 4.265581130981445 8.114301681518555 2.70000171661377 6.18994140625 2.70000171661377 M 6.18994140625 9.5367431640625e-07 C 9.608551025390625 9.5367431640625e-07 12.37988185882568 2.771331787109375 12.37988185882568 6.18994140625 C 12.37988185882568 9.608551025390625 9.608551025390625 12.37988185882568 6.18994140625 12.37988185882568 C 2.771331787109375 12.37988185882568 9.5367431640625e-07 9.608551025390625 9.5367431640625e-07 6.18994140625 C 9.5367431640625e-07 2.771331787109375 2.771331787109375 9.5367431640625e-07 6.18994140625 9.5367431640625e-07 Z" stroke="none" fill="#f5f8f8"></path>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                            <rect id="Rectangle_1807" data-name="Rectangle 1807" width="27" height="6.3" fill="#f5f8f8"></rect>
+                                        </svg>
+                                    </div>
+                                    <div class="physical_general_label">
+                                        <div class="label_div">
+                                            <span class="label_image">{% trans 'Contraceptive Methods' %} <em>*</em></span>
+                                        </div>
+                                        <span class="arrow_image" id="physicalGeneralArrow">
+                                        {% if gyno_record.contraceptive_methods|length > 0 %}<span class="view_close_btn">View</span>{% endif %}
+                                        <img src="{% static 'images/right_arrow_image.png' %}" alt="right arrow image">
+                                        </span>
+                                    </div>
+                                   
+                                    <!-- contraceptive section -->
+                                    <div class="physical_genral_right_block {% if contraceptive_index_no %}active{% endif %}">
+                                        <div class="physical_general_appearence" id="addAppearence">
+                                            <div class="appearence_blk history_suggestion">
+                                                <form id="id_contr_form_id" class="" action="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif%}" method="post">{% csrf_token %}
+                                                    {% if contraceptive_index_no %}<input type="hidden" name="contraceptive_index_no" value="{{contraceptive_index_no}}">{% endif %}
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <h2 class="heading" id="backArrow" ><img src="{% static 'images/back_arrow.svg' %}" alt="black arrow"></h2>
+                                                        </div>
+                                                        <div class="col-sm-12 col-md-6 mar-top padding-right">
+                                                            <div class="form-group history_of_suppression">
+                                                                <label>{{ contr_form.type.label }}</label>
+                                                                {{ contr_form.type }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 empty"></div>
+                                                        <div class="col-sm-12 col-md-6 padding-right">
+                                                            <div class="form-group history_of_suppression">
+                                                                <label>{{ contr_form.complaints_from.label }}</label>
+                                                                {{ contr_form.complaints_from }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <div class="button">
+                                                                <input type="submit" id="contr_form_id" class="save checking_value" value="{% trans 'Save' %}" name="contraceptive_methods"/>
+                                                                <a href="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}" class="cancel">{% trans 'Cancel' %}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- contraceptive section Ends -->
+                                </div>
+                                {% if gyno_record.contraceptive_methods|length > 0 %}
+                                {% for i in gyno_record.contraceptive_methods %}
+                                <div class="desire_success_block">
+                                    <div class="family_history_success gynaecological_success">
+                                        <div class="label">  
+                                                <span class="label_detail"><span>{% trans 'Contraceptive Methods' %}</span> - 
+                                                    {% if i.type %}{{ i.type }}{% endif %}
+                                                    {% if i.complaints_from %},&nbsp;{{ i.complaints_from }}{% endif %}
+                                                </span>
+                                        </div>
+                                        <div class="acton">
+                                            <span class="delete">
+                                                <img src="{% static 'images/trash.svg' %}" alt="delete image" data-info="contraceptive_methods" data-info1="Contraceptive Methods" data-info2="{{forloop.counter}}" class="delete_entity">
+                                            </span>
+                                            <span class="edit">
+                                                <a href="{% url 'case_history:gynaecological_history' case_id=case_id %}?contraceptive_index_no={{forloop.counter}}" id="edit_other">
+                                                    <img src={% static "images/edit_img.svg" %} alt="edit image">
+                                                </a>
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-sm-12">
+                                <div class="button">
+                                    <a href="{% if case_id %}{% url 'case_history:obstreric_history' case_id=case_id %}{% else %}{% url 'case_history:obstreric_history' %}{% endif %}" class="save">{% trans 'Save and Continue' %}</a>
+                                    <button type="button" class="exit" id="exit_button_id">{% trans 'Exit' %}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if gyno_record.menstrual_cycle_particulars.consistency.consistency %}<input type="hidden" id="consistency_values" value="{{gyno_record.menstrual_cycle_particulars.consistency.consistency|get_string_value}}">{% endif %}
+        {% if gyno_record.abnormal_discharge.leucorrhea.consistency %}<input type="hidden" id="consistency_values_lecu" value="{{gyno_record.abnormal_discharge.leucorrhea.consistency|get_string_value}}">{% endif %}
+        {% if gyno_record.abnormal_discharge.bleeding_per_vagina.consistency %}<input type="hidden" id="consistency_values_bleed" value="{{gyno_record.abnormal_discharge.bleeding_per_vagina.consistency|get_string_value}}">{% endif %}
+        <!-- add case content ends -->
+        <!--Start Delete Modal Form to delete follow-up -->
+        <div id="delete_entity_pop" class="modal fade in msg_popup confrm_popup modal-bgcolor1">
+            <form id="delete_form" class="" action="{% if case_id %}{% url 'case_history:gynaecological_history' case_id=case_id %}{% else %}{% url 'case_history:gynaecological_history' %}{% endif %}" method="post">{% csrf_token %}
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                       <div class="modal-header">
+                            <a href="javascript:void(0);"><button type="button" class="close" data-dismiss="modal"></button></a>
+                        </div>
+                            <div class="modal-body v_height_auto">
+                                <p id="delete_confirm_msg_id"></p>
+                                <input type="hidden" id="delete_entity_id" name="delete_entity" value="Delete Entity">
+                                <input type="hidden" id="field_id" name="field_name" value="">
+                                <input type="hidden" id="index_no_id" name="index_no" value="">
+                            </div>
+                            <div class="modal-footer text-right ">
+                                <button class="btn follow_up_button delete_clinc_details" type="submit" >{% trans 'Yes' %}</button>
+                                <a href="javascript:void(0);" class="btn follow_up_button" data-dismiss="modal">{% trans 'No' %}</a>
+                            </div>
+                    </div>
+                </div>
+            </form>
+        </div> 
+        <!--Ends Delete Modal Form to delete follow-up -->
+{% endblock %}
+{% block jsfilesurls %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+{% endblock %}
+{% block custom-js %}
+
+/********Without any value form save prevent Starts Here*********/
+$(document.body).on('click','.checking_value',function(){
+    var form_id = $(this).attr('id');
+    $('#id_'+form_id).submit(function (e) {
+        if (!$(':text, textarea, select', this).filter(function () {
+           return $.trim(this.value) != ""
+        }).length){
+           $("#alert_message").addClass('alert-danger');
+           $("#alert_message").css("display", "block");
+           $("#alert_message_strong").html("Please fill some values in the form (at least first field should be filled).");
+           e.preventDefault();
+        }
+    });
+});
+/********Without any value form save prevent Ends Here*********/
+
+
+
+/********Based on the Cycle showing remarks dropdown Starts herer*********/
+$(document.body).on('change',"#id_cycle",function(){
+    regg_body_value = $(this).find(":selected").text()
+    if(regg_body_value == "Irregular"){
+        $(".cycle_remarks").show();
+    }else{
+        $(".cycle_remarks").hide();
+        $(".cycle_remarks_value").empty();
+    }
+});
+/********Based on the Cycle showing remarks dropdown Ends herer*********/
+/********Based on the Colour showing remarks dropdown Starts herer*********/
+$(document.body).on('change',"#id_colour",function(){
+    regg_body_value = $(this).find(":selected").text()
+    if(regg_body_value == "Other"){
+        $(".colour_remarks").show();
+    }else{
+        $(".colour_remarks").hide();
+        $(".colour_remarks_value").empty();
+    }
+});
+/********Based on the Colour showing remarks dropdown Ends herer*********/
+/********Based on the Charatcer showing remarks dropdown Starts herer*********/
+$(document.body).on('change',"#id_character",function(){
+    regg_body_value = $(this).find(":selected").text()
+    if(regg_body_value == "Other"){
+        $(".character_remarks").show();
+    }else{
+        $(".character_remarks").hide();
+        $(".character_remarks_value").empty();
+    }
+});
+/********Based on the Charatcer showing remarks dropdown Ends herer*********/
+/********Based on the Odur showing remarks dropdown Starts herer*********/
+$(document.body).on('change',".odour_mentstr",function(){
+    regg_body_value = $(this).find(":selected").text()
+    if(regg_body_value == "Offensive"){
+        $(".odur_remarks").show();
+    }else{
+        $(".odur_remarks").hide();
+        $(".odur_remarks_value").empty();
+    }
+});
+/********Based on the Odur showing remarks dropdown Ends herer*********/
+/********Based on the Odur showing remarks dropdown Starts herer*********/
+$(document.body).on('change',".leuco_odour",function(){
+    regg_body_value = $(this).find(":selected").text()
+    if(regg_body_value == "Offensive"){
+        $(".leuco_odur_remarks").show();
+    }else{
+        $(".leuco_odur_remarks").hide();
+        $(".leuco_odur_remarks_value").empty();
+    }
+});
+/********Based on the Odur showing remarks dropdown Ends herer*********/
+/********Based on the Odur showing remarks dropdown Starts herer*********/
+$(document.body).on('change',".bleed_odour",function(){
+    regg_body_value = $(this).find(":selected").text()
+    if(regg_body_value == "Offensive"){
+        $(".bleed_odur_remarks").show();
+    }else{
+        $(".bleed_odur_remarks").hide();
+        $(".bleed_odur_remarks_value").empty();
+    }
+});
+/********Based on the Odur showing remarks dropdown Ends herer*********/
+
+/******* Multiselect Placeholder for Consistency starts **********/
+$(".select_container").chosen({
+    allow_single_deselect: "true",
+    placeholder_text_multiple :"Select one or more options"
+});
+/******* Multiselect Placeholder for Consistency Ends **********/
+
+/******* Multiselect for Consistency ends **********/
+/******* Prepopulate Multiselect for Consistency Starts **********/
+{% if gyno_record.menstrual_cycle_particulars.consistency.consistency %}
+    var str = $("#consistency_values").val();
+    var values = str.split(', ');
+    $('.consistency_val').val(values).trigger('chosen:updated');
+{% endif %}
+{% if gyno_record.abnormal_discharge.leucorrhea.consistency %}
+    var lecu = $("#consistency_values_lecu").val();
+    var lecu_values = lecu.split(', ');
+    $('.leuca_consistency').val(lecu_values).trigger('chosen:updated');
+{% endif %}
+{% if gyno_record.abnormal_discharge.bleeding_per_vagina.consistency %}
+    var bleed = $("#consistency_values_bleed").val();
+    var bleed_values = bleed.split(', ');
+    $('.bleed_consistency').val(bleed_values).trigger('chosen:updated');
+{% endif %}
+/******* Prepopulate Multiselect for Consistency Ends **********/
+
+/*******on click th date picker starts here******/
+$(".date_picker").datetimepicker({
+          format:'Y-m-d',
+          timepicker:false
+    });
+/*******on click th date picker starts here******/
+
+/********Delete Entity Start Here*******/
+$(document.body).on('click','.delete_entity',function(){
+    $("#delete_entity_pop").modal();
+    var entity_name = $(this).data('info');
+    var delete_type = $(this).data('info1');
+    var index_no = $(this).data('info2');
+    $("#field_id").val(entity_name);
+    $("#index_no_id").val(index_no);
+    $('#delete_confirm_msg_id').html("Are you sure you want to delete this " +delete_type+ "?");
+});
+/********Delete Entity Ends Here*******/
+
+/********Success Message Show Starts Here*******/
+    {% if success_note %}  
+        $("#alert_message_strong").html("{{ success_note }}");
+        $("#alert_message").css("display", "block");
+    {% endif %}
+/********Success Message Show Ends Here*******/
+
+/********Based on edit open perticualpo-pup Start Here*******/
+$(document.body).on('click','#abnormal_leucorrhea_edit',function(){
+    $('.abnormal_leucorrhea').addClass("active");
+    $('.abnormal_leucorrhea').parent().parent().parent().parent().parent().addClass("active");
+    $('input[value="Leucorrhea"]').prop("checked",true)
+
+});
+$(document.body).on('click','#abnormal_bleeding_edit',function(){
+    $('.abnormal_bleeding').addClass("active");
+    $('.abnormal_bleeding').parent().parent().parent().parent().parent().addClass("active");
+    $('input[value="BleedinPerVagina"]').prop("checked",true)  
+});
+$(document.body).on('click','#ho_hysterectomy_edit',function(){
+    $('.ho_hysterectomy').addClass("active");
+    $('.ho_hysterectomy').parent().parent().parent().parent().parent().addClass("active");
+    $('input[value="Hysterectomy"]').prop("checked",true)  
+});
+$(document.body).on('click','#mens_lmp_edit',function(){
+    $('.mens_lmp_edit').addClass("active");
+    $('.mens_lmp_edit').parent().parent().parent().parent().parent().addClass("active");
+    $('input[value="LMP"]').prop("checked",true)  
+});
+$(document.body).on('click','#mens_bleeding_edit',function(){
+    $('.mens_bleeding_edit').addClass("active");
+    $('.mens_bleeding_edit').parent().parent().parent().parent().parent().addClass("active");
+    $('input[value="Bleeding"]').prop("checked",true)  
+});
+$(document.body).on('click','#mens_cycle_edit',function(){
+    $('.mens_cycle_edit').addClass("active");
+    $('.mens_cycle_edit').parent().parent().parent().parent().parent().addClass("active");
+    $('input[value="Cycle"]').prop("checked",true)  
+});
+$(document.body).on('click','#mens_colour_edit',function(){
+    $('.mens_colour_edit').addClass("active");
+    $('.mens_colour_edit').parent().parent().parent().parent().parent().addClass("active");
+    $('input[value="Cycle"]').prop("checked",true)  
+});
+$(document.body).on('click','#mens_consistency_edit',function(){
+    $('.mens_consistency_edit').addClass("active");
+    $('.mens_consistency_edit').parent().parent().parent().parent().parent().addClass("active");
+    $('input[value="Consistency"]').prop("checked",true)  
+});
+$(document.body).on('click','#mens_odour_edit',function(){
+    $('.mens_odour_edit').addClass("active");
+    $('.mens_odour_edit').parent().parent().parent().parent().parent().addClass("active");
+    $('input[value="Odour"]').prop("checked",true)  
+});
+$(document.body).on('click','#mens_character_edit',function(){
+    $('.mens_character_edit').addClass("active");
+    $('.mens_character_edit').parent().parent().parent().parent().parent().addClass("active");
+    $('input[value="Character"]').prop("checked",true)  
+});
+$(document.body).on('click','#mens_dysmeno_edit',function(){
+    $('.mens_dysmeno_edit').addClass("active");
+    $('.mens_dysmeno_edit').parent().parent().parent().parent().parent().addClass("active");
+    $('input[value="Dysmenorrhoea"]').prop("checked",true)  
+});
+/********Based on edit open perticualpo-pup Ends Here*******/
+
+/**************Adding more bills starts here****************/
+$(document.body).on('keyup','.values_store',function(){
+    var message = $('#id_associated_comp').val();
+    var message1 = $('#id_associated_comp_1').val();
+    var message2 = $('#id_associated_comp_2').val();
+    var message3 = $('#id_associated_comp_3').val();
+    var message4 = $('#id_associated_comp_4').val();
+    var message5 = $('#id_associated_comp_5').val();
+    var message6 = $('#id_associated_comp_6').val();
+    var message7 = $('#id_associated_comp_7').val();
+    var message8 = $('#id_associated_comp_8').val();
+    var message9 = $('#id_associated_comp_9').val();
+    var message10 = $('#id_associated_comp_10').val();
+    var obj = [message,message1,message2,message3,message4,message5,message6,message7,message8,message9,message10];
+    obj = obj.filter(function(e){return e}); 
+    $('#associated_compl_values_id').val(obj);
+});
+        var max_new = 10;
+        
+        {% if menop_form.instance.associated_complaints %}
+            var m = {{menop_form.instance.associated_complaints|split:","|length}}+1; 
+        {% else %}
+            var m = 1;
+        {% endif %}
+        $('#add_associated_field').click(function(){
+            if(m <= max_new ){
+                $('#add_field_here').append(
+                '<div class="col-sm-12 col-md-6">\
+                    <div class="form-group">\
+                        <input name="associated_complaints" class="form-control values_store" id="id_associated_comp_'+m+'">\
+                    </div>\
+                </div>');
+                m++;
+            }
+        });
+        
+{% endblock %}

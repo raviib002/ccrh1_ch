@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% load i18n staticfiles common_templatetags %}
+{% block breadcrumbs %}
+{% trans 'Add Clinical Case' %}
+{% endblock %}
+{% block content %}
+    {% include 'case_history/add_case_menus.html' %}
+            <div class="add_case_content mental_history_blk">
+                <div class="Patient_information add_case_container" id="patientInformation">
+                    <div class="row">
+                        <div id="alert_message" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
+                            <div id="alert_message_strong"></div>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="summary_title">
+                            <div class="title d-flex justify-content-between">
+                                <h2 class="heading">{% trans 'Patient Information' %}</h2>
+                                <div class="arrow" id="caseSummaryArrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15.208" height="15.208" viewBox="0 0 15.208 15.208"><defs><style>.a{fill:#1c4976;}</style></defs><path class="a" d="M7.6,0a7.6,7.6,0,1,0,7.6,7.6A7.626,7.626,0,0,0,7.6,0Zm2.661,11.026L8.935,12.356,4.182,7.6,8.935,2.851l1.331,1.331L6.844,7.6Z" transform="translate(0 15.208) rotate(-90)"/></svg>
+                                </div>
+                            </div>
+                            <div class="add_summary_content">
+                                <p>{% trans 'Maecenas faucibus dignissim euismod. Ut suscipit sed sem in fringilla. Duis eu turpis at leo mattis dignissim. Maecenas felis leo, consequat nec nisl tempus, vulputate viverra mauris. Nullam ullamcorper, magna eu efficitur ultricies, nulla justovu lputate viverra mauris. Nullam ullamcorper, Maecenas faucibus dignissim euismod. Ut suscipit sed sem in fringilla. Duis eu turpis at leo mattis dignissim. Maecenas felis leo, consequat nec nisl tempus, vulputates. Nullam' %}</p>
+                                <p class="para">{% trans 'Maecenas faucibus dignissim' %}</p>
+                                <p>{% trans 'Maecenas faucibus dignissim euismod. Ut suscipit sed sem in fringilla. Duis eu turpis at leo mattis dignissim. Maecenas felis leo, consequat nec nisl tempus, vulputate viverra mauris. Nullam ullamcorper, magna eu efficitur ultricies, nulla justovu lputate viverra mauris. Nullam ullamcorper, Maecenas faucibus dignissim euismod. Ut suscipit sed sem in fringilla. Duis eu turpis at leo mattis dignissim. Maecenas felis leo, consequat nec nisl tempus, vulputates. Nullam' %}</p>
+                                <ul class="list">
+                                    <li><img src={% static "images/case_summary_tick_image.svg" %} alt="case summary image"><p>{% trans 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' %}</p></li>
+                                    <li><img src={% static "images/case_summary_tick_image.svg" %} alt="case summary image"><p>{% trans 'Sed et diam at nulla tristique bibendum.' %}</p></li>
+                                    <li><img src={% static "images/case_summary_tick_image.svg" %} alt="case summary image"><p>{% trans 'Vestibulum porta nunc sit amet turpis fringilla, interdum porta ligula laoreet.' %}</p></li>
+                                    <li><img src={% static "images/case_summary_tick_image.svg" %} alt="case summary image"><p>{% trans 'Etiam sodales erat nec lobortis rutrum.' %}</p></li>
+                                </ul>
+                            </div>
+                        <hr class="segregation_line">
+                    </div>
+                    <form id="patient_details_form" class="add_case_form case_summary_blk" action="{% if case_id %}{% url 'case_history:patient_details' case_id=case_id %}{% else %}{% url 'case_history:patient_details' %}{% endif %}" method="post">{% csrf_token %}
+                        <input type="hidden" id="id_case_record" value="{% if case_id %}{{ case_id }}{% endif %}" name="case_record">
+                        <input type="hidden" id="id_patient_dtls" value="{% if case_record %}{{ case_record|get_id:'_id' }}{% endif %}" name="patient_dtls">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label>{{ form.case_patient_name.label }}<em>*</em></label>
+                                    {{ form.case_patient_name }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label>{{ form.case_patient_father.label }}</label>
+                                    {{ form.case_patient_father }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label>{{ form.case_patient_mobile.label }}</label>
+                                    <input type="text" name="case_patient_mobile" value="{% if case_record.case_patient_mobile %}{{case_record.case_patient_mobile}}{% endif %}" maxlength ="10" class="form-control " id="id_case_patient_mobile" >
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label>{{ form.case_patient_email.label }}</label>
+                                    {{ form.case_patient_email }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <div class="form-group">
+                                    <label>{{ form.case_patient_age.label }}<em>*</em></label>
+                                    {{ form.case_patient_age }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <div class="form-group">
+                                    <label>{{ form.case_patient_sex.label }}<em>*</em></label>
+                                    {{ form.case_patient_sex }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label>{{ form.case_patient_address.label }}</label>
+                                    {{ form.case_patient_address }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group city_state_label">
+                                    <label>{{ form.case_patient_city.label }}</label>
+                                    {{form.case_patient_city }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group city_state_label">
+                                    <label>{{ form.case_patient_state.label }}<em>*</em></label>
+                                    {{form.case_patient_state }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label>{{ form.case_patient_pin_code.label }}</label>
+                                    <input type="text" name="case_patient_pin_code" class="form-control" maxlength="6" value="{% if case_record.case_patient_pin_code %}{{ case_record.case_patient_pin_code}}{% endif %}" id="id_case_patient_pin_code">
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label>{{ form.case_patient_occupation.label }}</label>
+                                    {{ form.case_patient_occupation }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label>{{ form.case_patient_education.label }}</label>
+                                    {{ form.case_patient_education }}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label>{{ form.case_patient_marital_status.label }}<em>*</em></label>
+                                    {{ form.case_patient_marital_status }}
+                                </div>
+                            </div>
+                            <hr class="segregation_line">
+                            <div class="col-sm-12 button">
+                                <button class="save">{% trans 'Save and Continue' %}</button>
+                                <button type="button" class="exit" id="exit_button_id">{% trans 'Exit' %}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>     
+
+{% endblock %}
+{% block jsfilesurls %}
+{{form.media}}
+<link href='{% static 'css/libraries/select2.css' %}' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="{% static 'js/libraries/select2.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/libraries/jquery-ui.min.css' %}"><!--autocomplete-->
+<script src="{% static 'js/libraries/jquery-ui.min.js' %}"></script> <!-- autocomplete Script -->
+{% endblock %}
+
+{% block custom-js %}
+{% include 'case_history/add_case_script.html' %}
+/*********** For Select2 error message removing drop down Starts here***************/
+ $('.select2-hidden-accessible').on('change', function() {
+    if($(this).valid()) {
+        $(this).next('span').removeClass('error').addClass('valid');
+    }
+});
+ /*********** For Select2 error message removing drop down Ends here***************/
+ {% if success_note %}  
+    $("#alert_message_strong").html("{{ success_note }}");
+    $("#alert_message").css("display", "block");
+{% endif %}
+{% endblock %}

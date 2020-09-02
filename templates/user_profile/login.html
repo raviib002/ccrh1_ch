@@ -1,0 +1,56 @@
+{% extends "base_before_login.html" %}
+{% load i18n staticfiles %}
+{% block content %}
+
+        <div class="banner_section1">
+            <div class="login_section">
+                <form class="login_form_container " id="logn_form" action="{% url 'user_profile:login' %}" method="post">{% csrf_token %}
+                    <div class="register"><span>{% trans 'Don\'t have an account?' %}</span><span><a href="#">{% trans 'Register Here' %}</a></span></div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="login_form">
+                                <h2>{% trans 'User Login' %}</h2>
+                                 {% if message %}<div class="alert alert-danger" role="alert">
+                                     {{ message }}</div>
+                                {% endif %}
+                                <p>{% trans 'Sign In to your account' %}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6 d-flex">
+                            <div class="login_form login_form_left">
+                                <div class="form-group">
+                                    <label class="email_address">
+                                    {{ form.username }}
+                                        <span class="mail_icon"><img src={% static "images/email.svg" %}
+                                                alt="enter the email address"></span>
+                                        <span class="email_login_txt">{% trans 'Login With Your Email or Mobile No.' %}</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="email_address">{{ form.password }}
+                                        <span class="mail_icon"><img src={% static "images/lock.svg" %}
+                                                alt="enter the "></span>
+                                        <span class="eye_icon "><img data-info="password" class="show_password" src={% static "images/eye.svg" %}
+                                                alt="press the eye password"></span>
+                                    </label>
+                                </div>
+                                <div class="sign_in d-flex justify-content-between">
+                                    <input type="submit" value={% trans "Sign In" %} class="signin_button">
+                                    <a href="{% url 'user_profile:forget_password' %}" class="forget_password">{% trans 'Forgot Password?' %}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6 d-flex">
+                            <div class="login-image">
+                                <figure>
+                                    <img src={% static "images/login_page.svg" %} alt="login image" class="img-fluid">
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+{% endblock %}
